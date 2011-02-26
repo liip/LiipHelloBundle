@@ -1,0 +1,3 @@
+hello:
+    pattern:  /liip/hello/{name}.{_format}
+    defaults: { _controller: liip.hello.controller:indexAction, _format: html }
