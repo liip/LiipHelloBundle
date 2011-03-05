@@ -4,6 +4,11 @@ namespace Liip\HelloBundle\Controller;
 
 class HelloController
 {
+    /**
+     * @var Liip\ViewBundle\View\DefaultView
+     */
+    protected $view;
+
     public function __construct($view)
     {
         $this->view = $view;
