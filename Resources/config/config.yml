@@ -1,5 +1,5 @@
 services:
-    liip.hello.controller:
+    liip_hello.controller:
         class: Liip\HelloBundle\Controller\HelloController
         arguments:
             view: @liip_view
