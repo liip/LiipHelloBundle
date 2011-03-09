@@ -10,6 +10,12 @@
            <generator strategy="IDENTITY" />
        </id>
 
+       <field name="firstname" column="firstname" type="string" length="255" />
+
+       <field name="lastname" column="lastname" type="string" length="255" />
+
+       <field name="facebookID" column="facebookID" type="string" length="50" nullable="true" unique="true" />
+
    </entity>
 
 </doctrine-mapping>

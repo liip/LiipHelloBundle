@@ -15,6 +15,7 @@ class LiipHelloExtension extends Extension
      */
     protected $resources = array(
         'config' => 'config.yml',
+        'facebook' => 'facebook.yml',
     );
 
     /**
@@ -27,6 +28,11 @@ class LiipHelloExtension extends Extension
     {
         $loader = $this->getFileLoader($container);
         $loader->load($this->resources['config']);
+
+        if (!empty($config['facebook'])) {
+            $loader->load($this->resources['facebook']);
+        }
+
     }
 
     /**

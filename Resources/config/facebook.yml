@@ -1,0 +1,8 @@
+services:
+    liip_hello.facebook.user:
+        class: Liip\HelloBundle\Security\User\Provider\FacebookProvider
+        arguments:
+            facebook: "@fos_facebook.api"
+            userManager: "@fos_user.user_manager"
+            validator: "@validator"
+            container: "@service_container"

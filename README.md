@@ -1,7 +1,7 @@
 What is this?
 -------------
 
-Just a very simple example bundle using services for controllers, LiipViewBundle and FOSUserBundle.
+Just a very simple example bundle using services for controllers, LiipViewBundle, FOSUserBundle and FOSFacebookBundle.
 
 Some example URL's to call
 --------------------------
