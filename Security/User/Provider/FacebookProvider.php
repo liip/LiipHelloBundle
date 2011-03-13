@@ -5,7 +5,7 @@ namespace Liip\HelloBundle\Security\User\Provider;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedAccountException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Core\User\AccountInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use \Facebook;
 use \FacebookApiException;
 
@@ -72,7 +72,7 @@ class FacebookProvider implements UserProviderInterface
         return $user;
     }
 
-    public function loadUserByAccount(AccountInterface $account)
+    public function loadUser(UserInterface $account)
     {
         if (!$this->supportsClass(get_class($account)) || !$account->getFacebookId()) {
             throw new UnsupportedAccountException(sprintf('Instances of "%s" are not supported.', get_class($account)));

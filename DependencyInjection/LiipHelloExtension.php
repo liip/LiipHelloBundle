@@ -29,10 +29,12 @@ class LiipHelloExtension extends Extension
         $loader = $this->getFileLoader($container);
         $loader->load($this->resources['config']);
 
-        if (!empty($config['facebook'])) {
-            $loader->load($this->resources['facebook']);
+        foreach ($configs as $config) {
+            if (!empty($config['facebook'])) {
+                $loader->load($this->resources['facebook']);
+                break;
+            }
         }
-
     }
 
     /**

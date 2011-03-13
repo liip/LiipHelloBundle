@@ -18,7 +18,7 @@ class HelloController
     {
         $view = $this->view;
 
-        $view->setEngine('php');
+//        $view->setEngine('php');
 
         if (!$name) {
             $view->setRouteRedirect('homepage');
@@ -26,6 +26,14 @@ class HelloController
             $view->setParameters(array('name' => $name));
             $view->setTemplate(array('bundle' => 'LiipHelloBundle', 'controller' => 'Hello', 'name' => 'index'));
         }
+
+        return $view->handle();
+    }
+
+    public function facebookAction($name = null)
+    {
+        $view = $this->view;
+        $view->setTemplate(array('bundle' => 'LiipHelloBundle', 'controller' => 'Hello', 'name' => 'facebook'));
 
         return $view->handle();
     }
