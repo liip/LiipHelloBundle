@@ -88,13 +88,15 @@ class User extends BaseUser
     {
         if (isset($fbdata['id'])) {
             $this->setFacebookID($fbdata['id']);
-            $this->setPictureUrl('http://graph.facebook.com/'.$this->getFacebookID().'/picture');
         }
         if (isset($fbdata['first_name'])) {
             $this->setFirstname($fbdata['first_name']);
         }
         if (isset($fbdata['last_name'])) {
             $this->setLastname($fbdata['last_name']);
+        }
+        if (isset($fbdata['email'])) {
+            $this->setEmail($fbdata['email']);
         }
     }
 }

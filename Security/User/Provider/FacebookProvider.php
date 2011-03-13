@@ -3,7 +3,7 @@
 namespace Liip\HelloBundle\Security\User\Provider;
 
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
-use Symfony\Component\Security\Core\Exception\UnsupportedAccountException;
+use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use \Facebook;
@@ -57,7 +57,8 @@ class FacebookProvider implements UserProviderInterface
             // http://developers.facebook.com/docs/api/realtime
             $user->setFBData($fbdata);
 
-            if (count($this->validator->validate($user, 'Facebook'))) {
+            $validation = $this->validator->validate($user, 'Facebook');
+            if (count($validation)) {
                 // TODO: add flash message?
                 throw new UsernameNotFoundException('Facebook user could not be stored');
             }
@@ -72,12 +73,12 @@ class FacebookProvider implements UserProviderInterface
         return $user;
     }
 
-    public function loadUser(UserInterface $account)
+    public function loadUser(UserInterface $user)
     {
-        if (!$this->supportsClass(get_class($account)) || !$account->getFacebookId()) {
-            throw new UnsupportedAccountException(sprintf('Instances of "%s" are not supported.', get_class($account)));
+        if (!$this->supportsClass(get_class($user)) || !$user->getFacebookId()) {
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
         }
 
-        return $this->loadUserByUsername($account->getFacebookId());
+        return $this->loadUserByUsername($user->getFacebookId());
     }
 }

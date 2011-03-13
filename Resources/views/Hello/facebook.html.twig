@@ -6,4 +6,14 @@
 
     {{ facebook_login_button({'autologoutlink': true}) }}
 
+    {% if app.user %}
+
+        {{ app.user.fullName }}
+
+    {% else %}
+
+        <a href="{{ path('hello_facebook_check') }}">login</a>
+
+    {% endif %}
+
 {% endblock content %}
