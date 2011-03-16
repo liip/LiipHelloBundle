@@ -3,3 +3,4 @@ services:
         class: Liip\HelloBundle\Controller\HelloController
         arguments:
             view: @liip_view
+            container: @service_container
