@@ -55,6 +55,8 @@ class HelloController
             $article->setPath($path);
             $article->setTitle('Foo');
             $article->setBody('1');
+            // Note this code requires https://github.com/doctrine/phpcr-odm/pull/1
+            // Currently it needs to be $documentManager->persist($article, $article->getPath());
             $documentManager->persist($article);
         }
 
