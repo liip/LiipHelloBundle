@@ -1,3 +1,30 @@
+Installation
+============
+
+  1. Add this bundle to your project as Git submodules:
+
+          $ git submodule add git://github.com/liip/HelloBundle.git vendor/bundles/Liip/HelloBundle
+
+  2. Add the Liip namespace to your autoloader:
+
+          // app/autoload.php
+          $loader->registerNamespaces(array(
+                'Liip' => __DIR__.'/../vendor/bundles',
+                // your other namespaces
+          ));
+
+  3. Add this bundle to your application's kernel:
+
+          // application/ApplicationKernel.php
+          public function registerBundles()
+          {
+              return array(
+                  // ...
+                  new Liip\HelloBundle\LiipHelloBundle(),
+                  // ...
+              );
+          }
+
 What is this?
 -------------
 
