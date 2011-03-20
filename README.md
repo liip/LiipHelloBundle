@@ -60,3 +60,9 @@ http://symfony-sandbox.lo/app_dev.php/liip/facebook
 
 Check facebook login status:
 http://symfony-sandbox.lo/app_dev.php/liip/facebook-check
+
+Using the FrameworkExtraBundle together with the ViewBundle:
+http://symfony-sandbox.lo/app_dev.php/liip/extra/foo
+
+Using the FrameworkExtraBundle together with the ViewBundle to redirect to the homepage:
+http://symfony-sandbox.lo/app_dev.php/liip/extra/_
