@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class ExtraController extends ContainerAware
 {
     /**
-     * @extra:Route("/extra/{name}", name="_extra")
+     * @extra:Route("/extra/{name}", name="_extra_name")
      * @extra:Template()
      */
     public function indexAction($name = null)
@@ -23,7 +23,7 @@ class ExtraController extends ContainerAware
 
 //        $view->setEngine('php');
 
-        if (!$name) {
+        if (!preg_match('/[a-z0-9 ]/', $name)) {
             $view->setRouteRedirect('homepage');
         }
 
