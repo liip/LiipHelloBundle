@@ -1,0 +1,11 @@
+{% extends "LiipHelloBundle::layout.html.twig" %}
+
+{% block content %}
+
+    Hello {{ name }}!
+
+    {{ facebook_initialize({'xfbml': true}) }}
+
+    {{ facebook_login_button({'autologoutlink': true}) }}
+
+{% endblock content %}
