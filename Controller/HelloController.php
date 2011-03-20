@@ -4,21 +4,23 @@ namespace Liip\HelloBundle\Controller;
 
 use Liip\HelloBundle\Document\Article;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
-class HelloController
+/**
+ * imho injecting the container is a bad practice
+ * however for the purpose of this demo it makes it easier since then not all Bundles are required
+ * in order to play around with just a few of the actions.
+ */
+class HelloController extends ContainerAware
 {
     /**
      * @var Liip\ViewBundle\View\DefaultView
      */
     protected $view;
 
-    public function __construct($view, $container)
+    public function __construct($view)
     {
         $this->view = $view;
-        // imho injecting the container is a bad practice
-        // however for the purpose of this demo it makes it easier since then not all Bundles are required
-        // in order to play around with just a few of the actions.
-        $this->container = $container;
     }
 
     public function indexAction($name = null)
@@ -37,10 +39,6 @@ class HelloController
         return $view->handle();
     }
 
-    /**
-     * @extra:Route("/phpcr/{path}", name="_demo_phpcr")
-     * @extra:Template("AcmeDemoBundle:Demo:hello.html.twig")
-     */
     public function phpcrAction($path)
     {
         $documentManager = $this->container->get('doctrine.phpcr_odm.document_manager');
