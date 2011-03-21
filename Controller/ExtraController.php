@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class ExtraController extends ContainerAware
 {
     /**
-     * @extra:Route("/extra/{name}.{_format}", name="_extra_name")
+     * @extra:Route("/extra/{name}.{_format}", name="_extra_name", defaults={"_format"="html"})
      * @extra:Template()
      */
     public function indexAction($name = null)
