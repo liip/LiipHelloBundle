@@ -29,7 +29,7 @@ What is this?
 -------------
 
 Just a very simple example bundle using services for controllers and the following Bundles:
-- LiipViewBundle
+- FOSRestBundle
 - FOSUserBundle
 - FOSFacebookBundle.
 - DoctrinePHPCRBundle

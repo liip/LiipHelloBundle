@@ -2,6 +2,6 @@ services:
     liip_hello.controller:
         class: Liip\HelloBundle\Controller\HelloController
         arguments:
-            view: @liip_view
+            view: @fos_rest.view
         calls:
             - ['setContainer', [ @service_container ] ]

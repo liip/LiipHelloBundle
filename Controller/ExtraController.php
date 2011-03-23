@@ -20,7 +20,7 @@ class ExtraController extends ContainerAware
      */
     public function indexAction($name = null)
     {
-        $view = $this->container->get('liip_view');
+        $view = $this->container->get('fos_rest.view');
 
 //        $view->setEngine('php');
 
