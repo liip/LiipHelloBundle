@@ -1,4 +1,4 @@
-<?php $view->extend('LiipHelloBundle::layout.html.php') ?>
+<?php $view->extend('LiipHello::layout.html.php') ?>
 
 <div>Hello <?php echo $view->escape($name) ?>!</div>
 

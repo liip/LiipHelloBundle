@@ -1,3 +1,3 @@
-<?php $view->extend('LiipHelloBundle::layout.html.php') ?>
+<?php $view->extend('LiipHello::layout.html.php') ?>
 
 Hello <?php echo $view->escape($name) ?>!

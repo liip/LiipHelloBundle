@@ -20,6 +20,9 @@ class ExtraController extends ContainerAware
      */
     public function indexAction($name = null)
     {
+        // fall back to standard FrameworkExtraBundle behavior
+//        return array('name' => $name);
+
         $view = $this->container->get('fos_rest.view');
 
 //        $view->setEngine('php');
