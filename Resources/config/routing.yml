@@ -23,5 +23,5 @@ hello_facebook_check:
     defaults: { _controller: liip_hello.controller:facebookAction, _format: html }
 
 extra:
-    resource: "@LiipHello/Controller/ExtraController.php"
+    resource: "@LiipHelloBundle/Controller/ExtraController.php"
     type:     annotation

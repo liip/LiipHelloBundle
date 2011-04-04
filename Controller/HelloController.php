@@ -33,7 +33,7 @@ class HelloController extends ContainerAware
             $view->setRouteRedirect('homepage');
         } else {
             $view->setParameters(array('name' => $name));
-            $view->setTemplate(array('bundle' => 'LiipHello', 'controller' => 'Hello', 'name' => 'index'));
+            $view->setTemplate(array('bundle' => 'LiipHelloBundle', 'controller' => 'Hello', 'name' => 'index'));
         }
 
         return $view->handle();
@@ -81,7 +81,7 @@ class HelloController extends ContainerAware
     public function facebookAction()
     {
         $view = $this->view;
-        $view->setTemplate(array('bundle' => 'LiipHello', 'controller' => 'Hello', 'name' => 'facebook'));
+        $view->setTemplate(array('bundle' => 'LiipHelloBundle', 'controller' => 'Hello', 'name' => 'facebook'));
 
         return $view->handle();
     }
