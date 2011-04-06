@@ -4,4 +4,15 @@ services:
         arguments:
             view: @fos_rest.view
         calls:
+# Uncomment the following lines to use the ContainerWrapper
+#            - ['setContainer', [ @liip_hello.container ] ]
+#
+#    liip_hello.container:
+#        class: lsmith77\DependencyInjection\ContainerWrapper
+#        arguments:
+#            service_map:
+#                'doctrine.phpcr_odm.document_manager': true
+#            default_service_map:
+#                'my_view': fos_rest.view
+        calls:
             - ['setContainer', [ @service_container ] ]

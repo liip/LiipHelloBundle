@@ -31,8 +31,11 @@ What is this?
 Just a very simple example bundle using services for controllers and the following Bundles:
 - FOSRestBundle
 - FOSUserBundle
-- FOSFacebookBundle.
+- FOSFacebookBundle
 - DoctrinePHPCRBundle
+
+There is also an example of how to use the ContainerWrapper, which is disabled by default
+https://github.com/lsmith77/Symfony2-Container-service-wrapper
 
 Some example URL's to call
 --------------------------

@@ -58,7 +58,17 @@ class HelloController extends ContainerAware
 
         $documentManager->flush();
 
-        return $this->indexAction($article->getBody());
+        // without the ContainerWrapper we cannot alias service names "virtually"
+        if (!$this->container->has('my_view')) {
+            $view = $this->container->get('fos_rest.view');
+        } else {
+            $view = $this->container->get('my_view');
+        }
+
+        $view->setParameters(array('name' => $article->getBody()));
+        $view->setTemplate(array('bundle' => 'LiipHelloBundle', 'controller' => 'Hello', 'name' => 'index'));
+
+        return $view->handle();
     }
 
     public function serializerAction()
