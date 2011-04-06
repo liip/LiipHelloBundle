@@ -4,6 +4,7 @@ services:
         arguments:
             view: @fos_rest.view
 
+# This alias can be removed if the ContainerWrapper is used
     my_view:
         alias: fos_rest.view
 
