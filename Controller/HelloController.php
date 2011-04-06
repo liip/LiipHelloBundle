@@ -2,9 +2,7 @@
 
 namespace Liip\HelloBundle\Controller;
 
-use Liip\HelloBundle\Document\Article;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
-use Symfony\Component\DependencyInjection\ContainerAware;
 
 /**
  * imho injecting the container is a bad practice
@@ -35,38 +33,6 @@ class HelloController extends ContainerAware
             $view->setParameters(array('name' => $name));
             $view->setTemplate(array('bundle' => 'LiipHelloBundle', 'controller' => 'Hello', 'name' => 'index'));
         }
-
-        return $view->handle();
-    }
-
-    public function phpcrAction($path)
-    {
-        $documentManager = $this->container->get('doctrine.phpcr_odm.document_manager');
-
-        $repo = $documentManager->getRepository('Liip\HelloBundle\Document\Article');
-
-        $article = $repo->find($path);
-        if ($article) {
-            $article->setBody((string)($article->getBody() + 1));
-        } else {
-            $article = new Article();
-            $article->setPath($path);
-            $article->setTitle('Foo');
-            $article->setBody('1');
-            $documentManager->persist($article);
-        }
-
-        $documentManager->flush();
-
-        // without the ContainerWrapper we cannot alias service names "virtually"
-        if (!$this->container->has('my_view')) {
-            $view = $this->container->get('fos_rest.view');
-        } else {
-            $view = $this->container->get('my_view');
-        }
-
-        $view->setParameters(array('name' => $article->getBody()));
-        $view->setTemplate(array('bundle' => 'LiipHelloBundle', 'controller' => 'Hello', 'name' => 'index'));
 
         return $view->handle();
     }
