@@ -8,7 +8,9 @@
 
     {% if app.user %}
 
-        {{ app.user.fullName }}
+        | {{ app.user.fullName }}
+
+        | <a href="{{ path('hello_facebook_logout') }}">logout</a>
 
     {% else %}
 
