@@ -4,28 +4,14 @@ services:
         arguments:
             view: @fos_rest.view
 
-# This alias can be removed if the ContainerWrapper is used
-    my_view:
-        alias: fos_rest.view
-
     liip_hello.phpcr.controller:
         class: Liip\HelloBundle\Controller\PHPCRController
         calls:
-# Uncomment the following lines to use the ContainerWrapper
-#            - ['setContainer', [ @liip_hello.container ] ]
-#
-#    liip_hello.container:
-#        parent: container_wrapper
-#        arguments:
-#            index_0:
-#                'doctrine.phpcr_odm.document_manager': true
-#
-#    container_wrapper:
-#        class: lsmith77\DependencyInjection\ContainerWrapper
-#        abstract: true
-#        arguments:
-#            - []
-#            - []
-#            - 'my_view': fos_rest.view
-#        calls:
-            - ['setContainer', [ @service_container ] ]
+            - ['setContainer', [ @liip_hello.container ] ]
+
+    liip_hello.container:
+        parent: liip_container_wrapper.service
+        arguments:
+            index_0:
+                doctrine.phpcr_odm.document_manager: true
+                my_view: fos_rest.view
