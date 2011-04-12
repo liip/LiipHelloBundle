@@ -23,7 +23,7 @@ hello_facebook_logout:
     defaults: { _controller: liip_hello.world.controller:facebookAction, _format: html }
 
 hello_phpcr:
-    pattern:  /liip/phpcr/{path}
+    pattern:  /liip/phpcr/{title}
     defaults: { _controller: liip_hello.phpcr.controller:indexAction, _format: html }
 
 extra:

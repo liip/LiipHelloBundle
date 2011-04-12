@@ -12,19 +12,18 @@ use Symfony\Component\DependencyInjection\ContainerAware;
  */
 class PHPCRController extends ContainerAware
 {
-    public function indexAction($path)
+    public function indexAction($title)
     {
         $documentManager = $this->container->get('doctrine.phpcr_odm.document_manager');
 
         $repo = $documentManager->getRepository('Liip\HelloBundle\Document\Article');
 
-        $article = $repo->find($path);
+        $article = $repo->find($title);
         if ($article) {
             $article->setBody((string)($article->getBody() + 1));
         } else {
             $article = new Article();
-            $article->setPath($path);
-            $article->setTitle('Foo');
+            $article->setTitle($title);
             $article->setBody('1');
             $documentManager->persist($article);
         }

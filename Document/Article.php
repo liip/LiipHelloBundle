@@ -4,12 +4,12 @@ namespace Liip\HelloBundle\Document;
 
 /**
  *
- * @phpcr:Document(repositoryClass="Doctrine\ODM\PHPCR\DocumentRepository", alias="article")
+ * @phpcr:Document(repositoryClass="Liip\HelloBundle\Document\ArticleRepository", alias="article")
  * 
  */
 class Article
 {
-    /** @phpcr:Path */
+    /** @phpcr:Id(strategy="repository") */
     protected $path;
 
     /** @phpcr:Node */
