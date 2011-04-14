@@ -33,4 +33,3 @@ extra:
 rest:
     resource: "Liip\HelloBundle\Controller\RestController"
     type:     rest
-#    name_prefix: liip_hello_

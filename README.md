@@ -70,3 +70,6 @@ http://symfony-sandbox.lo/app_dev.php/liip/extra/foo.json
 
 Using the FrameworkExtraBundle together with the ViewBundle to redirect to the homepage:
 http://symfony-sandbox.lo/app_dev.php/liip/extra/_
+
+Using the RestBundle routing generation
+http://symfony-standard.lo/app_dev.php/liip/hello/rest/slugs

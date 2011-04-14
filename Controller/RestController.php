@@ -5,9 +5,10 @@ namespace Liip\HelloBundle\Controller;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 /**
- * imho injecting the container is a bad practice
- * however for the purpose of this demo it makes it easier since then not all Bundles are required
- * in order to play around with just a few of the actions.
+ * imho injecting the container is a bad practice, however this is the example for all magic enabled
+ *
+ * @rest:Prefix("liip/hello/rest")
+ * @rest:NamePrefix("liip_hello_")
  */
 class RestController extends ContainerAware
 {

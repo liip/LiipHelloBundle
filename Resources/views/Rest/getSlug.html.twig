@@ -4,13 +4,13 @@
 
     <div>
         Hello {{ slug }}!
-        <a href="{{ path('get_slug', {'slug': slug, '_format': 'json'}) }}">show this slug in json</a>
-        <a href="{{ path('get_slug', {'slug': slug, '_format': 'xml'}) }}">show this slug in xml</a>
+        <a href="{{ path('liip_hello_get_slug', {'slug': slug, '_format': 'json'}) }}">show this slug in json</a>
+        <a href="{{ path('liip_hello_get_slug', {'slug': slug, '_format': 'xml'}) }}">show this slug in xml</a>
     </div>
 
-    <div><a href="{{ path('get_slugs') }}">list slugs in html</a></div>
-    <div><a href="{{ path('get_slugs', {'_format': 'json'}) }}">list slugs in json</a></div>
-    <div><a href="{{ path('get_slugs', {'_format': 'xml'}) }}">list slugs in xml</a></div>
+    <div><a href="{{ path('liip_hello_get_slugs') }}">list slugs in html</a></div>
+    <div><a href="{{ path('liip_hello_get_slugs', {'_format': 'json'}) }}">list slugs in json</a></div>
+    <div><a href="{{ path('liip_hello_get_slugs', {'_format': 'xml'}) }}">list slugs in xml</a></div>
 
     Rendered with twig.
 
