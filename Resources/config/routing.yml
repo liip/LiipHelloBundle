@@ -29,3 +29,8 @@ hello_phpcr:
 extra:
     resource: "@LiipHelloBundle/Controller/ExtraController.php"
     type:     annotation
+
+rest:
+    resource: "Liip\HelloBundle\Controller\RestController"
+    type:     rest
+#    name_prefix: liip_hello_
