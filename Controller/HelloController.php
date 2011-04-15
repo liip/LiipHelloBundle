@@ -2,7 +2,8 @@
 
 namespace Liip\HelloBundle\Controller;
 
-use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer,
+    Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 
 /**
  * imho injecting the container is a bad practice
@@ -31,7 +32,7 @@ class HelloController
             $view->setRouteRedirect('homepage');
         } else {
             $view->setParameters(array('name' => $name));
-            $view->setTemplate(array('bundle' => 'LiipHelloBundle', 'controller' => 'Hello', 'name' => 'index'));
+            $view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
         }
 
         return $view->handle();
