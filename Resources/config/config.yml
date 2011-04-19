@@ -16,3 +16,8 @@ services:
             index_0:
                 doctrine.phpcr_odm.document_manager: true
                 my_view: fos_rest.view
+
+    # Temporary fix since ContainerWrapperBundle is broken atm because of interface injection
+    # See the following url for details: http://groups.google.com/group/symfony-devs/browse_thread/thread/efb1b1588f05f255
+    my_view:
+        alias: fos_rest.view
