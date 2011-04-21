@@ -62,13 +62,13 @@ http://symfony-sandbox.lo/app_dev.php/liip/facebook
 Check facebook login status:
 http://symfony-sandbox.lo/app_dev.php/liip/facebook-check
 
-Using the FrameworkExtraBundle together with the ViewBundle:
+Using the FrameworkExtraBundle together with the RestBundle view layer:
 http://symfony-sandbox.lo/app_dev.php/liip/extra/foo
 
-Using the FrameworkExtraBundle together with the ViewBundle outputting json:
+Using the FrameworkExtraBundle together with the RestBundle view layer outputting json:
 http://symfony-sandbox.lo/app_dev.php/liip/extra/foo.json
 
-Using the FrameworkExtraBundle together with the ViewBundle to redirect to the homepage:
+Using the FrameworkExtraBundle together with the RestBundle view layer to redirect to the homepage:
 http://symfony-sandbox.lo/app_dev.php/liip/extra/_
 
 Using the RestBundle routing generation

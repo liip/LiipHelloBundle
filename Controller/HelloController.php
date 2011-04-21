@@ -5,15 +5,10 @@ namespace Liip\HelloBundle\Controller;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer,
     Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 
-/**
- * imho injecting the container is a bad practice
- * however for the purpose of this demo it makes it easier since then not all Bundles are required
- * in order to play around with just a few of the actions.
- */
 class HelloController
 {
     /**
-     * @var Liip\ViewBundle\View\DefaultView
+     * @var FOS\RestBundle\View\View
      */
     protected $view;
 
