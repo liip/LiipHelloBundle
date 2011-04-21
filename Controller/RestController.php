@@ -13,15 +13,24 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class RestController extends ContainerAware
 {
     /**
+     * @var FOS\RestBundle\View\View
+     */
+    protected $view;
+
+    public function __construct($view)
+    {
+        $this->view = $view;
+    }
+
+    /**
      * @extra:Template()
      */
     public function getSlugsAction()
     {
         $slugs = array('bim', 'bam', 'bingo');
-        $view = $this->container->get('fos_rest.view');
-        $view->setParameters(array('slugs' => $slugs));
+        $this->view->setParameters(array('slugs' => $slugs));
 
-        return $view;
+        return $this->view;
     }
 
     /**
@@ -29,9 +38,8 @@ class RestController extends ContainerAware
      */
     public function getSlugAction($slug)
     {
-        $view = $this->container->get('fos_rest.view');
-        $view->setParameters(array('slug' => $slug));
+        $this->view->setParameters(array('slug' => $slug));
 
-        return $view;
+        return $this->view;
     }
 }

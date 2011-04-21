@@ -31,5 +31,5 @@ extra:
     type:     annotation
 
 rest:
-    resource: LiipHelloBundle:Rest
+    resource: liip_hello.rest.controller
     type:     rest

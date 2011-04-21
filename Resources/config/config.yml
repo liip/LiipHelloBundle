@@ -4,9 +4,13 @@ services:
         arguments:
             view: @fos_rest.view
 
+    liip_hello.rest.controller:
+        class: Liip\HelloBundle\Controller\RestController
+        arguments:
+            view: @fos_rest.view
+
     liip_hello.phpcr.controller:
         class: Liip\HelloBundle\Controller\PHPCRController
-        interfaceInjectionEnabled: false
         calls:
             - ['setContainer', [ @liip_hello.container ] ]
 
