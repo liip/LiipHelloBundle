@@ -53,7 +53,9 @@ class HelloController
     public function facebookAction()
     {
         $view = $this->view;
-        $view->setTemplate(array('bundle' => 'LiipHelloBundle', 'controller' => 'Hello', 'name' => 'facebook'));
+
+        // example of hardcoding the full template name
+        $view->setTemplate('LiipHelloBundle:Hello:facebook.html.twig');
 
         return $view->handle();
     }
