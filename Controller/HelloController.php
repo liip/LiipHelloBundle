@@ -53,11 +53,11 @@ class HelloController
 
     public function exceptionAction()
     {
-        throw new NotFoundException("This should return a 404 response if fos_rest is configured accordingly\n
-fos_rest:\n
-    exception_map:\n
-        'Symfony\Component\Routing\Matcher\Exception\NotFoundException': 404\n
-        ");
+        throw new NotFoundException("This should return a 404 response if FOSRestBundle is configured accordingly
+fos_rest:
+    exception:
+        code:
+            'Symfony\Component\Routing\Matcher\Exception\NotFoundException': 404");
     }
 
     public function facebookAction()
