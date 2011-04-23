@@ -3,7 +3,8 @@
 namespace Liip\HelloBundle\Controller;
 
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer,
-    Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
+    Symfony\Bundle\FrameworkBundle\Templating\TemplateReference,
+    Symfony\Component\Routing\Matcher\Exception\NotFoundException;
 
 class HelloController
 {
@@ -48,6 +49,15 @@ class HelloController
         $view->setParameters($article);
 
         return $view->handle();
+    }
+
+    public function exceptionAction()
+    {
+        throw new NotFoundException("This should return a 404 response if fos_rest is configured accordingly\n
+fos_rest:\n
+    exception_map:\n
+        'Symfony\Component\Routing\Matcher\Exception\NotFoundException': 404\n
+        ");
     }
 
     public function facebookAction()

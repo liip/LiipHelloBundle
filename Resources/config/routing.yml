@@ -14,6 +14,10 @@ hello_facebook:
     pattern:  /liip/facebook
     defaults: { _controller: liip_hello.world.controller:facebookAction, _format: html }
 
+hello_exception:
+    pattern:  /liip/exception.{_format}
+    defaults: { _controller: liip_hello.world.controller:exceptionAction, _format: html }
+
 hello_facebook_check:
     pattern:  /liip/facebook-check
     defaults: { _controller: liip_hello.world.controller:facebookAction, _format: html }
