@@ -2,9 +2,10 @@
 
 namespace Liip\HelloBundle\Controller;
 
-use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer,
-    Symfony\Bundle\FrameworkBundle\Templating\TemplateReference,
+use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference,
     Symfony\Component\Routing\Matcher\Exception\NotFoundException;
+
+use Liip\HelloBundle\Document\Article;
 
 class HelloController
 {
@@ -40,11 +41,10 @@ class HelloController
 
         $article = new Article();
         $article->setPath('/foo');
-        $article->setTitle('Foo');
-        $article->setBody('1');
-
-        $serializer = $view->getSerializer();
-        $serializer->addNormalizer(new GetSetMethodNormalizer());
+        $article->setTitle('Example use of the GetSetMethodNormalizer normalizer');
+        $article->setBody("fos_rest:
+    normalizers:
+        'Liip\\HelloBundle\\Document\\Article': 'liip_hello.get_set_method_normalizer'");
 
         $view->setParameters($article);
 
