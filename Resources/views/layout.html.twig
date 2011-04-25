@@ -1,19 +1,19 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-{#
-    {% if has_role("IS_AUTHENTICATED_FULLY") %}
-        <a href="{{ path('fos_user_user_show', {'username': app.user.getUsername}) }}">
-            {% trans 'Logged in as %username%' with { '%username%': app.user.getUsername() } from 'FOSUserBundle' %}
-        </a> |
-        <a href="{{ path('_security_logout') }}">
-            {% trans 'Logout' from 'FOSUserBundle' %}
-        </a>
-    {% else %}
-        <a href="{{ path('_security_login') }}">{% trans 'Login' from 'FOSUserBundle' %}</a> |
-        <a href="{{ path('fos_user_user_new') }}">{% trans 'Register' from 'FOSUserBundle' %}</a>
-    {% endif %}
-#}
+    <div>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <a href="{{ path('fos_user_user_show', {'username': app.user.username}) }}">
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+            </a> |
+            <a href="{{ path('_security_logout') }}">
+                {{ 'layout.logout'|trans([], 'FOSUserBundle') }}
+            </a>
+        {% else %}
+            <a href="{{ path('_security_login') }}">{{ 'layout.login'|trans([], 'FOSUserBundle') }}</a> |
+            <a href="{{ path('fos_user_user_new') }}">{{ 'layout.register'|trans([], 'FOSUserBundle') }}</a>
+        {% endif %}
+    </div>
 
     <h1>Hello Application</h1>
 
