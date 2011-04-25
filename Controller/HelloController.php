@@ -26,7 +26,7 @@ class HelloController
 //        $view->setEngine('php');
 
         if (!$name) {
-            $view->setRouteRedirect('homepage');
+            $view->setRouteRedirect('_welcome');
         } else {
             $view->setParameters(array('name' => $name));
             $view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));

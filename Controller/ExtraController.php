@@ -28,7 +28,7 @@ class ExtraController extends ContainerAware
 //        $view->setEngine('php');
 
         if (!$name) {
-            $view->setRouteRedirect('homepage');
+            $view->setRouteRedirect('_welcome');
         }
 
         return $view;

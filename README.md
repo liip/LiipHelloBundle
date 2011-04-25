@@ -39,37 +39,40 @@ Some example URL's to call
 --------------------------
 
 HTML output:
-http://symfony-sandbox.lo/app_dev.php/liip/hello/foo
+http://symfony-standard.lo/app_dev.php/liip/hello/foo
 
 JSON output:
-http://symfony-sandbox.lo/app_dev.php/liip/hello/foo.json
+http://symfony-standard.lo/app_dev.php/liip/hello/foo.json
 
 XML output:
-http://symfony-sandbox.lo/app_dev.php/liip/hello/foo.xml
+http://symfony-standard.lo/app_dev.php/liip/hello/foo.xml
 
-Redirect to homepage:
-http://symfony-sandbox.lo/app_dev.php/liip/hello
+Redirect to the '_welcome' route:
+http://symfony-standard.lo/app_dev.php/liip/hello
 
 XML output using a normalizer:
-http://symfony-sandbox.lo/app_dev.php/liip/serializer.xml
+http://symfony-standard.lo/app_dev.php/liip/serializer.xml
 
 Requires PHPCR ODM and Jackrabbit to be installed:
-http://symfony-sandbox.lo/app_dev.php/liip/phpcr/bar
+http://symfony-standard.lo/app_dev.php/liip/phpcr/bar
 
 Facebook login button:
-http://symfony-sandbox.lo/app_dev.php/liip/facebook
+http://symfony-standard.lo/app_dev.php/liip/facebook
 
 Check facebook login status:
-http://symfony-sandbox.lo/app_dev.php/liip/facebook-check
+http://symfony-standard.lo/app_dev.php/liip/facebook-check
 
 Using the FrameworkExtraBundle together with the RestBundle view layer:
-http://symfony-sandbox.lo/app_dev.php/liip/extra/foo
+http://symfony-standard.lo/app_dev.php/liip/extra/foo
 
 Using the FrameworkExtraBundle together with the RestBundle view layer outputting json:
-http://symfony-sandbox.lo/app_dev.php/liip/extra/foo.json
+http://symfony-standard.lo/app_dev.php/liip/extra/foo.json
 
-Using the FrameworkExtraBundle together with the RestBundle view layer to redirect to the homepage:
-http://symfony-sandbox.lo/app_dev.php/liip/extra/_
+Using the FrameworkExtraBundle together with the RestBundle view layer to redirect to the '_welcome' route:
+http://symfony-standard.lo/app_dev.php/liip/extra
 
 Using the RestBundle routing generation
 http://symfony-standard.lo/app_dev.php/liip/hello/rest/slugs
+
+Using the RestBundle ExceptionController
+http://symfony-standard.lo/app_dev.php/liip/exception.html
