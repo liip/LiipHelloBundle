@@ -25,10 +25,16 @@ Installation
               );
           }
 
+  Alternatively download and install the following Symfony2 Standard Edition fork:
+
+        $ git clone https://github.com/lsmith77/symfony-standard
+        $ git checkout -b techtalk origin/techtalk
+
 What is this?
 -------------
 
 Just a very simple example bundle using services for controllers and the following Bundles:
+
 - FOSRestBundle
 - FOSUserBundle
 - FOSFacebookBundle
