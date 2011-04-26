@@ -24,3 +24,6 @@ services:
 
     liip_hello.get_set_method_normalizer:
         class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+
+    liip_hello.violation_list_normalizer:
+        class: FOS\RestBundle\Serializer\Normalizer\ValidatorConstraintViolationListNormalizer
