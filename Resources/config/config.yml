@@ -21,9 +21,3 @@ services:
             index_0:
                 doctrine.phpcr_odm.document_manager: true
                 my_view: fos_rest.view
-
-    liip_hello.get_set_method_normalizer:
-        class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
-
-    liip_hello.violation_list_normalizer:
-        class: FOS\RestBundle\Serializer\Normalizer\ValidatorConstraintViolationListNormalizer
