@@ -14,9 +14,15 @@ class HelloController
      */
     protected $view;
 
-    public function __construct($view)
+    /**
+     * @var Symfony\Component\Validator\ValidatorInterface
+     */
+    protected $validator;
+
+    public function __construct($view, $validator)
     {
         $this->view = $view;
+        $this->validator = $validator;
     }
 
     public function indexAction($name = null)
@@ -58,6 +64,27 @@ fos_rest:
     exception:
         code:
             'Symfony\Component\Routing\Matcher\Exception\NotFoundException': 404");
+    }
+
+    public function validationFailureAction()
+    {
+        $view = $this->view;
+        $validator = $this->validator;
+
+        $article = new Article();
+        //$article->setPath('/foo');
+        $article->setTitle('The path was set');
+        $article->setBody('Disable the setPath() call to get a validation error example');
+
+        $errors = $validator->validate($article);
+        if (!count($errors)) {
+            $view->setParameters($article);
+        } else {
+            $view->setFailedValidationStatusCode();
+            $view->setParameters($errors);
+        }
+
+        return $view->handle();
     }
 
     public function facebookAction()

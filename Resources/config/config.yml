@@ -3,6 +3,7 @@ services:
         class: Liip\HelloBundle\Controller\HelloController
         arguments:
             view: @fos_rest.view
+            validator: @validator
 
     liip_hello.rest.controller:
         class: Liip\HelloBundle\Controller\RestController

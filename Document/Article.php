@@ -9,7 +9,10 @@ namespace Liip\HelloBundle\Document;
  */
 class Article
 {
-    /** @phpcr:Id(strategy="repository") */
+    /**
+     * @phpcr:Id(strategy="repository")
+     * @assert:NotBlank(message = "The path may not be blank.")
+     */
     protected $path;
 
     /** @phpcr:Node */

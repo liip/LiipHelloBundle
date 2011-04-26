@@ -82,3 +82,6 @@ http://symfony-standard.lo/app_dev.php/liip/hello/rest/slugs
 
 Using the RestBundle ExceptionController
 http://symfony-standard.lo/app_dev.php/liip/exception.html
+
+Using the RestBundle to handle a failed validation
+http://symfony-standard.lo/app_dev.php/liip/validation_failure.json
