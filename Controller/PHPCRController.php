@@ -4,6 +4,7 @@ namespace Liip\HelloBundle\Controller;
 
 use Liip\HelloBundle\Document\Article;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 
 /**
  * imho injecting the container is a bad practice
@@ -32,7 +33,7 @@ class PHPCRController extends ContainerAware
 
         $view = $this->container->get('my_view');
         $view->setParameters(array('name' => $article->getBody()));
-        $view->setTemplate(array('bundle' => 'LiipHelloBundle', 'controller' => 'Hello', 'name' => 'index'));
+        $view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
 
         return $view->handle();
     }
