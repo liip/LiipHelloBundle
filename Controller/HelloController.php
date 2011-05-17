@@ -3,7 +3,7 @@
 namespace Liip\HelloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference,
-    Symfony\Component\Routing\Exception\NotFoundException;
+    Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 use Liip\HelloBundle\Document\Article;
 
@@ -59,11 +59,11 @@ class HelloController
 
     public function exceptionAction()
     {
-        throw new NotFoundException("This should return a 404 response if FOSRestBundle is configured accordingly
+        throw new ResourceNotFoundException("This should return a 404 response if FOSRestBundle is configured accordingly
 fos_rest:
     exception:
         code:
-            'Symfony\Component\Routing\Exception\NotFoundException': 404");
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404");
     }
 
     public function validationFailureAction()
