@@ -3,7 +3,7 @@
 namespace Liip\HelloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference,
-    Symfony\Component\Routing\Matcher\Exception\NotFoundException;
+    Symfony\Component\Routing\Exception\NotFoundException;
 
 use Liip\HelloBundle\Document\Article;
 
@@ -63,7 +63,7 @@ class HelloController
 fos_rest:
     exception:
         code:
-            'Symfony\Component\Routing\Matcher\Exception\NotFoundException': 404");
+            'Symfony\Component\Routing\Exception\NotFoundException': 404");
     }
 
     public function validationFailureAction()
