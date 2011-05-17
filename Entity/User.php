@@ -22,6 +22,27 @@ class User extends BaseUser
     protected $facebookID;
 
     /**
+     * @param  string
+     */
+    public function setUsername($username)
+    {
+        $facebookId = $this->getFacebookID();
+        if ($facebookId) {
+            $username = $facebookId;
+        }
+        parent::setUsername($username);
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        parent::setEmail($email);
+        $this->setUsername($email);
+    }
+
+    /**
      * @return string
      */
     public function getFirstname()
