@@ -15,6 +15,11 @@ class ArticleRepository extends DocumentRepository implements RepositoryIdInterf
      */
     public function generateId($document)
     {
-        return $document->getTitle();
+        return $this->appendRootNodePath($document->getTitle());
+    }
+
+    public function appendRootNodePath($name)
+    {
+        return '/'.$name;
     }
 }

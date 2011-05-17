@@ -19,7 +19,7 @@ class PHPCRController extends ContainerAware
 
         $repo = $documentManager->getRepository('Liip\HelloBundle\Document\Article');
 
-        $article = $repo->find($title);
+        $article = $repo->find($repo->appendRootNodePath($title));
         if ($article) {
             $article->setBody((string)($article->getBody() + 1));
         } else {
