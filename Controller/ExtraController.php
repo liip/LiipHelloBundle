@@ -4,19 +4,20 @@ namespace Liip\HelloBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 /**
  * imho injecting the container is a bad practice, however this is the example for all magic enabled
  * 
- * @extra:Route("/liip")
+ * @Route("/liip")
  */
 class ExtraController extends ContainerAware
 {
     /**
-     * @extra:Routes({
-     *   @extra:Route("/extra.{_format}", name="_extra_noname", defaults={"_format"="html"}),
-     *   @extra:Route("/extra/{name}.{_format}", name="_extra_name", defaults={"_format"="html"})
-     * })
-     * @extra:Template()
+     * @Route("/extra.{_format}", name="_extra_noname", defaults={"_format"="html"}),
+     * @Route("/extra/{name}.{_format}", name="_extra_name", defaults={"_format"="html"})
+     * @Template()
      */
     public function indexAction($name = null)
     {
