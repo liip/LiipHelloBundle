@@ -27,24 +27,20 @@ class HelloController
 
     public function indexAction($name = null)
     {
-        $view = $this->view;
-
-//        $view->setEngine('php');
+//        $this->view->setEngine('php');
 
         if (!$name) {
-            $view->setRouteRedirect('_welcome');
+            $this->view->setRouteRedirect('_welcome');
         } else {
-            $view->setParameters(array('name' => $name));
-            $view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
+            $this->view->setParameters(array('name' => $name));
+            $this->view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
         }
 
-        return $view->handle();
+        return $this->view->handle();
     }
 
     public function serializerAction()
     {
-        $view = $this->view;
-
         $article = new Article();
         $article->setPath('/foo');
         $article->setTitle('Example use of the GetSetMethodNormalizer normalizer');
@@ -52,9 +48,9 @@ class HelloController
     normalizers:
         'Liip\\HelloBundle\\Document\\Article': 'liip_hello.get_set_method_normalizer'");
 
-        $view->setParameters($article);
+        $this->view->setParameters($article);
 
-        return $view->handle();
+        return $this->view->handle();
     }
 
     public function exceptionAction()
@@ -68,7 +64,6 @@ fos_rest:
 
     public function validationFailureAction()
     {
-        $view = $this->view;
         $validator = $this->validator;
 
         $article = new Article();
@@ -78,22 +73,20 @@ fos_rest:
 
         $errors = $validator->validate($article);
         if (!count($errors)) {
-            $view->setParameters($article);
+            $this->view->setParameters($article);
         } else {
-            $view->setFailedValidationStatusCode();
-            $view->setParameters($errors);
+            $this->view->setFailedValidationStatusCode();
+            $this->view->setParameters($errors);
         }
 
-        return $view->handle();
+        return $this->view->handle();
     }
 
     public function facebookAction()
     {
-        $view = $this->view;
-
         // example of hardcoding the full template name
-        $view->setTemplate('LiipHelloBundle:Hello:facebook.html.twig');
+        $this->view->setTemplate('LiipHelloBundle:Hello:facebook.html.twig');
 
-        return $view->handle();
+        return $this->view->handle();
     }
 }
