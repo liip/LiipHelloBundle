@@ -2,34 +2,34 @@
 
 namespace Liip\HelloBundle\Document;
 
-use Doctrine\ODM\PHPCR\Mapping as PHPCR;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 /**
  *
- * @ PHPCR\Document(repositoryClass="Liip\HelloBundle\Document\ArticleRepository", alias="article")
- * 
+ * @PHPCR\Document(repositoryClass="Liip\HelloBundle\Document\ArticleRepository", alias="article")
+ *
  */
 class Article
 {
     /**
-     * @ PHPCR\Id(strategy="repository")
+     * @PHPCR\Id(strategy="repository")
      * @Assert\NotBlank(message = "The path may not be blank.")
      */
     protected $path;
 
-    /** @ PHPCR\Node */
+    /** @PHPCR\Node */
     protected $node;
 
     /**
-     * @ PHPCR\String(name="title")
+     * @PHPCR\String(name="title")
      * @Assert\MinLength(3)
      * @Assert\MaxLength(30)
      */
     protected $title;
 
     /**
-     * @ PHPCR\String(name="body")
+     * @PHPCR\String(name="body")
      * @Assert\NotBlank
      */
     protected $body;
