@@ -30,7 +30,7 @@ class HelloController
 //        $this->view->setEngine('php');
 
         if (!$name) {
-            $this->view->setRouteRedirect('_welcome');
+            $this->view->setResourceRoute('_welcome');
         } else {
             $this->view->setParameters(array('name' => $name));
             $this->view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
