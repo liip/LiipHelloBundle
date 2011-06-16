@@ -73,7 +73,7 @@ class FacebookProvider implements UserProviderInterface
         return $user;
     }
 
-    public function loadUser(UserInterface $user)
+    public function refreshUser(UserInterface $user)
     {
         if (!$this->supportsClass(get_class($user)) || !$user->getFacebookId()) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
