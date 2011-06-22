@@ -5,6 +5,7 @@ namespace Liip\HelloBundle\Controller;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormFactory;
+use Symfony\Component\HttpFoundation\Session;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -28,6 +29,11 @@ class RestController extends ContainerAware
     protected $request;
 
     /**
+     * @var Session
+     */
+    protected $session;
+
+    /**
      * @var FOS\RestBundle\View\View
      */
     protected $view;
@@ -37,9 +43,10 @@ class RestController extends ContainerAware
      */
     protected $formFactory;
 
-    public function __construct(Request $request, View $view, FormFactory $formFactory)
+    public function __construct(Request $request, Session $session, View $view, FormFactory $formFactory)
     {
         $this->request = $request;
+        $this->session = $session;
         $this->view = $view;
         $this->formFactory = $formFactory;
     }
@@ -92,6 +99,7 @@ class RestController extends ContainerAware
         if ($form->isValid()) {
             // Note: normally one would likely create/update something in the database
             // and/or send an email and finally redirect to the resource url
+            $this->session->setFlash('article', $form->getData()->getTitle());
             $this->view->setResourceRoute('_welcome');
         } else {
             $this->view->setParameters(array('form' => $form));

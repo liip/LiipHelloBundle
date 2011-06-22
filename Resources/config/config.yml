@@ -9,6 +9,7 @@ services:
         class: Liip\HelloBundle\Controller\RestController
         arguments:
             request: @request
+            session: @session
             view: @fos_rest.view
             formFactory: @form.factory
         scope: request
