@@ -120,6 +120,11 @@ class RestController
      */
     public function getArticleAction($article)
     {
+        $text = $article;
+        $article = new Article();
+        $article->setPath('/'.$text);
+        $article->setTitle($text);
+        $article->setBody("This article is about '$text' and its really great and all");
         $this->view->setParameters(array('article' => $article));
 
         return $this->view;

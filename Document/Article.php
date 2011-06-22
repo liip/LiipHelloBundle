@@ -3,6 +3,8 @@
 namespace Liip\HelloBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 /**
@@ -10,7 +12,7 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
  * @PHPCR\Document(repositoryClass="Liip\HelloBundle\Document\ArticleRepository", alias="article")
  *
  */
-class Article
+class Article implements NormalizableInterface
 {
     /**
      * Format, just used in the RestController
@@ -76,5 +78,20 @@ class Article
     public function __toString()
     {
       return $this->title;
+    }
+
+    public function normalize(SerializerInterface $serializer, $format = null)
+    {
+        return array(
+            'normalizer' => 'custom',
+            'path' => $this->getPath(),
+            'title' => $this->getPath(),
+            'body' => substr($this->getBody(), 0, 20).'..',
+        );
+    }
+
+    public function denormalize(SerializerInterface $serializer, $data, $format = null)
+    {
+        throw new \BadMethodCallException('Not supported');
     }
 }
