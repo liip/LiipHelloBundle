@@ -78,7 +78,9 @@ Using the FrameworkExtraBundle together with the RestBundle view layer to redire
 http://symfony-standard.lo/app_dev.php/liip/extra
 
 Using the RestBundle routing generation
-http://symfony-standard.lo/app_dev.php/liip/hello/rest/slugs
+http://symfony-standard.lo/app_dev.php/liip/hello/rest/articles
+http://symfony-standard.lo/app_dev.php/liip/hello/rest/article
+http://symfony-standard.lo/app_dev.php/liip/hello/rest/new/articles
 
 Using the RestBundle ExceptionController
 http://symfony-standard.lo/app_dev.php/liip/exception.html

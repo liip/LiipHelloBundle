@@ -8,7 +8,10 @@ services:
     liip_hello.rest.controller:
         class: Liip\HelloBundle\Controller\RestController
         arguments:
+            request: @request
             view: @fos_rest.view
+            formFactory: @form.factory
+        scope: request
 
     liip_hello.phpcr.controller:
         class: Liip\HelloBundle\Controller\PHPCRController

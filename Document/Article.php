@@ -12,6 +12,8 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
  */
 class Article
 {
+    public $format = 'html';
+
     /**
      * @PHPCR\Id(strategy="repository")
      * @Assert\NotBlank(message = "The path may not be blank.")

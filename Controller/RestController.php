@@ -3,10 +3,16 @@
 namespace Liip\HelloBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormFactory;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use FOS\RestBundle\Controller\Annotations\Prefix;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
+use FOS\RestBundle\View\View;
+
+use Liip\HelloBundle\Document\Article;
 
 /**
  * imho injecting the container is a bad practice, however this is the example for all magic enabled
@@ -17,22 +23,60 @@ use FOS\RestBundle\Controller\Annotations\NamePrefix;
 class RestController extends ContainerAware
 {
     /**
+     * @var Symfony\Component\HttpFoundation\Request
+     */
+    protected $request;
+
+    /**
      * @var FOS\RestBundle\View\View
      */
     protected $view;
 
-    public function __construct($view)
+    /**
+     * @var Symfony\Component\Form\FormFactory
+     */
+    protected $formFactory;
+
+    public function __construct(Request $request, View $view, FormFactory $formFactory)
     {
+        $this->request = $request;
         $this->view = $view;
+        $this->formFactory = $formFactory;
     }
 
     /**
      * @Template()
      */
-    public function getSlugsAction()
+    public function getArticlesAction()
     {
-        $slugs = array('bim', 'bam', 'bingo');
-        $this->view->setParameters(array('slugs' => $slugs));
+        $articles = array('bim', 'bam', 'bingo');
+        $this->view->setParameters(array('articles' => $articles));
+
+        return $this->view;
+    }
+
+    protected function getForm()
+    {
+        $article = new Article();
+
+        return $this->formFactory->createBuilder('form', $article)
+            ->add('path', 'text', array('required' => false))
+            ->add('title', 'text', array('required' => false))
+            ->add('body', 'text', array('required' => false))
+            ->add('format', 'choice', array('choices' => array('html' => 'html', 'json' => 'json', 'xml' => 'xml')))
+            ->getForm();
+    }
+
+    /**
+     * @Template()
+     */
+    public function getNewArticlesAction()
+    {
+        $article = new Article();
+
+        $form = $this->getForm();
+
+        $this->view->setParameters(array('form' => $form));
 
         return $this->view;
     }
@@ -40,9 +84,30 @@ class RestController extends ContainerAware
     /**
      * @Template()
      */
-    public function getSlugAction($slug)
+    public function postArticlesAction()
     {
-        $this->view->setParameters(array('slug' => $slug));
+        $form = $this->getForm();
+
+        if ($this->request->getMethod() == 'POST') {
+            $form->bindRequest($this->request);
+
+            $this->view->setFormat($form->getData()->format);
+            if ($form->isValid()) {
+                $this->view->setResourceRoute('_welcome');
+                return $this->view;
+            }
+        }
+
+        $this->view->setParameters(array('form' => $form));
+        return $this->view;
+    }
+
+    /**
+     * @Template()
+     */
+    public function getArticleAction($article)
+    {
+        $this->view->setParameters(array('article' => $article));
 
         return $this->view;
     }
