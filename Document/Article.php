@@ -12,6 +12,13 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
  */
 class Article
 {
+    /**
+     * Format, just used in the RestController
+     * In theory the right way would be to create a proxy class with this property
+     * that contains an Article instance, but I wanted to keep things simple
+     *
+     * @var string
+     */
     public $format = 'html';
 
     /**

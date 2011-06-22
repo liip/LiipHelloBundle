@@ -72,8 +72,6 @@ class RestController extends ContainerAware
      */
     public function getNewArticlesAction()
     {
-        $article = new Article();
-
         $form = $this->getForm();
 
         $this->view->setParameters(array('form' => $form));
@@ -88,18 +86,15 @@ class RestController extends ContainerAware
     {
         $form = $this->getForm();
 
-        if ($this->request->getMethod() == 'POST') {
-            $form->bindRequest($this->request);
+        $form->bindRequest($this->request);
 
-            $this->view->setFormat($form->getData()->format);
-            if ($form->isValid()) {
-                $this->view->setResourceRoute('_welcome');
-                return $this->view;
-            }
+        $this->view->setFormat($form->getData()->format);
+        if ($form->isValid()) {
+            // Note: normally one would likely create/update something in the database
+            // and/or send an email and finally redirect to the resource url
+            $this->view->setResourceRoute('_welcome');
+            return $this->view;
         }
-
-        $this->view->setParameters(array('form' => $form));
-        return $this->view;
     }
 
     /**
