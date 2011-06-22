@@ -2,7 +2,6 @@
 
 namespace Liip\HelloBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Session;
@@ -16,12 +15,10 @@ use FOS\RestBundle\View\View;
 use Liip\HelloBundle\Document\Article;
 
 /**
- * imho injecting the container is a bad practice, however this is the example for all magic enabled
- *
  * @Prefix("liip/hello/rest")
  * @NamePrefix("liip_hello_")
  */
-class RestController extends ContainerAware
+class RestController
 {
     /**
      * @var Symfony\Component\HttpFoundation\Request
@@ -52,6 +49,8 @@ class RestController extends ContainerAware
     }
 
     /**
+     * Get the list of articles
+     *
      * @Template()
      */
     public function getArticlesAction()
@@ -75,6 +74,8 @@ class RestController extends ContainerAware
     }
 
     /**
+     * Display the form
+     * 
      * @Template()
      */
     public function getNewArticlesAction()
@@ -87,6 +88,8 @@ class RestController extends ContainerAware
     }
 
     /**
+     * Create a new resource
+     * 
      * @Template()
      */
     public function postArticlesAction()
@@ -95,11 +98,13 @@ class RestController extends ContainerAware
 
         $form->bindRequest($this->request);
 
+        // Note: this would normally not be necessary, just a "hack" to make the format selectable in the form
         $this->view->setFormat($form->getData()->format);
         if ($form->isValid()) {
+            // Note: FOSRestBundle will automatically move this flash message to a cookie
+            $this->session->setFlash('article', $form->getData()->getTitle());
             // Note: normally one would likely create/update something in the database
             // and/or send an email and finally redirect to the resource url
-            $this->session->setFlash('article', $form->getData()->getTitle());
             $this->view->setResourceRoute('_welcome');
         } else {
             $this->view->setParameters(array('form' => $form));
@@ -109,6 +114,8 @@ class RestController extends ContainerAware
     }
 
     /**
+     * Get the article
+     * 
      * @Template()
      */
     public function getArticleAction($article)
