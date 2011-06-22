@@ -93,8 +93,11 @@ class RestController extends ContainerAware
             // Note: normally one would likely create/update something in the database
             // and/or send an email and finally redirect to the resource url
             $this->view->setResourceRoute('_welcome');
-            return $this->view;
+        } else {
+            $this->view->setParameters(array('form' => $form));
         }
+
+        return $this->view;
     }
 
     /**
