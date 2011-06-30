@@ -15,11 +15,19 @@ class PHPCRController extends ContainerAware
 {
     public function indexAction($title)
     {
+        $view = $this->container->get('my_view');
+        $view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
 
         $documentManager = $this->container->get('doctrine_phpcr.odm.document_manager');
         $repo = $documentManager->getRepository('Liip\HelloBundle\Document\Article');
 
-        $article = $repo->find($repo->appendRootNodePath($title));
+        try {
+            $article = $repo->find($repo->appendRootNodePath($title));
+        } catch (\Exception $e) {
+            $view->setParameters(array('name' => 'Please run "app/console doctrine:phpcr:init:dbal"'));
+            return $view->handle();
+        }
+
         if ($article) {
             $article->setBody((string)($article->getBody() + 1));
         } else {
@@ -31,9 +39,7 @@ class PHPCRController extends ContainerAware
 
         $documentManager->flush();
 
-        $view = $this->container->get('my_view');
         $view->setParameters(array('name' => $article->getBody()));
-        $view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
 
         return $view->handle();
     }
