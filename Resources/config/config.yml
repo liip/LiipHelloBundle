@@ -23,5 +23,5 @@ services:
         parent: liip_container_wrapper.service
         arguments:
             index_0:
-                doctrine.phpcr_odm.document_manager: true
+                doctrine_phpcr.odm.document_manager: true
                 my_view: fos_rest.view

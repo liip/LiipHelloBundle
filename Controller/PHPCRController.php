@@ -15,8 +15,8 @@ class PHPCRController extends ContainerAware
 {
     public function indexAction($title)
     {
-        $documentManager = $this->container->get('doctrine.phpcr_odm.document_manager');
 
+        $documentManager = $this->container->get('doctrine_phpcr.odm.document_manager');
         $repo = $documentManager->getRepository('Liip\HelloBundle\Document\Article');
 
         $article = $repo->find($repo->appendRootNodePath($title));
