@@ -3,7 +3,7 @@ Installation
 
   1. Add this bundle to your project as Git submodules:
 
-          $ git submodule add git://github.com/liip/HelloBundle.git vendor/bundles/Liip/HelloBundle
+          $ git submodule add git://github.com/liip/LiipHelloBundle.git vendor/bundles/Liip/HelloBundle
 
   2. Add the Liip namespace to your autoloader:
 
