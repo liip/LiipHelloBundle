@@ -73,15 +73,18 @@ class VieController
 
     public function vieJsonLdAction()
     {
-        $title = $this->request->request->get('dcterms:title');
-        $body = $this->request->request->get('sioc:content');
+        $jsonld = $this->request->request->all();
+        $jsonld['dcterms:title'] = trim($jsonld['dcterms:title']).'!!!';
+        $jsonld['sioc:content'] = trim($jsonld['sioc:content']);
 
         $article = $this->getArticle();
-        $article->setTitle($title);
-        $article->setBody($body);
+        $article->setTitle($jsonld['dcterms:title']);
+        $article->setBody($jsonld['sioc:content']);
 
         $this->dm->flush();
 
-        return new Response();
+        // return the updated version
+        $this->view->setParameters($jsonld);
+        return $this->view->handle();
     }
 }
