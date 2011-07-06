@@ -35,12 +35,12 @@ class VieController
         $this->dm = $dm;
     }
 
-    protected function getVie()
+    protected function getArticle($set_defaults = false)
     {
         $repo = $this->dm->getRepository('Liip\HelloBundle\Document\Article');
 
         try {
-            $path = $repo->appendRootNodePath('vie');
+            $path = '/vie';
             $article = $repo->find($path);
         } catch (\Exception $e) {
             return new Response('Please run "app/console doctrine:phpcr:init:dbal"');
@@ -49,10 +49,12 @@ class VieController
         if (!$article) {
             $article = new Article();
             $article->setPath($path);
-            $article->setTitle('Hello VIE!');
-            $article->setBody('<p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-            </p>');
+            if ($set_defaults) {
+                $article->setTitle('Hello VIE!');
+                $article->setBody('<p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+                </p>');
+            }
             $this->dm->persist($article);
         }
 
@@ -61,9 +63,9 @@ class VieController
 
     public function vieAction()
     {
-        $this->view->setTemplate(new TemplateReference('LiipHelloBundle', 'Vie', 'vie'));
+        $this->view->setTemplate(new TemplateReference('LiipHelloBundle', 'Vie', 'index'));
 
-        $article = $this->getVie();
+        $article = $this->getArticle(true);
         $this->view->setParameters(array('article' => $article));
 
         return $this->view->handle();
@@ -74,7 +76,7 @@ class VieController
         $title = $this->request->request->get('dcterms:title');
         $body = $this->request->request->get('sioc:content');
 
-        $article = $this->getVie();
+        $article = $this->getArticle();
         $article->setTitle($title);
         $article->setBody($body);
 
