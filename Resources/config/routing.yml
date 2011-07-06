@@ -41,3 +41,11 @@ extra:
 rest:
     resource: liip_hello.rest.controller
     type:     rest
+
+hello_vie:
+    pattern:  /liip/vie
+    defaults: { _controller: liip_hello.vie.controller:vieAction, _format: html }
+
+hello_vie_jsonld:
+    pattern:  /liip/vie/jsonld
+    defaults: { _controller: liip_hello.vie.controller:vieJsonLdAction, _format: json }

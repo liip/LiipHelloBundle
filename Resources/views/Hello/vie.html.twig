@@ -1,0 +1,14 @@
+{% extends "LiipHelloBundle::vie.html.twig" %}
+
+{% block content %}
+
+        <div about="http://example.net/blog/" rel="dcterms:hasPart" rev="dcterms:partOf">
+            <article typeof="sioc:Post" about="http://example.net/blog/news_item">
+                <h1 property="dcterms:title">{{ article.title }}</h1>
+                <div property="sioc:content">
+                    {{ article.body|raw }}
+                </div>
+           </article>
+        </div>
+
+{% endblock content %}

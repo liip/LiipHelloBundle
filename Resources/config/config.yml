@@ -25,3 +25,11 @@ services:
             index_0:
                 doctrine_phpcr.odm.document_manager: true
                 my_view: fos_rest.view
+
+    liip_hello.vie.controller:
+        class: Liip\HelloBundle\Controller\VieController
+        arguments:
+            view: @fos_rest.view
+            request: @request
+            documentmanager: @doctrine_phpcr.odm.document_manager
+        scope: request
