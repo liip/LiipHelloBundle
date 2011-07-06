@@ -61,7 +61,7 @@ class VieController
 
     public function vieAction()
     {
-        $this->view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'vie'));
+        $this->view->setTemplate(new TemplateReference('LiipHelloBundle', 'Vie', 'vie'));
 
         $article = $this->getVie();
         $this->view->setParameters(array('article' => $article));
