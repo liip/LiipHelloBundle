@@ -16,7 +16,7 @@ use Liip\HelloBundle\Document\Article;
 
 /**
  * @Prefix("liip/hello/rest")
- * @NamePrefix("liip_hello_rest")
+ * @NamePrefix("liip_hello_rest_")
  */
 class RestController
 {
