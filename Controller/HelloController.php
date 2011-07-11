@@ -34,7 +34,7 @@ class HelloController
         if (!$name) {
             $this->view->setResourceRoute('_welcome');
         } else {
-            $this->view->setParameters($name);
+            $this->view->setParameters(array('name' => $name));
             $this->view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
         }
 
