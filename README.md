@@ -40,7 +40,7 @@ Just a very simple example bundle using services for controllers and the followi
 - FOSFacebookBundle
 - DoctrinePHPCRBundle
 - LiipContainerWrapperBundle
-- LiipVie
+- LiipVieBundle
 
 Some example URL's to call
 --------------------------
@@ -90,4 +90,4 @@ Using the RestBundle to handle a failed validation
 http://symfony-standard.lo/app_dev.php/liip/validation_failure.json
 
 Using the RestBundle and VieBundle using RDFa
-http://symfony-standard.lo/app_dev.php/liip/vie
+http://symfony-standard.lo/app_dev.php/liip/hello/vie/foo

@@ -30,6 +30,11 @@ services:
         class: Liip\HelloBundle\Controller\VieController
         arguments:
             view: @fos_rest.view
-            request: @request
-            documentmanager: @doctrine_phpcr.odm.document_manager
-        scope: request
+            request: @liip_hello.article.repository
+
+    liip_hello.article.repository:
+        class: Doctrine\ODM\PHPCR\DocumentRepository
+        factory_service: doctrine_phpcr.odm.document_manager
+        factory_method: getRepository
+        arguments:
+            document_class_name: Liip\HelloBundle\Document\Article

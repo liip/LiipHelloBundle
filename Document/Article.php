@@ -75,6 +75,22 @@ class Article implements NormalizableInterface
       return $this->path;
     }
 
+    public function getRelativePath()
+    {
+      $path = explode('/', $this->path);
+      return end($path);
+    }
+
+    public function getBasepath()
+    {
+        return 'http://symfony-standard.lo/liip/vie';
+    }
+
+    public function getFullpath()
+    {
+        return $this->getBasePath().$this->getPath();
+    }
+
     public function __toString()
     {
       return $this->title;
@@ -82,16 +98,37 @@ class Article implements NormalizableInterface
 
     public function normalize(SerializerInterface $serializer, $format = null)
     {
-        return array(
-            'normalizer' => 'custom',
-            'path' => $this->getPath(),
-            'title' => $this->getPath(),
-            'body' => substr($this->getBody(), 0, 20).'..',
-        );
+        return $this->toJsonLd();
     }
 
     public function denormalize(SerializerInterface $serializer, $data, $format = null)
     {
+        if ('json' === $format) {
+            return $this->fromJsonLd($data);
+        }
+
         throw new \BadMethodCallException('Not supported');
+    }
+
+    public function toJsonLd()
+    {
+        return array(
+            '@' => $this->getFullpath(),
+            'a' => 'sioc:Post',
+            'dcterms:partOf' => $this->getBasePath(),
+            'dcterms:title' => $this->getTitle(),
+            'sioc:content' => $this->getBody(),
+        );
+    }
+
+    public function fromJsonLd($data)
+    {
+//        $path = substr($data['@'], strlen($this->getBasepath()));
+//        $this->setPath($path);
+        $this->setTitle($data['dcterms:title']);
+        if (strlen($data['sioc:content']) > 100) {
+            $data['sioc:content'] = substr($data['sioc:content'], 0, 100).'..';
+        }
+        $this->setBody($data['sioc:content']);
     }
 }
