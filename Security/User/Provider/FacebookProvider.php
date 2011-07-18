@@ -6,7 +6,7 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use \Facebook;
+use \BaseFacebook;
 use \FacebookApiException;
 
 class FacebookProvider implements UserProviderInterface
@@ -18,7 +18,7 @@ class FacebookProvider implements UserProviderInterface
     protected $userManager;
     protected $validator;
 
-    public function __construct(Facebook $facebook, $userManager, $validator)
+    public function __construct(BaseFacebook $facebook, $userManager, $validator)
     {
         $this->facebook = $facebook;
         $this->userManager = $userManager;
