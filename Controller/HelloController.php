@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference,
     Symfony\Component\Routing\Exception\ResourceNotFoundException,
     Symfony\Component\Validator\ValidatorInterface;
 
-use FOS\RestBundle\View\View;
+use FOS\RestBundle\View\ViewInterface;
 use Liip\HelloBundle\Document\Article;
 
 class HelloController
 {
     /**
-     * @var FOS\RestBundle\View\View
+     * @var FOS\RestBundle\View\ViewInterface
      */
     protected $view;
 
@@ -21,7 +21,7 @@ class HelloController
      */
     protected $validator;
 
-    public function __construct(View $view, ValidatorInterface$validator)
+    public function __construct(ViewInterface $view, ValidatorInterface$validator)
     {
         $this->view = $view;
         $this->validator = $validator;

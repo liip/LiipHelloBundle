@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use FOS\RestBundle\Controller\Annotations\Prefix;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
-use FOS\RestBundle\View\View;
+use FOS\RestBundle\View\ViewInterface;
 
 use Liip\HelloBundle\Document\Article;
 
@@ -31,7 +31,7 @@ class RestController
     protected $session;
 
     /**
-     * @var FOS\RestBundle\View\View
+     * @var FOS\RestBundle\View\ViewInterface
      */
     protected $view;
 
@@ -40,7 +40,7 @@ class RestController
      */
     protected $formFactory;
 
-    public function __construct(Request $request, Session $session, View $view, FormFactory $formFactory)
+    public function __construct(Request $request, Session $session, ViewInterface $view, FormFactory $formFactory)
     {
         $this->request = $request;
         $this->session = $session;

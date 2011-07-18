@@ -3,14 +3,14 @@
 namespace Liip\HelloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
-use FOS\RestBundle\View\View;
+use FOS\RestBundle\View\ViewInterface;
 use Liip\HelloBundle\Document\ArticleRepository;
 use Liip\HelloBundle\Document\Article;
 
 class VieController
 {
     /**
-     * @var FOS\RestBundle\View\View
+     * @var FOS\RestBundle\View\ViewInterface
      */
     protected $view;
 
@@ -19,7 +19,7 @@ class VieController
      */
     protected $repository;
 
-    public function __construct(View $view, ArticleRepository $repository)
+    public function __construct(ViewInterface $view, ArticleRepository $repository)
     {
         $this->view = $view;
         $this->repository = $repository;
