@@ -11,7 +11,7 @@
             VIE.EntityManager.initializeCollection();
 
             VIE.EntityManager.entities.bind('add', function(model) {
-                model.url = '{{ path('liip_vie_phpcr_put_document', {'id': article.relativePath}) }}';
+                model.url = '{{ path('liip_vie_phpcr_put_document', {'id': article.relativePath, '_method': 'PUT'}) }}';
                 model.toJSON = model.toJSONLD;
             });
 
