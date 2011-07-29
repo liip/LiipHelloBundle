@@ -23,24 +23,6 @@ class VieController
     {
         $this->view = $view;
         $this->repository = $repository;
-
-        $this->ensureVieNode();
-    }
-
-    protected function ensureVieNode()
-    {
-        // ensure that /vie exists
-        $path = '/vie';
-        $article = $this->repository->find($path);
-        if (!$article) {
-            $article = $this->repository->create();
-            $article->setPath($path);
-            $article->setTitle('Vie subnode');
-            $article->setBody('');
-            $dm = $this->repository->getDocumentManager();
-            $dm->persist($article);
-            $dm->flush();
-        }
     }
 
     /**
@@ -48,8 +30,7 @@ class VieController
      */
     public function articleAction($id)
     {
-        // ensure that /vie/$id exists
-        $path = '/vie/'.urlencode($id);
+        $path = '/'.urlencode($id);
         $article = $this->repository->find($path);
         if (!$article) {
             $article = new Article();
