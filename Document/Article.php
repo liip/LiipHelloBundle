@@ -7,12 +7,16 @@ use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
+
+use Liip\VieBundle\FromJsonLdInterface;
+use Liip\VieBundle\ToJsonLdInterface;
+
 /**
  *
  * @PHPCR\Document(repositoryClass="Liip\HelloBundle\Document\ArticleRepository", alias="article")
  *
  */
-class Article implements NormalizableInterface
+class Article implements NormalizableInterface, FromJsonLdInterface, ToJsonLdInterface
 {
     /**
      * Format, just used in the RestController
