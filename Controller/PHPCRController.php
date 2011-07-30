@@ -24,7 +24,7 @@ class PHPCRController extends ContainerAware
         try {
             $article = $repo->find($repo->appendRootNodePath($title));
         } catch (\Exception $e) {
-            $view->setParameters(array('name' => 'Please run "app/console doctrine:phpcr:init:dbal"'));
+            $view->setParameters(array('name' => 'Did you run "app/console doctrine:phpcr:init:dbal" yet? (Exception: '.$e->getMessage()));
             return $view->handle();
         }
 
