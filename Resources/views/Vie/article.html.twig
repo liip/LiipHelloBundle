@@ -11,7 +11,7 @@
             VIE.EntityManager.initializeCollection();
 
             VIE.EntityManager.entities.bind('add', function(model) {
-                model.url = '{{ path('liip_vie_phpcr_put_document', {'id': article.relativePath, '_method': 'PUT'}) }}';
+                model.url = '{{ path('liip_vie_phpcr_odm_put_document', {'id': article.relativePath, '_method': 'PUT'}) }}';
                 model.toJSON = model.toJSONLD;
             });
 
@@ -54,9 +54,9 @@
 
     <div about="http://symfony-standard.lo/liip" rel="dcterms:hasPart" rev="dcterms:partOf">
 
-        <article typeof="sioc:Post" about="{{ article.fullpath }}">
-            <h1 property="dcterms:title">{{ article.title }}</h1>
-            <div property="sioc:content">
+        <article typeof="article" about="{{ article.fullpath }}">
+            <h1 property="title">{{ article.title }}</h1>
+            <div property="body">
                 {{ article.body|raw }}
             </div>
        </article>

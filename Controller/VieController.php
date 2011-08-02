@@ -48,7 +48,7 @@ class VieController
      */
     public function articleAction($id)
     {
-        $path = '/vie'.urlencode($id);
+        $path = '/vie/'.urlencode($id);
         $article = $this->repository->find($path);
         if (!$article) {
             $article = new Article();

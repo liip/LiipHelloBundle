@@ -81,8 +81,7 @@ class Article implements NormalizableInterface, FromJsonLdInterface, ToJsonLdInt
 
     public function getRelativePath()
     {
-      $path = explode('/', $this->path);
-      return end($path);
+      return substr($this->path, 1);
     }
 
     public function getBasepath()
@@ -127,12 +126,10 @@ class Article implements NormalizableInterface, FromJsonLdInterface, ToJsonLdInt
 
     public function fromJsonLd($data)
     {
-//        $path = substr($data['@'], strlen($this->getBasepath()));
-//        $this->setPath($path);
-        $this->setTitle($data['dcterms:title']);
-        if (strlen($data['sioc:content']) > 100) {
-            $data['sioc:content'] = substr($data['sioc:content'], 0, 100).'..';
+        $this->setTitle($data['title']);
+        if (strlen($data['body']) > 100) {
+            $data['body'] = substr($data['body'], 0, 100).'..';
         }
-        $this->setBody($data['sioc:content']);
+        $this->setBody($data['body']);
     }
 }
