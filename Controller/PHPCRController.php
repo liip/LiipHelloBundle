@@ -18,10 +18,9 @@ class PHPCRController extends ContainerAware
         $view = $this->container->get('my_view');
         $view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
 
-        $documentManager = $this->container->get('doctrine_phpcr.odm.document_manager');
-        $repo = $documentManager->getRepository('Liip\HelloBundle\Document\Article');
-
         try {
+            $documentManager = $this->container->get('doctrine_phpcr.odm.document_manager');
+            $repo = $documentManager->getRepository('Liip\HelloBundle\Document\Article');
             $article = $repo->find($repo->appendRootNodePath($title));
         } catch (\Exception $e) {
             $view->setParameters(array('name' => 'Did you run "app/console doctrine:phpcr:init:dbal" yet? (Exception: '.$e->getMessage()));
