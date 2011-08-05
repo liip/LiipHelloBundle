@@ -2,18 +2,26 @@
 
 namespace Liip\HelloBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use FOS\RestBundle\View\ViewInterface;
+
 /**
- * imho injecting the container is a bad practice, however this is the example for all magic enabled
- * 
- * @Route("/liip")
+ * @Route("/liip", service="liip_hello.extra.controller")
  */
-class ExtraController extends ContainerAware
+class ExtraController
 {
+    /**
+     * @var FOS\RestBundle\View\ViewInterface
+     */
+    protected $view;
+
+    public function __construct(ViewInterface $view)
+    {
+        $this->view = $view;
+    }
+
     /**
      * @Route("/extra.{_format}", name="_extra_noname", defaults={"_format"="html"}),
      * @Route("/extra/{name}.{_format}", name="_extra_name", defaults={"_format"="html"})
@@ -24,14 +32,12 @@ class ExtraController extends ContainerAware
         // fall back to standard FrameworkExtraBundle behavior
 //        return array('name' => $name);
 
-        $view = $this->container->get('fos_rest.view');
-
-//        $view->setEngine('php');
+//        $this->view->setEngine('php');
 
         if (!$name) {
-            $view->setResourceRoute('_welcome');
+            $this->view->setResourceRoute('_welcome');
         }
 
-        return $view;
+        return $this->view;
     }
 }

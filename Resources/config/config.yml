@@ -5,6 +5,11 @@ services:
             view: @fos_rest.view
             validator: @validator
 
+    liip_hello.extra.controller:
+        class: Liip\HelloBundle\Controller\ExtraController
+        arguments:
+            view: @fos_rest.view
+
     liip_hello.rest.controller:
         class: Liip\HelloBundle\Controller\RestController
         arguments:
