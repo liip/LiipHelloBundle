@@ -21,11 +21,6 @@ use Liip\HelloBundle\Document\Article;
 class RestController
 {
     /**
-     * @var Symfony\Component\HttpFoundation\Request
-     */
-    protected $request;
-
-    /**
      * @var Session
      */
     protected $session;
@@ -40,9 +35,8 @@ class RestController
      */
     protected $formFactory;
 
-    public function __construct(Request $request, Session $session, ViewInterface $view, FormFactory $formFactory)
+    public function __construct(Session $session, ViewInterface $view, FormFactory $formFactory)
     {
-        $this->request = $request;
         $this->session = $session;
         $this->view = $view;
         $this->formFactory = $formFactory;
@@ -92,11 +86,11 @@ class RestController
      * 
      * @Template()
      */
-    public function postArticlesAction()
+    public function postArticlesAction(Request $request)
     {
         $form = $this->getForm();
 
-        $form->bindRequest($this->request);
+        $form->bindRequest($request);
 
         // Note: this would normally not be necessary, just a "hack" to make the format selectable in the form
         $this->view->setFormat($form->getData()->format);
