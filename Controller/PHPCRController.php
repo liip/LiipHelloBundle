@@ -3,8 +3,11 @@
 namespace Liip\HelloBundle\Controller;
 
 use Liip\HelloBundle\Document\Article;
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
+
+use Symfony\Component\DependencyInjection\ContainerAware,
+    Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
+
+use FOS\RestBundle\View\View;
 
 /**
  * imho injecting the container is a bad practice
@@ -15,7 +18,9 @@ class PHPCRController extends ContainerAware
 {
     public function indexAction($title)
     {
-        $view = $this->container->get('my_view');
+        $viewHandler = $this->container->get('my_view');
+
+        $view = new View();
         $view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
 
         try {
@@ -23,8 +28,8 @@ class PHPCRController extends ContainerAware
             $repo = $documentManager->getRepository('Liip\HelloBundle\Document\Article');
             $article = $repo->find($repo->appendRootNodePath($title));
         } catch (\Exception $e) {
-            $view->setParameters(array('name' => 'Did you run "app/console doctrine:phpcr:init:dbal" yet? (Exception: '.$e->getMessage()));
-            return $view->handle();
+            $view->setData(array('name' => 'Did you run "app/console doctrine:phpcr:init:dbal" yet? (Exception: '.$e->getMessage()));
+            return $viewHandler->handle($view);
         }
 
         if ($article) {
@@ -38,8 +43,8 @@ class PHPCRController extends ContainerAware
 
         $documentManager->flush();
 
-        $view->setParameters(array('name' => $article->getBody()));
+        $view->setData(array('name' => $article->getBody()));
 
-        return $view->handle();
+        return $viewHandler->handle($view);
     }
 }

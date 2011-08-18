@@ -3,7 +3,8 @@
 namespace Liip\HelloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
-use FOS\RestBundle\View\ViewInterface;
+use FOS\RestBundle\View\ViewHandlerInterface;
+use FOS\RestBundle\View\View;
 use Liip\HelloBundle\Document\ArticleRepository;
 use Liip\HelloBundle\Document\Article;
 
@@ -12,16 +13,16 @@ class VieController
     /**
      * @var FOS\RestBundle\View\ViewInterface
      */
-    protected $view;
+    protected $viewHandler;
 
     /**
      * @var Liip\HelloBundle\Document\ArticleRepository
      */
     protected $repository;
 
-    public function __construct(ViewInterface $view, ArticleRepository $repository)
+    public function __construct(ViewHandlerInterface $viewHandler, ArticleRepository $repository)
     {
-        $this->view = $view;
+        $this->viewHandler = $viewHandler;
         $this->repository = $repository;
 
         $this->ensureVieNode();
@@ -60,9 +61,10 @@ class VieController
             $dm->flush();
         }
 
-        $this->view->setTemplate(new TemplateReference('LiipHelloBundle', 'Vie', 'article'));
-        $this->view->setParameters(array('article' => $article));
+        $view = View::create(array('article' => $article))
+            ->setTemplate(new TemplateReference('LiipHelloBundle', 'Vie', 'article'))
+        ;
 
-        return $this->view;
+        return $this->viewHandler->handle($view);
     }
 }

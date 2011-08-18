@@ -2,15 +2,14 @@
 
 namespace Liip\HelloBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\FormFactory;
-use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\Form\FormFactory,
+    Symfony\Component\HttpFoundation\Session;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
-use FOS\RestBundle\Controller\Annotations\Prefix;
-use FOS\RestBundle\Controller\Annotations\NamePrefix;
-use FOS\RestBundle\View\ViewInterface;
+use FOS\RestBundle\Controller\Annotations\Prefix,
+    FOS\RestBundle\Controller\Annotations\NamePrefix,
+    FOS\RestBundle\Controller\Annotations\View,
+    FOS\RestBundle\View\RouteRedirectView;
 
 use Liip\HelloBundle\Document\Article;
 
@@ -26,33 +25,26 @@ class RestController
     protected $session;
 
     /**
-     * @var FOS\RestBundle\View\ViewInterface
-     */
-    protected $view;
-
-    /**
      * @var Symfony\Component\Form\FormFactory
      */
     protected $formFactory;
 
-    public function __construct(Session $session, ViewInterface $view, FormFactory $formFactory)
+    public function __construct(Session $session, FormFactory $formFactory)
     {
         $this->session = $session;
-        $this->view = $view;
         $this->formFactory = $formFactory;
     }
 
     /**
      * Get the list of articles
      *
-     * @Template()
+     * @View()
      */
     public function getArticlesAction()
     {
         $articles = array('bim', 'bam', 'bingo');
-        $this->view->setParameters(array('articles' => $articles));
 
-        return $this->view;
+        return array('articles' => $articles);
     }
 
     protected function getForm()
@@ -70,21 +62,19 @@ class RestController
     /**
      * Display the form
      * 
-     * @Template()
+     * @View()
      */
     public function getNewArticlesAction()
     {
         $form = $this->getForm();
 
-        $this->view->setParameters(array('form' => $form));
-
-        return $this->view;
+        return array('form' => $form);
     }
 
     /**
      * Create a new resource
      * 
-     * @Template()
+     * @View()
      */
     public function postArticlesAction(Request $request)
     {
@@ -92,25 +82,26 @@ class RestController
 
         $form->bindRequest($request);
 
-        // Note: this would normally not be necessary, just a "hack" to make the format selectable in the form
-        $this->view->setFormat($form->getData()->format);
         if ($form->isValid()) {
             // Note: FOSRestBundle will automatically move this flash message to a cookie
             $this->session->setFlash('article', $form->getData()->getTitle());
             // Note: normally one would likely create/update something in the database
             // and/or send an email and finally redirect to the resource url
-            $this->view->setResourceRoute('_welcome');
+            $view = RouteRedirectView::create('_welcome');
         } else {
-            $this->view->setParameters(array('form' => $form));
+            $view = View::create(array('form' => $form));
         }
 
-        return $this->view;
+        // Note: this would normally not be necessary, just a "hack" to make the format selectable in the form
+        $view->setFormat($form->getData()->format);
+
+        return $view;
     }
 
     /**
      * Get the article
      * 
-     * @Template()
+     * @View()
      */
     public function getArticleAction($article)
     {
@@ -119,8 +110,7 @@ class RestController
         $article->setPath('/'.$text);
         $article->setTitle($text);
         $article->setBody("This article is about '$text' and its really great and all");
-        $this->view->setParameters(array('article' => $article));
 
-        return $this->view;
+        return array('article' => $article);
     }
 }

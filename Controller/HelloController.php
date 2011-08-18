@@ -6,13 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference,
     Symfony\Component\Routing\Exception\ResourceNotFoundException,
     Symfony\Component\Validator\ValidatorInterface;
 
-use FOS\RestBundle\View\ViewInterface;
+use FOS\RestBundle\View\View,
+    FOS\RestBundle\View\ViewHandler,
+    FOS\RestBundle\View\RouteRedirectView;
 use Liip\HelloBundle\Document\Article;
 
 class HelloController
 {
     /**
-     * @var FOS\RestBundle\View\ViewInterface
+     * @var FOS\RestBundle\View\ViewHandler
      */
     protected $view;
 
@@ -21,7 +23,7 @@ class HelloController
      */
     protected $validator;
 
-    public function __construct(ViewInterface $view, ValidatorInterface$validator)
+    public function __construct(ViewHandler $view, ValidatorInterface $validator)
     {
         $this->view = $view;
         $this->validator = $validator;
@@ -29,16 +31,17 @@ class HelloController
 
     public function indexAction($name = null)
     {
-//        $this->view->setEngine('php');
 
         if (!$name) {
-            $this->view->setResourceRoute('_welcome');
+            $view = RouteRedirectView::create('_welcome');
         } else {
-            $this->view->setParameters(array('name' => $name));
-            $this->view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
+            $view = View::Create(array('name' => $name))
+//                ->setEngine('php');
+                ->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
+            ;
         }
 
-        return $this->view->handle();
+        return $this->view->handle($view);
     }
 
     public function serializerAction()
@@ -50,9 +53,10 @@ class HelloController
     normalizers:
         'Liip\\HelloBundle\\Document\\Article': 'liip_hello.get_set_method_normalizer'");
 
-        $this->view->setParameters($article);
+        $view = new View();
+        $view->setData($article);
 
-        return $this->view->handle();
+        return $this->view->handle($view);
     }
 
     public function exceptionAction()
@@ -73,22 +77,27 @@ fos_rest:
         $article->setTitle('The path was set');
         $article->setBody('Disable the setPath() call to get a validation error example');
 
+        $view = new View();
+
         $errors = $validator->validate($article);
         if (!count($errors)) {
-            $this->view->setParameters($article);
+            $view->setData($article);
         } else {
-            $this->view->setFailedValidationStatusCode();
-            $this->view->setParameters($errors);
+            $view->setStatusCode(400);
+            $view->setData($errors);
         }
 
-        return $this->view->handle();
+        $view->setData($article);
+
+        return $this->view->handle($view);
     }
 
     public function facebookAction()
     {
         // example of hardcoding the full template name
-        $this->view->setTemplate('LiipHelloBundle:Hello:facebook.html.twig');
+        $view = new View();
+        $view->setTemplate('LiipHelloBundle:Hello:facebook.html.twig');
 
-        return $this->view->handle();
+        return $this->view->handle($view);
     }
 }

@@ -2,19 +2,16 @@ services:
     liip_hello.world.controller:
         class: Liip\HelloBundle\Controller\HelloController
         arguments:
-            view: @fos_rest.view
+            view: @fos_rest.view_handler
             validator: @validator
 
     liip_hello.extra.controller:
         class: Liip\HelloBundle\Controller\ExtraController
-        arguments:
-            view: @fos_rest.view
 
     liip_hello.rest.controller:
         class: Liip\HelloBundle\Controller\RestController
         arguments:
             session: @session
-            view: @fos_rest.view
             formFactory: @form.factory
 
     liip_hello.phpcr.controller:
@@ -27,13 +24,13 @@ services:
         arguments:
             index_0:
                 doctrine_phpcr.odm.document_manager: true
-                my_view: fos_rest.view
+                my_view: fos_rest.view_handler
 
     liip_hello.vie.controller:
         class: Liip\HelloBundle\Controller\VieController
         arguments:
-            view: @fos_rest.view
-            request: @liip_hello.article.repository
+            view: @fos_rest.view_handler
+            repository: @liip_hello.article.repository
 
     liip_hello.article.repository:
         class: Doctrine\ODM\PHPCR\DocumentRepository
