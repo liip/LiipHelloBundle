@@ -80,14 +80,12 @@ fos_rest:
         $view = new View();
 
         $errors = $validator->validate($article);
-        if (!count($errors)) {
-            $view->setData($article);
-        } else {
+        if (count($errors)) {
             $view->setStatusCode(400);
             $view->setData($errors);
+        } else {
+            $view->setData($article);
         }
-
-        $view->setData($article);
 
         return $this->view->handle($view);
     }
