@@ -38,3 +38,8 @@ services:
         factory_method: getRepository
         arguments:
             document_class_name: Liip\HelloBundle\Document\Article
+
+    liip_hello.article_handler:
+        class: Liip\HelloBundle\Document\Article
+        tags:
+            -  { name: jms_serializer.serialization_handler }

@@ -7,7 +7,7 @@ hello_fallback:
     defaults: { _controller: liip_hello.world.controller:indexAction, _format: html }
 
 hello_serializer:
-    pattern:  /liip/serializer.json
+    pattern:  /liip/serializer.{_format}
     defaults: { _controller: liip_hello.world.controller:serializerAction, _format: json }
 
 hello_facebook:

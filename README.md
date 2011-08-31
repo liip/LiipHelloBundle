@@ -57,8 +57,10 @@ http://symfony-standard.lo/app_dev.php/liip/hello/foo.xml
 Redirect to the '_welcome' route:
 http://symfony-standard.lo/app_dev.php/liip/hello
 
-JSON (actually JSON-LD) output using a normalizer:
+JSON (actually JSON-LD) output using a custom serialization handler:
 http://symfony-standard.lo/app_dev.php/liip/serializer.json
+XML output using a custom serialization handler:
+http://symfony-standard.lo/app_dev.php/liip/serializer.xml
 
 Requires PHPCR ODM and Jackrabbit to be installed:
 http://symfony-standard.lo/app_dev.php/liip/phpcr/bar

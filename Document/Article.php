@@ -11,12 +11,18 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 use Liip\VieBundle\FromJsonLdInterface;
 use Liip\VieBundle\ToJsonLdInterface;
 
+use JMS\SerializerBundle\Serializer\JsonSerializationVisitor;
+use JMS\SerializerBundle\Serializer\VisitorInterface;
+use JMS\SerializerBundle\Serializer\Handler\SerializationHandlerInterface;
+use JMS\SerializerBundle\Annotation\XmlRoot;
+
 /**
  *
  * @PHPCR\Document(repositoryClass="Liip\HelloBundle\Document\ArticleRepository", alias="article")
+ * @XmlRoot("article")
  *
  */
-class Article implements NormalizableInterface, FromJsonLdInterface, ToJsonLdInterface
+class Article implements SerializationHandlerInterface
 {
     /**
      * Format, just used in the RestController
@@ -99,18 +105,17 @@ class Article implements NormalizableInterface, FromJsonLdInterface, ToJsonLdInt
       return $this->title;
     }
 
-    public function normalize(SerializerInterface $serializer, $format = null)
+    public function serialize(VisitorInterface $visitor, $data, $type, &$visited)
     {
-        return $this->toJsonLd();
-    }
-
-    public function denormalize(SerializerInterface $serializer, $data, $format = null)
-    {
-        if ('json' === $format) {
-            return $this->fromJsonLd($data);
+        if (!$data instanceof Article) {
+            return;
         }
 
-        throw new \BadMethodCallException('Not supported');
+        if ($visitor instanceof JsonSerializationVisitor) {
+            $visited = true;
+
+            return $visitor->setRoot($this->toJsonLd());
+        }
     }
 
     public function toJsonLd()
