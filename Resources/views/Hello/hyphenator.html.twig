@@ -2,19 +2,26 @@
 
 {% block content %}
 
-    Imagine you have text like this
+    Imagine you have text like this:
     <div style="width: 100px; border-style:solid; border-width:medium;">
     {{ "We have some really long words in german like sauerstofffeldflasche." }}
     </div>
-
-    Wouldn't it be great to get it all with nice automatic soft-dashes?
+    <br />
+    Simply use the "|hyphenate" filter to automatically add soft-dashes:
     <div style="width: 100px; border-style:solid; border-width:medium;">
     {{ "We have some really long words in german like sauerstofffeldflasche."|hyphenate }}
     </div>
-
-    Here is the actual source code that was generated:
+    <br />
+    Here is the actual HTML code that was generated:
     <div>
     {{ "We have some really long words in german like sauerstofffeldflasche."|hyphenate|escape }}
+    </div>
+    <br />
+    Here is the actual Twig code that was used to generate:
+    <div>
+    {% raw %}
+    {{ "We have some really long words in german like sauerstofffeldflasche."|hyphenate }}
+    {% endraw %}
     </div>
 
 {% endblock content %}
