@@ -45,3 +45,7 @@ rest:
 hello_vie_article:
     pattern:  /liip/hello/vie/{id}
     defaults: { _controller: liip_hello.vie.controller:articleAction, _format: html }
+
+hello_hyphenator:
+    pattern:  /liip/hyphenator
+    defaults: { _controller: liip_hello.world.controller:hyphenatorAction, _format: html }

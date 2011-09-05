@@ -71,25 +71,28 @@ http://symfony-standard.lo/app_dev.php/liip/facebook
 Check facebook login status:
 http://symfony-standard.lo/app_dev.php/liip/facebook-check
 
-Using the FrameworkExtraBundle together with the RestBundle view layer:
+Using the SensioFrameworkExtraBundle together with the RestBundle view layer:
 http://symfony-standard.lo/app_dev.php/liip/extra/foo
 
-Using the FrameworkExtraBundle together with the RestBundle view layer outputting json:
+Using the SensioFrameworkExtraBundle together with the RestBundle view layer outputting json:
 http://symfony-standard.lo/app_dev.php/liip/extra/foo.json
 
-Using the FrameworkExtraBundle together with the RestBundle view layer to redirect to the '_welcome' route:
+Using the SensioFrameworkExtraBundle together with the RestBundle view layer to redirect to the '_welcome' route:
 http://symfony-standard.lo/app_dev.php/liip/extra
 
-Using the RestBundle routing generation
+Using the FOSRestBundle routing generation
 http://symfony-standard.lo/app_dev.php/liip/hello/rest/articles
 http://symfony-standard.lo/app_dev.php/liip/hello/rest/article
 http://symfony-standard.lo/app_dev.php/liip/hello/rest/new/articles
 
-Using the RestBundle ExceptionController
+Using the FOSRestBundle ExceptionController
 http://symfony-standard.lo/app_dev.php/liip/exception.html
 
-Using the RestBundle to handle a failed validation
+Using the FOSRestBundle to handle a failed validation
 http://symfony-standard.lo/app_dev.php/liip/validation_failure.json
 
-Using the RestBundle and VieBundle using RDFa
+Using the FOSRestBundle and VieBundle using RDFa
 http://symfony-standard.lo/app_dev.php/liip/hello/vie/foo
+
+Using the LiipHyphenatorBundle
+http://symfony-standard.lo/app_dev.php/liip/hyphenator

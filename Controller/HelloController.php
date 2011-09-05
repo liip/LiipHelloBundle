@@ -98,4 +98,12 @@ fos_rest:
 
         return $this->view->handle($view);
     }
+
+    public function hyphenatorAction()
+    {
+        $view = new View();
+        $view->setTemplate('LiipHelloBundle:Hello:hyphenator.html.twig');
+
+        return $this->view->handle($view);
+    }
 }
