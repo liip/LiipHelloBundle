@@ -31,11 +31,10 @@ class HelloController
 
     public function indexAction($name = null)
     {
-
         if (!$name) {
             $view = RouteRedirectView::create('_welcome');
         } else {
-            $view = View::Create(array('name' => $name))
+            $view = View::create(array('name' => $name))
 //                ->setEngine('php');
                 ->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
             ;
