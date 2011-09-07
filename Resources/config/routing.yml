@@ -49,3 +49,7 @@ hello_vie_article:
 hello_hyphenator:
     pattern:  /liip/hyphenator
     defaults: { _controller: liip_hello.world.controller:hyphenatorAction, _format: html }
+
+hello_custom_handler:
+    pattern:  /liip/customHandler.{_format}
+    defaults: { _controller: liip_hello.world.controller:customHandlerAction, _format: rss }

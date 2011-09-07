@@ -96,3 +96,6 @@ http://symfony-standard.lo/app_dev.php/liip/hello/vie/foo
 
 Using the LiipHyphenatorBundle
 http://symfony-standard.lo/app_dev.php/liip/hyphenator
+
+Using the a custom handler with FOSRestBundle to generate RSS
+http://symfony-standard.lo/app_dev.php/liip/customHandler.rss

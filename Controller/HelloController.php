@@ -105,4 +105,10 @@ fos_rest:
 
         return $this->view->handle($view);
     }
+
+    public function customHandlerAction()
+    {
+        $view = new View();
+        return $this->view->handle($view);
+    }
 }
