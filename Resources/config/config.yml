@@ -38,3 +38,11 @@ services:
         factory_method: getRepository
         arguments:
             document_class_name: Liip\HelloBundle\Document\Article
+
+    liip_hello.rss_handler:
+        class: Liip\HelloBundle\View\RSSViewHandler
+
+    liip_hello.view_handler:
+        parent: fos_rest.view_handler.default
+        calls:
+            - ['registerHandler', [ 'rss', [@liip_hello.rss_handler, 'createResponse'] ] ]
