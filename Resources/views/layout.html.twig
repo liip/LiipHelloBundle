@@ -17,5 +17,18 @@
 
     <h1>Hello Application</h1>
 
+    <div>
+
+    Choose theme:
+    <form>
+        <select id="cookie" onChange="if (!this.value) { return false }; var now = new Date(); document.cookie = 'device='+this.value+''; expires=''+new Date(now.getTime() + 1000).toGMTString()+';'; window.location.reload();">
+            <option value="">choose</option>
+            <option value="desktop">desktop</option>
+            <option value="tablet">tablet</option>
+            <option value="phone">phone</option>
+        </select>
+    </form>
+
+    </div>
     {% block content %}{% endblock %}
 {% endblock %}
