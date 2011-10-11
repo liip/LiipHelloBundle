@@ -9,7 +9,8 @@ use Symfony\Component\HttpFoundation\Request,
 use FOS\RestBundle\Controller\Annotations\Prefix,
     FOS\RestBundle\Controller\Annotations\NamePrefix,
     FOS\RestBundle\Controller\Annotations\View,
-    FOS\RestBundle\View\RouteRedirectView;
+    FOS\RestBundle\View\RouteRedirectView,
+    FOS\RestBundle\View\View AS FOSView;
 
 use Liip\HelloBundle\Document\Article;
 
@@ -83,13 +84,14 @@ class RestController
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            // Note: FOSRestBundle will automatically move this flash message to a cookie
-            $this->session->setFlash('article', $form->getData()->getTitle());
+            // Note: use LiipCacheControlBundle to automatically move this flash message to a cookie
+            $this->session->setFlash('article', 'Article is stored at path: '.$form->getData()->getPath());
+
             // Note: normally one would likely create/update something in the database
-            // and/or send an email and finally redirect to the resource url
-            $view = RouteRedirectView::create('_welcome');
+            // and/or send an email and finally redirect to the newly created or updated resource url
+            $view = RouteRedirectView::create('hello', array('name' => $form->getData()->getTitle()));
         } else {
-            $view = View::create(array('form' => $form));
+            $view = FOSView::create(array('form' => $form));
         }
 
         // Note: this would normally not be necessary, just a "hack" to make the format selectable in the form

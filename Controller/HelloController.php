@@ -47,10 +47,8 @@ class HelloController
     {
         $article = new Article();
         $article->setPath('/foo');
-        $article->setTitle('Example use of the GetSetMethodNormalizer normalizer');
-        $article->setBody("fos_rest:
-    normalizers:
-        'Liip\\HelloBundle\\Document\\Article': 'liip_hello.get_set_method_normalizer'");
+        $article->setTitle('Example use of the default handlers');
+        $article->setBody("Read up on JMSSerializerBundle to see how what other handlers exist ..");
 
         $view = new View();
         $view->setData($article);

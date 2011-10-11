@@ -3,8 +3,6 @@
 namespace Liip\HelloBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
@@ -17,12 +15,10 @@ use JMS\SerializerBundle\Serializer\Handler\SerializationHandlerInterface;
 use JMS\SerializerBundle\Annotation\XmlRoot;
 
 /**
- *
  * @PHPCR\Document(repositoryClass="Liip\HelloBundle\Document\ArticleRepository", alias="article")
  * @XmlRoot("article")
- *
  */
-class Article implements SerializationHandlerInterface
+class Article implements SerializationHandlerInterface, FromJsonLdInterface, ToJsonLdInterface
 {
     /**
      * Format, just used in the RestController
