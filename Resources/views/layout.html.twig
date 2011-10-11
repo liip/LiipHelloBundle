@@ -17,6 +17,12 @@
 
     <h1>Hello Application</h1>
 
+    {% for key, message in app.session.getFlashes() %}
+    <div class="{{ key }}">
+        Flash message: {{ message }}
+    </div>
+    {% endfor %}
+
     <div>
 
     Choose theme:
