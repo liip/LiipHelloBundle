@@ -16,16 +16,16 @@ class HelloController
     /**
      * @var FOS\RestBundle\View\ViewHandler
      */
-    protected $view;
+    protected $viewHandler;
 
     /**
      * @var Symfony\Component\Validator\ValidatorInterface
      */
     protected $validator;
 
-    public function __construct(ViewHandler $view, ValidatorInterface $validator)
+    public function __construct(ViewHandler $viewHandler, ValidatorInterface $validator)
     {
-        $this->view = $view;
+        $this->viewHandler = $viewHandler;
         $this->validator = $validator;
     }
 
@@ -40,7 +40,7 @@ class HelloController
             ;
         }
 
-        return $this->view->handle($view);
+        return $this->viewHandler->handle($view);
     }
 
     public function serializerAction()
@@ -48,12 +48,12 @@ class HelloController
         $article = new Article();
         $article->setPath('/foo');
         $article->setTitle('Example use of the default handlers');
-        $article->setBody("Read up on JMSSerializerBundle to see how what other handlers exist ..");
+        $article->setBody("Read up on JMSSerializerBundle to see how what other handlers exist ");
 
         $view = new View();
         $view->setData($article);
 
-        return $this->view->handle($view);
+        return $this->viewHandler->handle($view);
     }
 
     public function exceptionAction()
@@ -84,7 +84,7 @@ fos_rest:
             $view->setData($article);
         }
 
-        return $this->view->handle($view);
+        return $this->viewHandler->handle($view);
     }
 
     public function facebookAction()
@@ -93,7 +93,7 @@ fos_rest:
         $view = new View();
         $view->setTemplate('LiipHelloBundle:Hello:facebook.html.twig');
 
-        return $this->view->handle($view);
+        return $this->viewHandler->handle($view);
     }
 
     public function hyphenatorAction()
@@ -101,12 +101,12 @@ fos_rest:
         $view = new View();
         $view->setTemplate('LiipHelloBundle:Hello:hyphenator.html.twig');
 
-        return $this->view->handle($view);
+        return $this->viewHandler->handle($view);
     }
 
     public function customHandlerAction()
     {
         $view = new View();
-        return $this->view->handle($view);
+        return $this->viewHandler->handle($view);
     }
 }
