@@ -46,3 +46,8 @@ services:
         parent: fos_rest.view_handler.default
         calls:
             - ['registerHandler', [ 'rss', [@liip_hello.rss_handler, 'createResponse'] ] ]
+
+    liip_hello.tree.controller:
+        class: Liip\HelloBundle\Controller\TreeController
+        arguments:
+            view: @fos_rest.view_handler

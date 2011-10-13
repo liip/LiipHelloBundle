@@ -53,3 +53,11 @@ hello_hyphenator:
 hello_custom_handler:
     pattern:  /liip/customHandler.{_format}
     defaults: { _controller: liip_hello.world.controller:customHandlerAction, _format: rss }
+
+hello_tree:
+    pattern:  /liip/tree
+    defaults: { _controller: liip_hello.tree.controller:indexAction, _format: html }
+
+tree:
+    resource: "@SymfonyCmfPHPCRBrowserBundle/Resources/config/routing.xml"
+    prefix:  /liip

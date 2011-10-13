@@ -99,3 +99,6 @@ http://symfony-standard.lo/app_dev.php/liip/hyphenator
 
 Using a custom handler with FOSRestBundle to generate RSS
 http://symfony-standard.lo/app_dev.php/liip/customHandler.rss
+
+Using SymfonyCmfPHPCRBrowserBundle to read out the data from a PHPCR database:
+http://symfony-standard.lo/app_dev.php/liip/tree
