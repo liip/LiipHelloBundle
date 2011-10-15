@@ -23,7 +23,7 @@ services:
         parent: liip_container_wrapper.service
         arguments:
             index_0:
-                doctrine_phpcr.odm.document_manager: true
+                doctrine_phpcr.odm: true
                 my_view: fos_rest.view_handler
 
     liip_hello.vie.controller:
