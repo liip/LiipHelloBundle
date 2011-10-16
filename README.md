@@ -102,3 +102,6 @@ http://symfony-standard.lo/app_dev.php/liip/customHandler.rss
 
 Using SymfonyCmfPHPCRBrowserBundle to read out the data from a PHPCR database:
 http://symfony-standard.lo/app_dev.php/liip/tree
+
+Using LiipImagineBundle with the example config taken from the README.md
+http://symfony-standard.lo/media/cache/my_thumb/bundles/liiphello/images/image_test.png
