@@ -60,6 +60,10 @@ hello_tree:
     pattern:  /liip/tree
     defaults: { _controller: liip_hello.tree.controller:indexAction, _format: html }
 
-tree:
+hello_tree_api:
     resource: "@SymfonyCmfPHPCRBrowserBundle/Resources/config/routing.xml"
     prefix:  /liip
+
+hello_imagine:
+    pattern:  /liip/imagine
+    defaults: { _controller: liip_hello.world.controller:imagineAction, _format: html }

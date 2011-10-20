@@ -109,4 +109,12 @@ fos_rest:
         $view = new View();
         return $this->viewHandler->handle($view);
     }
+
+    public function imagineAction()
+    {
+        $view = new View();
+        $view->setTemplate('LiipHelloBundle:Hello:imagine.html.twig');
+
+        return $this->viewHandler->handle($view);
+    }
 }
