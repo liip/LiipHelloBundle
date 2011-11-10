@@ -41,6 +41,10 @@ Just a very simple example bundle using services for controllers and the followi
 - DoctrinePHPCRBundle
 - LiipContainerWrapperBundle
 - LiipVieBundle
+- LiipImagineBundle
+- LiipDoctrineCacheBundle
+- LiipThemeBundle
+- LiipHyphenatorBundle
 
 Some example URL's to call
 --------------------------
@@ -105,3 +109,6 @@ http://symfony-standard.lo/app_dev.php/liip/tree
 
 Using LiipImagineBundle example
 http://symfony-standard.lo/app_dev.php/liip/imagine
+
+Using LiipDoctrineCacheBundle with apc example
+http://symfony-standard.lo/app_dev.php/liip/apc
