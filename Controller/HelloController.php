@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference,
     Symfony\Component\Routing\Exception\ResourceNotFoundException,
     Symfony\Component\Validator\ValidatorInterface;
 
+use Doctrine\Common\Cache\Cache;
+
 use FOS\RestBundle\View\View,
     FOS\RestBundle\View\ViewHandler,
     FOS\RestBundle\View\RouteRedirectView;
@@ -14,19 +16,25 @@ use Liip\HelloBundle\Document\Article;
 class HelloController
 {
     /**
-     * @var FOS\RestBundle\View\ViewHandler
+     * @var ViewHandler
      */
     protected $viewHandler;
 
     /**
-     * @var Symfony\Component\Validator\ValidatorInterface
+     * @var ValidatorInterface
      */
     protected $validator;
 
-    public function __construct(ViewHandler $viewHandler, ValidatorInterface $validator)
+    /**
+     * @var Cache
+     */
+    protected $cache;
+
+    public function __construct(ViewHandler $viewHandler, ValidatorInterface $validator, Cache $cache)
     {
         $this->viewHandler = $viewHandler;
         $this->validator = $validator;
+        $this->cache = $cache;
     }
 
     public function indexAction($name = null)
@@ -115,6 +123,17 @@ fos_rest:
         $view = new View();
         $view->setTemplate('LiipHelloBundle:Hello:imagine.html.twig');
 
+        return $this->viewHandler->handle($view);
+    }
+
+    public function apcAction()
+    {
+        $int = (int)$this->cache->get('int');
+        $this->cache->set('int', ++$int);
+
+        $view = View::create(array('name' => 'Cached '.$int))
+            ->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
+        ;
         return $this->viewHandler->handle($view);
     }
 }

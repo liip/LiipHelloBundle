@@ -4,6 +4,7 @@ services:
         arguments:
             view: @fos_rest.view_handler
             validator: @validator
+            cache: @liip_doctrine_cache.ns.foo
 
     liip_hello.extra.controller:
         class: Liip\HelloBundle\Controller\ExtraController

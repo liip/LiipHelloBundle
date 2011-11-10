@@ -67,3 +67,7 @@ hello_tree_api:
 hello_imagine:
     pattern:  /liip/imagine
     defaults: { _controller: liip_hello.world.controller:imagineAction, _format: html }
+
+hello_apc:
+    pattern:  /liip/apc
+    defaults: { _controller: liip_hello.world.controller:apcAction, _format: html }
