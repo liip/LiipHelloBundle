@@ -43,7 +43,7 @@ class PHPCRController extends ContainerAware
 
         $documentManager->flush();
 
-        $view->setData(array('name' => $article->getBody()));
+        $view->setData(array('name' => $title.' '.$article->getBody()));
 
         return $viewHandler->handle($view);
     }
