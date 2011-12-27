@@ -50,7 +50,6 @@ class FacebookProvider implements UserProviderInterface
                 $user = $this->userManager->createUser();
                 $user->setEnabled(true);
                 $user->setPassword('');
-                $user->setAlgorithm('');
             }
 
             // TODO subscribe to changes, so that we would not have to do this if the user already exists
