@@ -24,7 +24,7 @@ class PHPCRController extends ContainerAware
         $view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
 
         try {
-            $documentManager = $this->container->get('doctrine_phpcr.odm')->getManager();
+            $documentManager = $this->container->get('doctrine_phpcr')->getManager();
             $repo = $documentManager->getRepository('Liip\HelloBundle\Document\Article');
             $article = $repo->find($repo->appendRootNodePath($title));
         } catch (\Exception $e) {
