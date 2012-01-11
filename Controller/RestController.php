@@ -63,19 +63,19 @@ class RestController
     /**
      * Display the form
      * 
-     * @View()
+     * @View(templateVar="form")
      */
     public function getNewArticlesAction()
     {
         $form = $this->getForm();
 
-        return array('form' => $form);
+        return $form;
     }
 
     /**
      * Create a new resource
      * 
-     * @View()
+     * @View(templateVar="form")
      */
     public function postArticlesAction(Request $request)
     {
@@ -91,7 +91,7 @@ class RestController
             // and/or send an email and finally redirect to the newly created or updated resource url
             $view = RouteRedirectView::create('hello', array('name' => $form->getData()->getTitle()));
         } else {
-            $view = FOSView::create(array('form' => $form));
+            $view = FOSView::create($form);
         }
 
         // Note: this would normally not be necessary, just a "hack" to make the format selectable in the form
