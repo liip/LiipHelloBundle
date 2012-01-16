@@ -15,7 +15,7 @@ use JMS\SerializerBundle\Serializer\Handler\SerializationHandlerInterface;
 use JMS\SerializerBundle\Annotation\XmlRoot;
 
 /**
- * @PHPCR\Document(repositoryClass="Liip\HelloBundle\Document\ArticleRepository", alias="article")
+ * @PHPCR\Document(repositoryClass="Liip\HelloBundle\Document\ArticleRepository")
  * @XmlRoot("article")
  */
 class Article implements SerializationHandlerInterface, FromJsonLdInterface, ToJsonLdInterface
