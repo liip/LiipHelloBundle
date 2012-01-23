@@ -4,8 +4,6 @@ namespace Liip\HelloBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
-
 use Liip\VieBundle\FromJsonLdInterface;
 use Liip\VieBundle\ToJsonLdInterface;
 
@@ -15,7 +13,6 @@ use JMS\SerializerBundle\Serializer\Handler\SerializationHandlerInterface;
 use JMS\SerializerBundle\Annotation\XmlRoot;
 
 /**
- * @PHPCR\Document(repositoryClass="Liip\HelloBundle\Document\ArticleRepository")
  * @XmlRoot("article")
  */
 class Article implements SerializationHandlerInterface, FromJsonLdInterface, ToJsonLdInterface
@@ -30,23 +27,19 @@ class Article implements SerializationHandlerInterface, FromJsonLdInterface, ToJ
     public $format = 'html';
 
     /**
-     * @PHPCR\Id(strategy="repository")
      * @Assert\NotBlank(message = "The path may not be blank.")
      */
     protected $path;
 
-    /** @PHPCR\Node */
     protected $node;
 
     /**
-     * @PHPCR\String(name="title")
      * @Assert\MinLength(3)
      * @Assert\MaxLength(30)
      */
     protected $title;
 
     /**
-     * @PHPCR\String(name="body")
      * @Assert\NotBlank
      */
     protected $body;

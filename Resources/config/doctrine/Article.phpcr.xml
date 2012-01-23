@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping>
+   <document name="Liip\HelloBundle\Document\Article" repository-class="Liip\HelloBundle\Document\ArticleRepository">
+
+       <id name="path">
+           <generator strategy="repository" />
+       </id>
+
+       <field fieldName="title" type="string" />
+
+       <field fieldName="body" type="string" />
+
+       <node name="node" />
+
+   </document>
+
+</doctrine-mapping>
