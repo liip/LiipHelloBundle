@@ -14,6 +14,7 @@ services:
         arguments:
             session: @session
             formFactory: @form.factory
+            container: @service_container
 
     liip_hello.phpcr.controller:
         class: Liip\HelloBundle\Controller\PHPCRController

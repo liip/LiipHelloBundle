@@ -10,7 +10,9 @@ use FOS\RestBundle\Controller\Annotations\Prefix,
     FOS\RestBundle\Controller\Annotations\NamePrefix,
     FOS\RestBundle\Controller\Annotations\View,
     FOS\RestBundle\View\RouteRedirectView,
-    FOS\RestBundle\View\View AS FOSView;
+    FOS\RestBundle\View\View AS FOSView,
+    FOS\RestBundle\Controller\Annotations\QueryParam,
+    FOS\RestBundle\Request\QueryFetcher;
 
 use Liip\HelloBundle\Document\Article;
 
@@ -26,26 +28,39 @@ class RestController
     protected $session;
 
     /**
-     * @var Symfony\Component\Form\FormFactory
+     * @var FormFactory
      */
     protected $formFactory;
 
-    public function __construct(Session $session, FormFactory $formFactory)
+    /**
+     * @var QueryFetcher
+     */
+    protected $queryFetcher;
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Session $session
+     * @param \Symfony\Component\Form\FormFactory $formFactory
+     * @param \FOS\RestBundle\Request\QueryFetcher $queryFetcher
+     */
+    public function __construct(Session $session, FormFactory $formFactory, $queryFetcher)
     {
         $this->session = $session;
         $this->formFactory = $formFactory;
+        $this->queryFetcher= $queryFetcher->get('fos_rest.request.query_fetcher');
     }
 
     /**
      * Get the list of articles
      *
      * @View()
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Page of the overview.")
      */
-    public function getArticlesAction()
+    public function getArticlesAction(QueryFetcher $queryFetcher)
     {
+        $page = $queryFetcher->getParameter('page');
         $articles = array('bim', 'bam', 'bingo');
 
-        return array('articles' => $articles);
+        return array('articles' => $articles, 'page' => $page);
     }
 
     protected function getForm()
