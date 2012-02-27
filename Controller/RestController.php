@@ -4,7 +4,7 @@ namespace Liip\HelloBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\Form\FormFactory,
-    Symfony\Component\HttpFoundation\Session;
+    Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use FOS\RestBundle\Controller\Annotations\Prefix,
     FOS\RestBundle\Controller\Annotations\NamePrefix,
@@ -23,7 +23,7 @@ use Liip\HelloBundle\Document\Article;
 class RestController
 {
     /**
-     * @var Session
+     * @var SessionInterface
      */
     protected $session;
 
@@ -38,11 +38,11 @@ class RestController
     protected $queryFetcher;
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Session $session
+     * @param \Symfony\Component\HttpFoundation\Session\SessionInterface $session
      * @param \Symfony\Component\Form\FormFactory $formFactory
      * @param \FOS\RestBundle\Request\QueryFetcher $queryFetcher
      */
-    public function __construct(Session $session, FormFactory $formFactory, $queryFetcher)
+    public function __construct(SessionInterface $session, FormFactory $formFactory, $queryFetcher)
     {
         $this->session = $session;
         $this->formFactory = $formFactory;
