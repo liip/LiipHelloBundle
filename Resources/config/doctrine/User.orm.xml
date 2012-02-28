@@ -10,9 +10,9 @@
            <generator strategy="IDENTITY" />
        </id>
 
-       <field name="firstname" column="firstname" type="string" length="255" />
+       <field name="firstname" column="firstname" type="string" length="255" nullable="true" />
 
-       <field name="lastname" column="lastname" type="string" length="255" />
+       <field name="lastname" column="lastname" type="string" length="255" nullable="true" />
 
        <field name="facebookID" column="facebookID" type="string" length="50" nullable="true" unique="true" />
 
