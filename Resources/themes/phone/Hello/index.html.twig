@@ -1,6 +1,9 @@
 {% extends "LiipHelloBundle::layout.html.twig" %}
 
 {% block content %}
+    <a href="javascript: var now = new Date(); document.cookie = 'device='+this.value+''; expires=''+new Date(now.getTime() + 1000).toGMTString()+';'; window.location.reload();">Reset theme</a><br/>
+
+    <br/>
 
     Hello {{ name }}!<br/>
     <br/>
