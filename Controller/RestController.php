@@ -63,6 +63,22 @@ class RestController
         return array('articles' => $articles, 'page' => $page);
     }
 
+    /**
+     * Get the article
+     *
+     * @View()
+     */
+    public function getArticleAction($article)
+    {
+        $text = $article;
+        $article = new Article();
+        $article->setPath('/'.$text);
+        $article->setTitle($text);
+        $article->setBody("This article is about '$text' and its really great and all");
+
+        return array('article' => $article);
+    }
+
     protected function getForm()
     {
         $article = new Article();
@@ -113,21 +129,5 @@ class RestController
         $view->setFormat($form->getData()->format);
 
         return $view;
-    }
-
-    /**
-     * Get the article
-     * 
-     * @View()
-     */
-    public function getArticleAction($article)
-    {
-        $text = $article;
-        $article = new Article();
-        $article->setPath('/'.$text);
-        $article->setTitle($text);
-        $article->setBody("This article is about '$text' and its really great and all");
-
-        return array('article' => $article);
     }
 }
