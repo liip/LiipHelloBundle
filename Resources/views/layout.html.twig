@@ -17,12 +17,13 @@
 
     <h1>Hello Application</h1>
 
-    {% for key, message in app.session.getFlashes() %}
-    <div class="{{ key }}">
-        Flash message: {{ message }}
-    </div>
+    {% for type, flashMessages in app.session.flashbag.all() %}
+        {% for flashMessage in flashMessages %}
+            <div class="flash-{{ type }}">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
     {% endfor %}
 
-    </div>
     {% block content %}{% endblock %}
 {% endblock %}
