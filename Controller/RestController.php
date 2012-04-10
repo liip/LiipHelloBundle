@@ -3,8 +3,7 @@
 namespace Liip\HelloBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\Form\FormFactory,
-    Symfony\Component\HttpFoundation\Session\SessionInterface;
+    Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use FOS\RestBundle\Controller\Annotations\Prefix,
     FOS\RestBundle\Controller\Annotations\NamePrefix,
@@ -20,35 +19,8 @@ use Liip\HelloBundle\Document\Article;
  * @Prefix("liip/hello/rest")
  * @NamePrefix("liip_hello_rest_")
  */
-class RestController
+class RestController extends Controller
 {
-    /**
-     * @var SessionInterface
-     */
-    protected $session;
-
-    /**
-     * @var FormFactory
-     */
-    protected $formFactory;
-
-    /**
-     * @var QueryFetcher
-     */
-    protected $queryFetcher;
-
-    /**
-     * @param \Symfony\Component\HttpFoundation\Session\SessionInterface $session
-     * @param \Symfony\Component\Form\FormFactory $formFactory
-     * @param \FOS\RestBundle\Request\QueryFetcher $queryFetcher
-     */
-    public function __construct(SessionInterface $session, FormFactory $formFactory, $queryFetcher)
-    {
-        $this->session = $session;
-        $this->formFactory = $formFactory;
-        $this->queryFetcher= $queryFetcher->get('fos_rest.request.query_fetcher');
-    }
-
     /**
      * Get the list of articles
      *
@@ -83,7 +55,7 @@ class RestController
     {
         $article = new Article();
 
-        return $this->formFactory->createBuilder('form', $article)
+        return $this->get('form.factory')->createBuilder('form', $article)
             ->add('path', 'text', array('required' => false))
             ->add('title', 'text', array('required' => false))
             ->add('body', 'text', array('required' => false))
@@ -116,7 +88,7 @@ class RestController
 
         if ($form->isValid()) {
             // Note: use LiipCacheControlBundle to automatically move this flash message to a cookie
-            $this->session->setFlash('article', 'Article is stored at path: '.$form->getData()->getPath());
+            $this->get('session')->setFlash('article', 'Article is stored at path: '.$form->getData()->getPath());
 
             // Note: normally one would likely create/update something in the database
             // and/or send an email and finally redirect to the newly created or updated resource url

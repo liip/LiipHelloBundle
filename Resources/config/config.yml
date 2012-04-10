@@ -11,10 +11,8 @@ services:
 
     liip_hello.rest.controller:
         class: Liip\HelloBundle\Controller\RestController
-        arguments:
-            session: @session
-            formFactory: @form.factory
-            container: @service_container
+        calls:
+            - ['setContainer', [ @service_container ] ]
 
     liip_hello.phpcr.controller:
         class: Liip\HelloBundle\Controller\PHPCRController
