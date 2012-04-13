@@ -24,8 +24,6 @@ class VieController
     {
         $this->viewHandler = $viewHandler;
         $this->repository = $repository;
-
-        $this->ensureVieNode();
     }
 
     protected function ensureVieNode()
@@ -49,6 +47,8 @@ class VieController
      */
     public function articleAction($id)
     {
+        $this->ensureVieNode();
+
         $path = '/vie/'.urlencode($id);
         $article = $this->repository->find($path);
         if (!$article) {
