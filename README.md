@@ -35,7 +35,7 @@ What is this?
 
 Just a very simple example bundle using services for controllers and the following Bundles:
 
-- FOSRestBundle
+- FOSRestBundle / JMSSerializerBundle
 - FOSUserBundle
 - FOSFacebookBundle
 - DoctrinePHPCRBundle
@@ -45,6 +45,7 @@ Just a very simple example bundle using services for controllers and the followi
 - LiipDoctrineCacheBundle
 - LiipThemeBundle
 - LiipHyphenatorBundle
+- NelmioApiDocBundle
 
 Some example URL's to call
 --------------------------
@@ -104,8 +105,12 @@ http://symfony-standard.lo/app_dev.php/liip/hyphenator
 Using a custom handler with FOSRestBundle to generate RSS
 http://symfony-standard.lo/app_dev.php/liip/customHandler.rss
 
-Using LiipImagineBundle example
+Using the LiipImagineBundle
 http://symfony-standard.lo/app_dev.php/liip/imagine
 
-Using LiipDoctrineCacheBundle with apc example
+Using the LiipDoctrineCacheBundle with apc
 http://symfony-standard.lo/app_dev.php/liip/apc
+
+Using the NelmioApiDocBundle
+http://symfony-standard.lo/app_dev.php/api/doc/
+http://symfony-standard.lo/app_dev.php/liip/hello/rest/articles?_doc=1
