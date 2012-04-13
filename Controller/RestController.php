@@ -15,6 +15,8 @@ use FOS\RestBundle\Controller\Annotations\Prefix,
 
 use Liip\HelloBundle\Document\Article;
 
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+
 /**
  * @Prefix("liip/hello/rest")
  * @NamePrefix("liip_hello_rest_")
@@ -26,6 +28,9 @@ class RestController extends Controller
      *
      * @View()
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page of the overview.")
+     * @ApiDoc(
+     *  description="Get a list of all articles"
+     * )
      */
     public function getArticlesAction(QueryFetcher $queryFetcher)
     {
@@ -39,6 +44,9 @@ class RestController extends Controller
      * Get the article
      *
      * @View()
+     * @ApiDoc(
+     *  description="Get an article"
+     * )
      */
     public function getArticleAction($article)
     {
@@ -67,6 +75,9 @@ class RestController extends Controller
      * Display the form
      * 
      * @View(templateVar="form")
+     * @ApiDoc(
+     *  description="Get the form to create a new article"
+     * )
      */
     public function getNewArticlesAction()
     {
@@ -79,6 +90,9 @@ class RestController extends Controller
      * Create a new resource
      * 
      * @View(templateVar="form")
+     * @ApiDoc(
+     *  description="Create a new article"
+     * )
      */
     public function postArticlesAction(Request $request)
     {
