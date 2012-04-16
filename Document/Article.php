@@ -10,10 +10,10 @@ use Liip\VieBundle\ToJsonLdInterface;
 use JMS\SerializerBundle\Serializer\JsonSerializationVisitor;
 use JMS\SerializerBundle\Serializer\VisitorInterface;
 use JMS\SerializerBundle\Serializer\Handler\SerializationHandlerInterface;
-use JMS\SerializerBundle\Annotation\XmlRoot;
+use JMS\SerializerBundle\Annotation as Serializer;
 
 /**
- * @XmlRoot("article")
+ * @Serializer\XmlRoot("article")
  */
 class Article implements SerializationHandlerInterface, FromJsonLdInterface, ToJsonLdInterface
 {
@@ -36,11 +36,13 @@ class Article implements SerializationHandlerInterface, FromJsonLdInterface, ToJ
     /**
      * @Assert\MinLength(3)
      * @Assert\MaxLength(30)
+     * @Serializer\Groups({"data"})
      */
     protected $title;
 
     /**
      * @Assert\NotBlank
+     * @Serializer\Groups({"data"})
      */
     protected $body;
 

@@ -56,7 +56,11 @@ class RestController extends Controller
         $article->setTitle($text);
         $article->setBody("This article is about '$text' and its really great and all");
 
-        return array('article' => $article);
+        // using explicit View creation
+        $view = new FOSView(array('article' => $article));
+        // since we override the default handling for JSON, this will only affect XML
+        $view->setObjectsGroups('data');
+        return $view;
     }
 
     protected function getForm()
