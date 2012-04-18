@@ -28,6 +28,8 @@ class Article implements SerializationHandlerInterface, FromJsonLdInterface, ToJ
 
     /**
      * @Assert\NotBlank(message = "The path may not be blank.")
+     * @Serializer\Groups({"data"})
+     * @Serializer\Until("1.x")
      */
     protected $path;
 
@@ -37,6 +39,7 @@ class Article implements SerializationHandlerInterface, FromJsonLdInterface, ToJ
      * @Assert\MinLength(3)
      * @Assert\MaxLength(30)
      * @Serializer\Groups({"data"})
+     * @Serializer\Since("2.0")
      */
     protected $title;
 

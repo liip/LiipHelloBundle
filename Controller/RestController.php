@@ -28,9 +28,7 @@ class RestController extends Controller
      *
      * @View()
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page of the overview.")
-     * @ApiDoc(
-     *  description="Get a list of all articles"
-     * )
+     * @ApiDoc(description="Get a list of all articles")
      */
     public function getArticlesAction(QueryFetcher $queryFetcher)
     {
@@ -44,9 +42,7 @@ class RestController extends Controller
      * Get the article
      *
      * @View()
-     * @ApiDoc(
-     *  description="Get an article"
-     * )
+     * @ApiDoc(description="Get an article")
      */
     public function getArticleAction($article)
     {
@@ -58,8 +54,15 @@ class RestController extends Controller
 
         // using explicit View creation
         $view = new FOSView(array('article' => $article));
+
         // since we override the default handling for JSON, this will only affect XML
-        $view->setObjectsGroups('data');
+        //$view->setSerializerVersion('2.0');
+        //$view->setSerializerGroups(array('data'));
+
+        // via a callback its possible to dynamically set anything on the serializer
+        // the following example is essentially the same as $view->setSerializerGroups(array('data'));
+        //$view->setSerializerCallback(function ($viewHandler, $serializer) { $serializer->setGroups(array('data')); } );
+
         return $view;
     }
 
@@ -79,9 +82,7 @@ class RestController extends Controller
      * Display the form
      * 
      * @View(templateVar="form")
-     * @ApiDoc(
-     *  description="Get the form to create a new article"
-     * )
+     * @ApiDoc(description="Get the form to create a new article")
      */
     public function getNewArticlesAction()
     {
@@ -94,9 +95,7 @@ class RestController extends Controller
      * Create a new resource
      * 
      * @View(templateVar="form")
-     * @ApiDoc(
-     *  description="Create a new article"
-     * )
+     * @ApiDoc(description="Create a new article")
      */
     public function postArticlesAction(Request $request)
     {
