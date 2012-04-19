@@ -26,9 +26,12 @@ class RestController extends Controller
     /**
      * Get the list of articles
      *
+     * @param QueryFetcher $queryFetcher
+     * @return array data
+     *
      * @View()
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page of the overview.")
-     * @ApiDoc(description="Get a list of all articles")
+     * @ApiDoc()
      */
     public function getArticlesAction(QueryFetcher $queryFetcher)
     {
@@ -41,8 +44,11 @@ class RestController extends Controller
     /**
      * Get the article
      *
+     * @param string $article path
+     * @return View view instance
+     *
      * @View()
-     * @ApiDoc(description="Get an article")
+     * @ApiDoc()
      */
     public function getArticleAction($article)
     {
@@ -80,9 +86,11 @@ class RestController extends Controller
 
     /**
      * Display the form
-     * 
+     *
+     * @return Form form instance
+     *
      * @View(templateVar="form")
-     * @ApiDoc(description="Get the form to create a new article")
+     * @ApiDoc()
      */
     public function getNewArticlesAction()
     {
@@ -93,9 +101,12 @@ class RestController extends Controller
 
     /**
      * Create a new resource
+     *
+     * @param Request $request
+     * @return View view instance
      * 
      * @View(templateVar="form")
-     * @ApiDoc(description="Create a new article")
+     * @ApiDoc()
      */
     public function postArticlesAction(Request $request)
     {
