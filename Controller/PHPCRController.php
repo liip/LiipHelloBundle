@@ -51,6 +51,9 @@ class PHPCRController extends ContainerAware
     }
 
     /**
+     * Once https://github.com/doctrine/common/pull/138 is merged
+     * alternatively use class="LiipHelloBundle:Article", but this has a bit more overhead
+     *
      * @ParamConverter("article", class="Liip\HelloBundle\Document\Article")
      */
     public function converterAction(Article $article = null)
