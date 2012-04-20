@@ -47,6 +47,7 @@ services:
         calls:
             - ['registerHandler', [ 'rss', [@liip_hello.rss_handler, 'createResponse'] ] ]
 
+    # remove when https://github.com/sensio/SensioFrameworkExtraBundle/pull/115 is merged
     liip_hello.converter.doctrine.phpcr:
         class: %sensio_framework_extra.converter.doctrine.class%
         tags:
