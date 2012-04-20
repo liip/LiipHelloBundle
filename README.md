@@ -70,6 +70,9 @@ http://symfony-standard.lo/app_dev.php/liip/serializer.xml
 Requires PHPCR ODM and Jackrabbit to be installed:
 http://symfony-standard.lo/app_dev.php/liip/phpcr/bar
 
+Using a parameter converter (after calling the previous url):
+http://symfony-standard.lo/app_dev.php/liip/phpcr/convert/bar
+
 Facebook login button:
 http://symfony-standard.lo/app_dev.php/liip/facebook
 

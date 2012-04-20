@@ -25,7 +25,16 @@ class ArticleRepository extends DocumentRepository implements RepositoryIdInterf
 
     public function appendRootNodePath($name)
     {
+        if (0 === strpos($name, '/')) {
+            return $name;
+        }
+
         return '/'.$name;
+    }
+
+    public function find($id)
+    {
+        return parent::find($this->appendRootNodePath($id));
     }
 
     public function create()

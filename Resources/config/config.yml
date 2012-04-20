@@ -46,3 +46,10 @@ services:
         parent: fos_rest.view_handler.default
         calls:
             - ['registerHandler', [ 'rss', [@liip_hello.rss_handler, 'createResponse'] ] ]
+
+    liip_hello.converter.doctrine.phpcr:
+        class: %sensio_framework_extra.converter.doctrine.class%
+        tags:
+            - { name: request.param_converter}
+        arguments:
+            phpcr: @?doctrine_phpcr

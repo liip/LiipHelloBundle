@@ -9,6 +9,8 @@ use Symfony\Component\DependencyInjection\ContainerAware,
 
 use FOS\RestBundle\View\View;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 /**
  * imho injecting the container is a bad practice
  * however for the purpose of this demo it makes it easier since then not all Bundles are required
@@ -45,6 +47,22 @@ class PHPCRController extends ContainerAware
 
         $view->setData(array('name' => $title.' '.$article->getBody()));
 
+        return $viewHandler->handle($view);
+    }
+
+    /**
+     * @ParamConverter("article", class="Liip\HelloBundle\Document\Article")
+     */
+    public function converterAction(Article $article = null)
+    {
+        $view = new View();
+        $view->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
+
+        $name = $article ? 'found: '.$article->getTitle() : 'No found';
+
+        $view->setData(array('name' => $name));
+
+        $viewHandler = $this->container->get('my_view');
         return $viewHandler->handle($view);
     }
 }
