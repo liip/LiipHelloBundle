@@ -3,6 +3,11 @@
 {% block content %}
 
     <div>
+        original:<br>
+        <img src="{{ '/bundles/liiphello/images/image_test.jpg' }}"/>
+    </div>
+
+    <div>
         LiipImagineBundle:<br>
         {{ '/bundles/liiphello/images/image_test.png' | imagine_filter('my_thumb') }}
     </div>
