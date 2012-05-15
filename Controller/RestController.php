@@ -35,7 +35,7 @@ class RestController extends Controller
      */
     public function getArticlesAction(QueryFetcher $queryFetcher)
     {
-        $page = $queryFetcher->getParameter('page');
+        $page = $queryFetcher->get('page');
         $articles = array('bim', 'bam', 'bingo');
 
         return array('articles' => $articles, 'page' => $page);
