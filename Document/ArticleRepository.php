@@ -7,13 +7,7 @@ use Doctrine\ODM\PHPCR\Id\RepositoryIdInterface,
 
 class ArticleRepository extends DocumentRepository implements RepositoryIdInterface
 {
-    /**
-     * Generate a document id
-     *
-     * @param object $document
-     * @return string
-     */
-    public function generateId($document)
+    public function generateId($document, $parent = null)
     {
         $path = $document->getPath();
         if ('' == $path) {
