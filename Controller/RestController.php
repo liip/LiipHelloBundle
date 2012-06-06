@@ -13,7 +13,8 @@ use FOS\RestBundle\Controller\Annotations\Prefix,
     FOS\RestBundle\Controller\Annotations\QueryParam,
     FOS\RestBundle\Request\QueryFetcher;
 
-use Liip\HelloBundle\Document\Article;
+use Liip\HelloBundle\Document\Article,
+    Liip\HelloBundle\Response;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
@@ -41,7 +42,7 @@ class RestController extends Controller
         // $page = $queryFetcher->get('page');
         $articles = array('bim', 'bam', 'bingo');
 
-        return array('articles' => $articles, 'page' => $page);
+        return new Response($articles, $page);
     }
 
     /**
