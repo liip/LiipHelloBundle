@@ -11,7 +11,7 @@ use FOS\RestBundle\Controller\Annotations\Prefix,
     FOS\RestBundle\View\RouteRedirectView,
     FOS\RestBundle\View\View AS FOSView,
     FOS\RestBundle\Controller\Annotations\QueryParam,
-    FOS\RestBundle\Request\QueryFetcher;
+    FOS\RestBundle\Request\QueryFetcherInterface;
 
 use Liip\HelloBundle\Document\Article,
     Liip\HelloBundle\Response;
@@ -35,7 +35,7 @@ class RestController extends Controller
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page of the overview.")
      * @ApiDoc()
      */
-    public function getArticlesAction(QueryFetcher $queryFetcher, $page)
+    public function getArticlesAction(QueryFetcherInterface $queryFetcher, $page)
     {
         // alternative of passing $page in via the method signature
         // which only requires setting query_fetcher_listener: true
