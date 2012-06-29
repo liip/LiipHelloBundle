@@ -11,7 +11,7 @@ use FOS\RestBundle\Controller\Annotations\Prefix,
     FOS\RestBundle\View\RouteRedirectView,
     FOS\RestBundle\View\View AS FOSView,
     FOS\RestBundle\Controller\Annotations\QueryParam,
-    FOS\RestBundle\Request\QueryFetcherInterface;
+    FOS\RestBundle\Request\ParamFetcherInterface;
 
 use Liip\HelloBundle\Document\Article,
     Liip\HelloBundle\Response;
@@ -27,19 +27,19 @@ class RestController extends Controller
     /**
      * Get the list of articles
      *
-     * @param QueryFetcher $queryFetcher
-     * @param string $page integer with the page number (requires query_fetcher_listener: force)
+     * @param ParamFetcher $paramFetcher
+     * @param string $page integer with the page number (requires param_fetcher_listener: force)
      * @return array data
      *
      * @View()
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page of the overview.")
      * @ApiDoc()
      */
-    public function getArticlesAction(QueryFetcherInterface $queryFetcher, $page)
+    public function getArticlesAction(ParamFetcherInterface $paramFetcher, $page)
     {
         // alternative of passing $page in via the method signature
         // which only requires setting query_fetcher_listener: true
-        // $page = $queryFetcher->get('page');
+        // $page = $paramFetcher->get('page');
         $articles = array('bim', 'bam', 'bingo');
 
         return new Response($articles, $page);
