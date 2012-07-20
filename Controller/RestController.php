@@ -3,6 +3,7 @@
 namespace Liip\HelloBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\Response,
     Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use FOS\RestBundle\Controller\Annotations\Prefix,
@@ -14,7 +15,8 @@ use FOS\RestBundle\Controller\Annotations\Prefix,
     FOS\RestBundle\Request\ParamFetcherInterface;
 
 use Liip\HelloBundle\Document\Article,
-    Liip\HelloBundle\Response;
+    Liip\HelloBundle\Form\ArticleType,
+    Liip\HelloBundle\Response as HelloResponse;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
@@ -42,7 +44,7 @@ class RestController extends Controller
         // $page = $paramFetcher->get('page');
         $articles = array('bim', 'bam', 'bingo');
 
-        return new Response($articles, $page);
+        return new HelloResponse($articles, $page);
     }
 
     /**
@@ -54,13 +56,20 @@ class RestController extends Controller
      * @View()
      * @ApiDoc()
      */
-    public function getArticleAction($article)
+    public function getArticleAction($article, Request $request)
     {
         $text = $article;
         $article = new Article();
         $article->setPath('/'.$text);
         $article->setTitle($text);
         $article->setBody("This article is about '$text' and its really great and all");
+
+        if ('xml' === $request->getRequestFormat()) {
+            // Using SimpleThingsFormSerializerBundle
+            $serializer = $this->get('form_serializer');
+            $data       = $serializer->serialize($article, new ArticleType(), 'xml');
+            return new Response($data);
+        }
 
         // using explicit View creation
         $view = new FOSView(array('article' => $article));
@@ -78,14 +87,7 @@ class RestController extends Controller
 
     protected function getForm()
     {
-        $article = new Article();
-
-        return $this->get('form.factory')->createBuilder('form', $article)
-            ->add('path', 'text', array('required' => false))
-            ->add('title', 'text', array('required' => false))
-            ->add('body', 'text', array('required' => false))
-            ->add('format', 'choice', array('choices' => array('html' => 'html', 'json' => 'json', 'xml' => 'xml')))
-            ->getForm();
+        return $this->createForm(new ArticleType(), new Article());
     }
 
     /**
@@ -98,9 +100,7 @@ class RestController extends Controller
      */
     public function getNewArticlesAction()
     {
-        $form = $this->getForm();
-
-        return $form;
+        return $this->getForm();
     }
 
     /**
@@ -116,7 +116,7 @@ class RestController extends Controller
     {
         $form = $this->getForm();
 
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
             // Note: use LiipCacheControlBundle to automatically move this flash message to a cookie
