@@ -25,7 +25,7 @@ Installation
               );
           }
 
-  Alternatively download and install the following Symfony2 Standard Edition fork:
+  Alternatively download and install the following [Symfony2 Standard Edition fork](https://github.com/lsmith77/symfony-standard/tree/techtalk):
 
         $ git clone https://github.com/lsmith77/symfony-standard
         $ git checkout -b techtalk origin/techtalk
