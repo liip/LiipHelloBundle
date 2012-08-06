@@ -48,6 +48,19 @@ class RestController extends Controller
     }
 
     /**
+     * Display the form
+     *
+     * @return Form form instance
+     *
+     * @View()
+     * @ApiDoc()
+     */
+    public function newArticlesAction()
+    {
+        return $this->getForm();
+    }
+
+    /**
      * Get the article
      *
      * @param string $article path
@@ -91,25 +104,12 @@ class RestController extends Controller
     }
 
     /**
-     * Display the form
-     *
-     * @return Form form instance
-     *
-     * @View(templateVar="form")
-     * @ApiDoc()
-     */
-    public function getNewArticlesAction()
-    {
-        return $this->getForm();
-    }
-
-    /**
      * Create a new resource
      *
      * @param Request $request
      * @return View view instance
-     * 
-     * @View(templateVar="form")
+     *
+     * @View()
      * @ApiDoc()
      */
     public function postArticlesAction(Request $request)
