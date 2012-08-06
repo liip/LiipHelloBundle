@@ -87,7 +87,7 @@ class RestController extends Controller
 
     protected function getForm()
     {
-        return $this->createForm(new ArticleType(), new Article());
+        return $this->createForm(new ArticleType());
     }
 
     /**
