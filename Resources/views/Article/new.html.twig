@@ -1,0 +1,11 @@
+{% extends "LiipHelloBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <form action="{{ path('liip_hello_rest_class_post_articles') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+
+        <input type="submit" />
+    </form>
+
+{% endblock content %}

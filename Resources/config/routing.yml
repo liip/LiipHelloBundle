@@ -50,6 +50,10 @@ rest:
     resource: liip_hello.rest.controller
     type:     rest
 
+article:
+    resource: "Liip\HelloBundle\Controller\ArticleController"
+    type:     rest_class
+
 hello_vie_article:
     pattern:  /liip/hello/vie/{id}
     defaults: { _controller: liip_hello.vie.controller:articleAction, _format: html }
