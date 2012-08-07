@@ -52,7 +52,7 @@ rest:
 
 article:
     resource: "Liip\HelloBundle\Controller\ArticleController"
-    type:     rest_class
+    type:     rest
 
 hello_vie_article:
     pattern:  /liip/hello/vie/{id}

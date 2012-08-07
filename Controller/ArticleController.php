@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use FOS\RestBundle\Controller\Annotations\Prefix,
     FOS\RestBundle\Controller\Annotations\NamePrefix,
+    FOS\RestBundle\Controller\Annotations\RouteStrategy,
     FOS\RestBundle\Controller\Annotations\View,
     FOS\RestBundle\Controller\Annotations\QueryParam,
     FOS\RestBundle\Controller\FOSRestController;
@@ -19,6 +20,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 /**
  * @Prefix("liip/hello/rest_class")
  * @NamePrefix("liip_hello_rest_class_")
+ * @RouteStrategy("controller")
  */
 class ArticleController extends FosRestController
 {
