@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use FOS\RestBundle\Controller\Annotations\Prefix,
     FOS\RestBundle\Controller\Annotations\NamePrefix,
-    FOS\RestBundle\Controller\Annotations\RouteStrategy,
+    FOS\RestBundle\Controller\Annotations\RouteResource,
     FOS\RestBundle\Controller\Annotations\View,
     FOS\RestBundle\Controller\Annotations\QueryParam,
     FOS\RestBundle\Controller\FOSRestController;
@@ -20,7 +20,10 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 /**
  * @Prefix("liip/hello/rest_class")
  * @NamePrefix("liip_hello_rest_class_")
- * @RouteStrategy("controller")
+ * Following annotation is redundant, since the Controller nam already implicitly defines the same resource
+ * However it speeds up route generation, since its not necessary to guess if the resource should be guessed
+ * from the Controller or the Action names
+ * @RouteResource("Article")
  */
 class ArticleController extends FosRestController
 {
