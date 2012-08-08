@@ -37,7 +37,7 @@ class ArticleController extends FosRestController
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page of the overview.")
      * @ApiDoc()
      */
-    public function getListAction($page)
+    public function cgetAction($page)
     {
         $articles = array('bim', 'bam', 'bingo');
 
@@ -92,7 +92,7 @@ class ArticleController extends FosRestController
      * @View()
      * @ApiDoc()
      */
-    public function postListAction(Request $request)
+    public function cpostAction(Request $request)
     {
         $form = $this->getForm();
 
