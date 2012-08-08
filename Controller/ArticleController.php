@@ -20,9 +20,9 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 /**
  * @Prefix("liip/hello/r3st")
  * @NamePrefix("liip_hello_r3st_")
- * Following annotation is redundant, since the Controller nam already implicitly defines the same resource
- * However it speeds up route generation, since its not necessary to guess if the resource should be guessed
- * from the Controller or the Action names
+ * Following annotation is redundant, since FosRestController implements ClassResourceInterface
+ * so the Controller name is used to define the resource. However with this annotation its
+ * possible to set the resource to something else unrelated to the Controller name
  * @RouteResource("Article")
  */
 class ArticleController extends FosRestController
