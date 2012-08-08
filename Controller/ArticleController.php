@@ -92,7 +92,7 @@ class ArticleController extends FosRestController
      * @View()
      * @ApiDoc()
      */
-    public function postAction(Request $request)
+    public function postListAction(Request $request)
     {
         $form = $this->getForm();
 
