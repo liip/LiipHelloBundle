@@ -18,8 +18,8 @@ use Liip\HelloBundle\Document\Article,
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
- * @Prefix("liip/hello/rest_class")
- * @NamePrefix("liip_hello_rest_class_")
+ * @Prefix("liip/hello/r3st")
+ * @NamePrefix("liip_hello_r3st_")
  * Following annotation is redundant, since the Controller nam already implicitly defines the same resource
  * However it speeds up route generation, since its not necessary to guess if the resource should be guessed
  * from the Controller or the Action names
