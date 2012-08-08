@@ -55,7 +55,7 @@ class RestController extends Controller
      * @View()
      * @ApiDoc()
      */
-    public function newArticlesAction()
+    public function newArticleAction()
     {
         return $this->getForm();
     }
@@ -69,7 +69,7 @@ class RestController extends Controller
      * @View(template="LiipHelloBundle:Rest:newArticles.html.twig")
      * @ApiDoc()
      */
-    public function editArticlesAction($article)
+    public function editArticleAction($article)
     {
         $article = $this->createArticle($article);
         return $this->getForm($article);
