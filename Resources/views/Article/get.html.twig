@@ -4,6 +4,7 @@
 
     <div>
         Hello {{ article }}!
+        <a href="{{ path('liip_hello_r3st_edit_article', {'article': article}) }}">edit this article</a>
         <a href="{{ path('liip_hello_r3st_get_article', {'article': article, '_format': 'json'}) }}">show this article in json</a>
         <a href="{{ path('liip_hello_r3st_get_article', {'article': article, '_format': 'xml'}) }}">show this article in xml</a>
     </div>

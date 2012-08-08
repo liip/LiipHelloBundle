@@ -58,6 +58,32 @@ class ArticleController extends FosRestController
     }
 
     /**
+     * Display the edit form
+     *
+     * @param string $article path
+     * @return Form form instance
+     *
+     * @View(template="LiipHelloBundle:Article:new.html.twig")
+     * @ApiDoc()
+     */
+    public function editAction($article)
+    {
+        $article = $this->createArticle($article);
+        return $this->getForm($article);
+    }
+
+    private function createArticle($article)
+    {
+        $text = $article;
+        $article = new Article();
+        $article->setPath('/'.$text);
+        $article->setTitle($text);
+        $article->setBody("This article is about '$text' and its really great and all");
+
+        return $article;
+    }
+
+    /**
      * Get the article
      *
      * @param string $article path
@@ -68,19 +94,15 @@ class ArticleController extends FosRestController
      */
     public function getAction($article)
     {
-        $text = $article;
-        $article = new Article();
-        $article->setPath('/'.$text);
-        $article->setTitle($text);
-        $article->setBody("This article is about '$text' and its really great and all");
+        $article = $this->createArticle($article);
 
         // using explicit View creation
         return $this->view(array('article' => $article));
     }
 
-    protected function getForm()
+    protected function getForm($article = null)
     {
-        return $this->createForm(new ArticleType());
+        return $this->createForm(new ArticleType(), $article);
     }
 
     /**

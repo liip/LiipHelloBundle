@@ -61,6 +61,32 @@ class RestController extends Controller
     }
 
     /**
+     * Display the edit form
+     *
+     * @param string $article path
+     * @return Form form instance
+     *
+     * @View(template="LiipHelloBundle:Rest:newArticles.html.twig")
+     * @ApiDoc()
+     */
+    public function editArticlesAction($article)
+    {
+        $article = $this->createArticle($article);
+        return $this->getForm($article);
+    }
+
+    private function createArticle($article)
+    {
+        $text = $article;
+        $article = new Article();
+        $article->setPath('/'.$text);
+        $article->setTitle($text);
+        $article->setBody("This article is about '$text' and its really great and all");
+
+        return $article;
+    }
+
+    /**
      * Get the article
      *
      * @param string $article path
@@ -71,11 +97,7 @@ class RestController extends Controller
      */
     public function getArticleAction($article, Request $request)
     {
-        $text = $article;
-        $article = new Article();
-        $article->setPath('/'.$text);
-        $article->setTitle($text);
-        $article->setBody("This article is about '$text' and its really great and all");
+        $article = $this->createArticle($article);
 
         if ('xml' === $request->getRequestFormat()) {
             // Using SimpleThingsFormSerializerBundle
@@ -98,9 +120,9 @@ class RestController extends Controller
         return $view;
     }
 
-    protected function getForm()
+    protected function getForm($article = null)
     {
-        return $this->createForm(new ArticleType());
+        return $this->createForm(new ArticleType(), $article);
     }
 
     /**
