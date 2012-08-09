@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <form action="{{ path('liip_hello_rest_post_articles') }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('post_articles') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
 
         <input type="submit" />

@@ -49,6 +49,7 @@ extra:
 rest:
     resource: liip_hello.rest.controller
     type:     rest
+    prefix:   liip/hello/rest
 
 article:
     resource: "Liip\HelloBundle\Controller\ArticleController"

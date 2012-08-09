@@ -6,11 +6,8 @@ use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\HttpFoundation\Response,
     Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use FOS\RestBundle\Controller\Annotations\Prefix,
-    FOS\RestBundle\Controller\Annotations\NamePrefix,
-    FOS\RestBundle\Controller\Annotations\View,
-    FOS\RestBundle\View\RouteRedirectView,
-    FOS\RestBundle\View\View AS FOSView,
+use FOS\RestBundle\View\RouteRedirectView,
+    FOS\RestBundle\View\View,
     FOS\RestBundle\Controller\Annotations\QueryParam,
     FOS\RestBundle\Request\ParamFetcherInterface;
 
@@ -20,10 +17,6 @@ use Liip\HelloBundle\Document\Article,
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
-/**
- * @Prefix("liip/hello/rest")
- * @NamePrefix("liip_hello_rest_")
- */
 class RestController extends Controller
 {
     /**
@@ -33,18 +26,18 @@ class RestController extends Controller
      * @param string $page integer with the page number (requires param_fetcher_listener: force)
      * @return array data
      *
-     * @View()
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page of the overview.")
      * @ApiDoc()
      */
-    public function getArticlesAction(ParamFetcherInterface $paramFetcher, $page)
+    public function getArticlesAction(ParamFetcherInterface $paramFetcher)
     {
-        // alternative of passing $page in via the method signature
-        // which only requires setting query_fetcher_listener: true
-        // $page = $paramFetcher->get('page');
+        $page = $paramFetcher->get('page');
         $articles = array('bim', 'bam', 'bingo');
 
-        return new HelloResponse($articles, $page);
+        $data = new HelloResponse($articles, $page);
+        $view = new View($data);
+        $view->setTemplate('LiipHelloBundle:Rest:getArticles.html.twig');
+        return $this->get('fos_rest.view_handler')->handle($view);
     }
 
     /**
@@ -52,12 +45,14 @@ class RestController extends Controller
      *
      * @return Form form instance
      *
-     * @View()
      * @ApiDoc()
      */
     public function newArticleAction()
     {
-        return $this->getForm();
+        $data = $this->getForm();
+        $view = new View($data);
+        $view->setTemplate('LiipHelloBundle:Rest:newArticle.html.twig');
+        return $this->get('fos_rest.view_handler')->handle($view);
     }
 
     /**
@@ -66,13 +61,15 @@ class RestController extends Controller
      * @param string $article path
      * @return Form form instance
      *
-     * @View(template="LiipHelloBundle:Rest:newArticles.html.twig")
      * @ApiDoc()
      */
     public function editArticleAction($article)
     {
         $article = $this->createArticle($article);
-        return $this->getForm($article);
+        $data = $this->getForm($article);
+        $view = new View($data);
+        $view->setTemplate('LiipHelloBundle:Rest:newArticle.html.twig');
+        return $this->get('fos_rest.view_handler')->handle($view);
     }
 
     private function createArticle($article)
@@ -92,7 +89,6 @@ class RestController extends Controller
      * @param string $article path
      * @return View view instance
      *
-     * @View()
      * @ApiDoc()
      */
     public function getArticleAction($article, Request $request)
@@ -107,7 +103,7 @@ class RestController extends Controller
         }
 
         // using explicit View creation
-        $view = new FOSView(array('article' => $article));
+        $view = new View(array('article' => $article));
 
         // since we override the default handling for JSON, this will only affect XML
         //$view->setSerializerVersion('2.0');
@@ -117,7 +113,8 @@ class RestController extends Controller
         // the following example is essentially the same as $view->setSerializerGroups(array('data'));
         //$view->setSerializerCallback(function ($viewHandler, $serializer) { $serializer->setGroups(array('data')); } );
 
-        return $view;
+        $view->setTemplate('LiipHelloBundle:Rest:getArticle.html.twig');
+        return $this->get('fos_rest.view_handler')->handle($view);
     }
 
     protected function getForm($article = null)
@@ -131,7 +128,6 @@ class RestController extends Controller
      * @param Request $request
      * @return View view instance
      *
-     * @View()
      * @ApiDoc()
      */
     public function postArticlesAction(Request $request)
@@ -148,12 +144,13 @@ class RestController extends Controller
             // and/or send an email and finally redirect to the newly created or updated resource url
             $view = RouteRedirectView::create('hello', array('name' => $form->getData()->getTitle()));
         } else {
-            $view = FOSView::create($form);
+            $view = View::create($form);
+            $view->setTemplate('LiipHelloBundle:Rest:postArticles.html.twig');
         }
 
         // Note: this would normally not be necessary, just a "hack" to make the format selectable in the form
         $view->setFormat($form->getData()->format);
 
-        return $view;
+        return $this->get('fos_rest.view_handler')->handle($view);
     }
 }
