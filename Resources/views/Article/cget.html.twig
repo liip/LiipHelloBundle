@@ -1,0 +1,24 @@
+{% extends "LiipHelloBundle::layout.html.twig" %}
+
+{% block content %}
+
+    {% for article in data.articles %}
+
+        <div>
+            <a href="{{ path('liip_hello_r3st_get_article',  {'article': article})}}">{{ article }} in html</a>,
+            <a href="{{ path('liip_hello_r3st_get_article', {'article': article, '_format': 'json'}) }}">{{ article }} in json</a> and
+            <a href="{{ path('liip_hello_r3st_get_article', {'article': article, '_format': 'xml'}) }}">{{ article }} in xml</a>
+            <a href="{{ path('liip_hello_r3st_get_article', {'article': article}) }}">{{ article }} in the default format</a>,
+        </div>
+
+    {% endfor %}
+
+    <div><a href="{{ path('liip_hello_r3st_get_articles', {'_format': 'json'}) }}">list articles in json</a></div>
+    <div><a href="{{ path('liip_hello_r3st_get_articles', {'_format': 'xml'}) }}">list articles in xml</a></div>
+    <div><a href="{{ path('liip_hello_r3st_get_articles') }}">list articles in the default format</a></div>
+
+    <div><a href="{{ path('liip_hello_r3st_new_article', {'_format': 'html'}) }}">form to create a new article in html</a></div>
+
+    Rendered with twig. Page: {{ data.page }}
+
+{% endblock content %}
