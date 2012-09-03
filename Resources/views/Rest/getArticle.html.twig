@@ -4,15 +4,16 @@
 
     <div>
         Hello {{ article }}!
-        <a href="{{ path('liip_hello_rest_get_article', {'article': article, '_format': 'json'}) }}">show this article in json</a>
-        <a href="{{ path('liip_hello_rest_get_article', {'article': article, '_format': 'xml'}) }}">show this article in xml</a>
+        <a href="{{ path('edit_article', {'article': article}) }}">edit this article</a>
+        <a href="{{ path('get_article', {'article': article, '_format': 'json'}) }}">show this article in json</a>
+        <a href="{{ path('get_article', {'article': article, '_format': 'xml'}) }}">show this article in xml</a>
     </div>
 
-    <div><a href="{{ path('liip_hello_rest_get_articles') }}">list articles in html</a></div>
-    <div><a href="{{ path('liip_hello_rest_get_articles', {'_format': 'json'}) }}">list articles in json</a></div>
-    <div><a href="{{ path('liip_hello_rest_get_articles', {'_format': 'xml'}) }}">list articles in xml</a></div>
+    <div><a href="{{ path('get_articles') }}">list articles in html</a></div>
+    <div><a href="{{ path('get_articles', {'_format': 'json'}) }}">list articles in json</a></div>
+    <div><a href="{{ path('get_articles', {'_format': 'xml'}) }}">list articles in xml</a></div>
 
-    <div><a href="{{ path('liip_hello_rest_new_articles', {'_format': 'html'}) }}">form to create a new article in html</a></div>
+    <div><a href="{{ path('new_article', {'_format': 'html'}) }}">form to create a new article in html</a></div>
 
     Rendered with twig.
 
