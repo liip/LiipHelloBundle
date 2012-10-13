@@ -105,12 +105,14 @@ class Article implements SerializationHandlerInterface
         if ($visitor instanceof JsonSerializationVisitor) {
             $visited = true;
 
-            return array(
-                '@' => $this->getFullpath(),
-                'a' => 'sioc:Post',
-                'dcterms:partOf' => $this->getBasePath(),
-                'dcterms:title' => $this->getTitle(),
-                'sioc:content' => $this->getBody(),
+            $visitor->setRoot(
+                array(
+                    '@' => $this->getFullpath(),
+                    'a' => 'sioc:Post',
+                    'dcterms:partOf' => $this->getBasePath(),
+                    'dcterms:title' => $this->getTitle(),
+                    'sioc:content' => $this->getBody(),
+                )
             );
         }
     }
