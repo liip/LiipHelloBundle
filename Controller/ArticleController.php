@@ -35,7 +35,7 @@ class ArticleController extends FosRestController
      *
      * @View()
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page of the overview.")
-     * @ApiDoc()
+     * TODO reenable @ ApiDoc()
      */
     public function cgetAction($page)
     {
@@ -50,7 +50,7 @@ class ArticleController extends FosRestController
      * @return Form form instance
      *
      * @View()
-     * @ApiDoc()
+     * TODO reenable @ ApiDoc()
      */
     public function newAction()
     {
@@ -64,7 +64,7 @@ class ArticleController extends FosRestController
      * @return Form form instance
      *
      * @View(template="LiipHelloBundle:Article:new.html.twig")
-     * @ApiDoc()
+     * TODO reenable @ ApiDoc()
      */
     public function editAction($article)
     {
@@ -90,7 +90,7 @@ class ArticleController extends FosRestController
      * @return View view instance
      *
      * @View()
-     * @ApiDoc()
+     * TODO reenable @ ApiDoc()
      */
     public function getAction($article)
     {
@@ -112,7 +112,7 @@ class ArticleController extends FosRestController
      * @return View view instance
      *
      * @View()
-     * @ApiDoc()
+     * TODO reenable @ ApiDoc()
      */
     public function cpostAction(Request $request)
     {

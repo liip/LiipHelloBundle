@@ -40,7 +40,6 @@ Just a very simple example bundle using services for controllers and the followi
 - FOSFacebookBundle
 - DoctrinePHPCRBundle
 - LiipContainerWrapperBundle
-- LiipVieBundle
 - LiipImagineBundle
 - LiipDoctrineCacheBundle
 - LiipThemeBundle
@@ -91,16 +90,13 @@ http://symfony-standard.lo/app_dev.php/liip/extra
 Using the FOSRestBundle routing generation
 http://symfony-standard.lo/app_dev.php/liip/hello/rest/articles
 http://symfony-standard.lo/app_dev.php/liip/hello/rest/article
-http://symfony-standard.lo/app_dev.php/liip/hello/rest/new/articles
+http://symfony-standard.lo/app_dev.php/liip/hello/rest/articles/new
 
 Using the FOSRestBundle ExceptionController
 http://symfony-standard.lo/app_dev.php/liip/exception.html
 
 Using the FOSRestBundle to handle a failed validation
 http://symfony-standard.lo/app_dev.php/liip/validation_failure.json
-
-Using the FOSRestBundle and VieBundle using RDFa
-http://symfony-standard.lo/app_dev.php/liip/hello/vie/foo
 
 Using the LiipHyphenatorBundle
 http://symfony-standard.lo/app_dev.php/liip/hyphenator

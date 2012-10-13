@@ -4,9 +4,6 @@ namespace Liip\HelloBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-use Liip\VieBundle\FromJsonLdInterface;
-use Liip\VieBundle\ToJsonLdInterface;
-
 use JMS\SerializerBundle\Serializer\JsonSerializationVisitor;
 use JMS\SerializerBundle\Serializer\VisitorInterface;
 use JMS\SerializerBundle\Serializer\Handler\SerializationHandlerInterface;
@@ -15,7 +12,7 @@ use JMS\SerializerBundle\Annotation as Serializer;
 /**
  * @Serializer\XmlRoot("article")
  */
-class Article implements SerializationHandlerInterface, FromJsonLdInterface, ToJsonLdInterface
+class Article implements SerializationHandlerInterface
 {
     /**
      * Format, just used in the RestController
@@ -108,27 +105,13 @@ class Article implements SerializationHandlerInterface, FromJsonLdInterface, ToJ
         if ($visitor instanceof JsonSerializationVisitor) {
             $visited = true;
 
-            return $visitor->setRoot($this->toJsonLd());
+            return array(
+                '@' => $this->getFullpath(),
+                'a' => 'sioc:Post',
+                'dcterms:partOf' => $this->getBasePath(),
+                'dcterms:title' => $this->getTitle(),
+                'sioc:content' => $this->getBody(),
+            );
         }
-    }
-
-    public function toJsonLd()
-    {
-        return array(
-            '@' => $this->getFullpath(),
-            'a' => 'sioc:Post',
-            'dcterms:partOf' => $this->getBasePath(),
-            'dcterms:title' => $this->getTitle(),
-            'sioc:content' => $this->getBody(),
-        );
-    }
-
-    public function fromJsonLd($data)
-    {
-        $this->setTitle($data['title']);
-        if (strlen($data['body']) > 100) {
-            $data['body'] = substr($data['body'], 0, 100).'..';
-        }
-        $this->setBody($data['body']);
     }
 }

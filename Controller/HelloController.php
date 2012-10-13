@@ -128,7 +128,11 @@ fos_rest:
 
     public function apcAction()
     {
-        $int = (int)$this->cache->get('int');
+        if (!function_exists('apc_fetch')) {
+            throw new \Exception('ext/apc needs to be enabled');
+        }
+
+        $int = (int)$this->cache->fetch('int');
         $this->cache->set('int', ++$int);
 
         $view = View::create(array('name' => 'Cached '.$int))
