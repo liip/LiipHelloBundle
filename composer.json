@@ -1,0 +1,26 @@
+{
+    "name": "liip/hello-bundle",
+    "type": "symfony-bundle",
+    "description": "This Bundle provides examples for various Liip and other bundles.",
+    "keywords": ["example"],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Liip AG",
+            "homepage": "http://www.liip.ch/"
+        },
+        {
+            "name": "Community contributions",
+            "homepage": "https://github.com/liip/LiipThemeBundle/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": ">=2.0.14,<=2.2-dev"
+    },
+    "autoload": {
+        "psr-0": { "Liip\\HelloBundle": "" }
+    },
+    "target-dir": "Liip/HelloBundle"
+}
