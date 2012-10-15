@@ -27,7 +27,7 @@ class RestController extends Controller
      * @return array data
      *
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page of the overview.")
-     * TODO reenable @ ApiDoc()
+     * @ApiDoc()
      */
     public function getArticlesAction(ParamFetcherInterface $paramFetcher)
     {
@@ -45,7 +45,7 @@ class RestController extends Controller
      *
      * @return Form form instance
      *
-     * TODO reenable @ ApiDoc()
+     * @ApiDoc()
      */
     public function newArticleAction()
     {
@@ -61,7 +61,7 @@ class RestController extends Controller
      * @param string $article path
      * @return Form form instance
      *
-     * TODO reenable @ ApiDoc()
+     * @ApiDoc()
      */
     public function editArticleAction($article)
     {
@@ -89,7 +89,7 @@ class RestController extends Controller
      * @param string $article path
      * @return View view instance
      *
-     * TODO reenable @ ApiDoc()
+     * @ApiDoc()
      */
     public function getArticleAction($article, Request $request)
     {
@@ -128,7 +128,7 @@ class RestController extends Controller
      * @param Request $request
      * @return View view instance
      *
-     * TODO reenable @ ApiDoc()
+     * @ApiDoc()
      */
     public function postArticlesAction(Request $request)
     {
