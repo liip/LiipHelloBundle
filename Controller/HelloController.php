@@ -60,6 +60,8 @@ class HelloController
 
         $view = new View();
         $view->setData($article);
+        $view->setSerializerVersion('2.1');
+        $view->setSerializerGroups(array('data'));
 
         return $this->viewHandler->handle($view);
     }

@@ -4,15 +4,12 @@ namespace Liip\HelloBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-use JMS\SerializerBundle\Serializer\JsonSerializationVisitor;
-use JMS\SerializerBundle\Serializer\VisitorInterface;
-use JMS\SerializerBundle\Serializer\Handler\SerializationHandlerInterface;
 use JMS\SerializerBundle\Annotation as Serializer;
 
 /**
  * @Serializer\XmlRoot("article")
  */
-class Article implements SerializationHandlerInterface
+class Article
 {
     /**
      * Format, just used in the RestController
@@ -94,26 +91,5 @@ class Article implements SerializationHandlerInterface
     public function __toString()
     {
       return $this->title;
-    }
-
-    public function serialize(VisitorInterface $visitor, $data, $type, &$visited)
-    {
-        if (!$data instanceof Article) {
-            return;
-        }
-
-        if ($visitor instanceof JsonSerializationVisitor) {
-            $visited = true;
-
-            $visitor->setRoot(
-                array(
-                    '@' => $this->getFullpath(),
-                    'a' => 'sioc:Post',
-                    'dcterms:partOf' => $this->getBasePath(),
-                    'dcterms:title' => $this->getTitle(),
-                    'sioc:content' => $this->getBody(),
-                )
-            );
-        }
     }
 }

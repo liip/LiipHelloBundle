@@ -54,3 +54,8 @@ services:
             - { name: request.param_converter}
         arguments:
             phpcr: @?doctrine_phpcr
+
+    liip_hello.json_ld_serialization_handler:
+        class: Liip\HelloBundle\Serializer\JsonLdSerializationHandler
+        tags:
+            - { name: jms_serializer.subscribing_handler}
