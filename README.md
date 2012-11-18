@@ -35,7 +35,7 @@ What is this?
 
 Just a very simple example bundle using services for controllers and the following Bundles:
 
-- FOSRestBundle / JMSSerializerBundle
+- FOSRestBundle / JMSSerializerBundle / FSCHateoasBundle
 - FOSUserBundle
 - FOSFacebookBundle
 - DoctrinePHPCRBundle
