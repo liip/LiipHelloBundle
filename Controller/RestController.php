@@ -91,7 +91,7 @@ class RestController extends Controller
      *
      * @ApiDoc()
      */
-    public function getArticleAction($article, Request $request)
+    public function getArticleAction($article, Request $request, $_format)
     {
         $article = $this->createArticle($article);
 
@@ -114,6 +114,13 @@ class RestController extends Controller
         //$view->setSerializerCallback(function ($viewHandler, $serializer) { $serializer->setGroups(array('data')); } );
 
         $view->setTemplate('LiipHelloBundle:Rest:getArticle.html.twig');
+
+        // dynamically set the _format in the parameters
+        $classMetadata = $this->get('fsc_hateoas.metadata.base_factory')->getMetadataForClass('Liip\HelloBundle\Document\Article');
+        foreach ($classMetadata->getRelations() as $relation) {
+            $relation->setParams(array_merge($relation->getParams(), array('_format' => $_format)));
+        }
+
         return $this->get('fos_rest.view_handler')->handle($view);
     }
 
