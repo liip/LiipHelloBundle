@@ -97,9 +97,9 @@ class RestController extends Controller
 
         if ('xml' === $request->getRequestFormat()) {
             // Using SimpleThingsFormSerializerBundle
-            $serializer = $this->get('form_serializer');
-            $data       = $serializer->serialize($article, new ArticleType(), 'xml');
-            return new Response($data);
+//            $serializer = $this->get('form_serializer');
+//            $data       = $serializer->serialize($article, new ArticleType(), 'xml');
+//            return new Response($data);
         }
 
         // using explicit View creation

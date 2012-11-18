@@ -5,8 +5,12 @@ namespace Liip\HelloBundle\Document;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use JMS\SerializerBundle\Annotation as Serializer;
+use FSC\HateoasBundle\Annotation as Hateoas;
 
 /**
+ * @Hateoas\Relation("self",        route = "get_article", parameters = { "article" = "relative_path" })
+ * @Hateoas\Relation("articles",    route = "get_articles")
+ *
  * @Serializer\XmlRoot("article")
  */
 class Article
