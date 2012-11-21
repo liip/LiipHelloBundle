@@ -15,6 +15,10 @@ class Response
      */
     protected $articles;
 
+    /**
+     * @var int
+     * @Serializer\XmlAttribute()
+     */
     protected $page;
 
     public function __construct($articles, $page)
