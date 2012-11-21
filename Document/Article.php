@@ -49,37 +49,37 @@ class Article
 
     public function setTitle($title)
     {
-      $this->title = $title;
+        $this->title = $title;
     }
 
     public function getTitle()
     {
-      return $this->title;
+        return $this->title;
     }
 
     public function setBody($body)
     {
-      $this->body = $body;
+        $this->body = $body;
     }
 
     public function getBody()
     {
-      return $this->body;
+        return $this->body;
     }
 
     public function setPath($path)
     {
-      $this->path = $path;
+        $this->path = $path;
     }
 
     public function getPath()
     {
-      return $this->path;
+        return $this->path;
     }
 
     public function getRelativePath()
     {
-      return substr($this->path, 1);
+        return substr($this->path, 1);
     }
 
     public function getBasepath()
@@ -94,6 +94,6 @@ class Article
 
     public function __toString()
     {
-      return $this->title;
+        return $this->title;
     }
 }
