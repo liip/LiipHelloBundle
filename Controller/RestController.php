@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request,
 use FOS\RestBundle\View\RouteRedirectView,
     FOS\RestBundle\View\View,
     FOS\RestBundle\Controller\Annotations\QueryParam,
+    FOS\RestBundle\Controller\Annotations\Hateoas,
     FOS\RestBundle\Request\ParamFetcherInterface;
 
 use Liip\HelloBundle\Document\Article,
@@ -93,17 +94,17 @@ class RestController extends Controller
      */
     public function getArticleAction($article, Request $request, $_format)
     {
-        $article = $this->createArticle($article);
+        $data = $this->createArticle($article);
 
         if ('xml' === $request->getRequestFormat()) {
             // Using SimpleThingsFormSerializerBundle
 //            $serializer = $this->get('form_serializer');
-//            $data       = $serializer->serialize($article, new ArticleType(), 'xml');
+//            $data       = $serializer->serialize($data, new ArticleType(), 'xml');
 //            return new Response($data);
         }
 
         // using explicit View creation
-        $view = new View(array('article' => $article));
+        $view = new View($data);
 
         // since we override the default handling for JSON, this will only affect XML
         //$view->setSerializerVersion('2.0');

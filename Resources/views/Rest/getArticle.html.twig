@@ -3,10 +3,10 @@
 {% block content %}
 
     <div>
-        Hello {{ article }}!
-        <a href="{{ path('edit_article', {'article': article}) }}">edit this article</a>
-        <a href="{{ path('get_article', {'article': article, '_format': 'json'}) }}">show this article in json</a>
-        <a href="{{ path('get_article', {'article': article, '_format': 'xml'}) }}">show this article in xml</a>
+        Hello {{ data }}!
+        <a href="{{ path('edit_article', {'article': data}) }}">edit this article</a>
+        <a href="{{ path('get_article', {'article': data, '_format': 'json'}) }}">show this article in json</a>
+        <a href="{{ path('get_article', {'article': data, '_format': 'xml'}) }}">show this article in xml</a>
     </div>
 
     <div><a href="{{ path('get_articles') }}">list articles in html</a></div>
