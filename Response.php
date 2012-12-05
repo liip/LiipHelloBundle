@@ -2,7 +2,7 @@
 
 namespace Liip\HelloBundle;
 
-use JMS\SerializerBundle\Annotation as Serializer;
+use JMS\Serializer\Annotation as Serializer;
 
 use Doctrine\Common\Collections\ArrayCollection,
     Doctrine\Common\Collections\Collection;

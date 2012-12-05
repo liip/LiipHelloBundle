@@ -4,7 +4,7 @@ namespace Liip\HelloBundle\Document;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-use JMS\SerializerBundle\Annotation as Serializer;
+use JMS\Serializer\Annotation as Serializer;
 use FSC\HateoasBundle\Annotation as Hateoas;
 
 /**

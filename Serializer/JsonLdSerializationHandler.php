@@ -2,10 +2,10 @@
 
 namespace Liip\HelloBundle\Serializer;
 
-use JMS\SerializerBundle\Serializer\Handler\SubscribingHandlerInterface;
+use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use Liip\HelloBundle\Document\Article;
-use JMS\SerializerBundle\Serializer\GraphNavigator;
-use JMS\SerializerBundle\Serializer\JsonSerializationVisitor;
+use JMS\Serializer\GraphNavigator;
+use JMS\Serializer\JsonSerializationVisitor;
 
 class JsonLdSerializationHandler implements SubscribingHandlerInterface
 {
