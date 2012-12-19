@@ -3,11 +3,12 @@
 namespace Liip\HelloBundle\DependencyInjection;
 
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\Compiler\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 
-class LiipHelloExtension extends Extension
+class LiipHelloExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * Yaml config files to load
@@ -35,6 +36,14 @@ class LiipHelloExtension extends Extension
                 break;
             }
         }
+    }
+
+    public function prepend(ContainerBuilder $container)
+    {
+        // just an example of how to prepend the config of an extension
+        // obviously it makes little sense to prepend a config to the same extension
+        // but the idea is that the same approach would work with any other extension that is loaded
+        $container->prependExtensionConfig($this->getAlias(), array('foo' => true));
     }
 
     /**
