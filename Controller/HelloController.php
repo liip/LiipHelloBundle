@@ -135,7 +135,7 @@ fos_rest:
         }
 
         $int = (int)$this->cache->fetch('int');
-        $this->cache->set('int', ++$int);
+        $this->cache->save('int', ++$int);
 
         $view = View::create(array('name' => 'Cached '.$int))
             ->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
