@@ -25,10 +25,10 @@
         "liip/imagine-bundle": "dev-master",
         "liip/container-wrapper-bundle": "dev-master",
         "nelmio/api-doc-bundle": "dev-master",
+        "jms/serializer-bundle": "0.12.*",
         "friendsofsymfony/rest-bundle": "dev-master",
         "friendsofsymfony/facebook-bundle": "dev-master",
-        "friendsofsymfony/user-bundle": "dev-master",
-        "fsc/hateoas-bundle": "dev-master"
+        "friendsofsymfony/user-bundle": "dev-master"
     },
     "autoload": {
         "psr-0": { "Liip\\HelloBundle": "" }

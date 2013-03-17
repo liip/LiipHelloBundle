@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request,
 use FOS\RestBundle\View\RouteRedirectView,
     FOS\RestBundle\View\View,
     FOS\RestBundle\Controller\Annotations\QueryParam,
-    FOS\RestBundle\Controller\Annotations\Hateoas,
     FOS\RestBundle\Request\ParamFetcherInterface;
 
 use Liip\HelloBundle\Document\Article,
@@ -115,12 +114,6 @@ class RestController extends Controller
         //$view->setSerializerCallback(function ($viewHandler, $serializer) { $serializer->setGroups(array('data')); } );
 
         $view->setTemplate('LiipHelloBundle:Rest:getArticle.html.twig');
-
-        // dynamically set the _format in the parameters
-        $classMetadata = $this->get('fsc_hateoas.metadata.base_factory')->getMetadataForClass('Liip\HelloBundle\Document\Article');
-        foreach ($classMetadata->getRelations() as $relation) {
-            $relation->setParams(array_merge($relation->getParams(), array('_format' => $_format)));
-        }
 
         return $this->get('fos_rest.view_handler')->handle($view);
     }
