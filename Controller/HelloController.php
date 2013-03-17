@@ -11,6 +11,9 @@ use Doctrine\Common\Cache\Cache;
 use FOS\RestBundle\View\View,
     FOS\RestBundle\View\ViewHandler,
     FOS\RestBundle\View\RouteRedirectView;
+
+use JMS\Serializer\SerializationContext;
+
 use Liip\HelloBundle\Document\Article;
 
 class HelloController
@@ -60,8 +63,10 @@ class HelloController
 
         $view = new View();
         $view->setData($article);
-        $view->setSerializerVersion('2.1');
-        $view->setSerializerGroups(array('data'));
+        $context = new SerializationContext();
+        $context->setVersion('2.1');
+        $context->setGroups(array('data'));
+        $view->setSerializationContext($context);
 
         return $this->viewHandler->handle($view);
     }
