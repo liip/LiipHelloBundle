@@ -36,7 +36,13 @@ hello_phpcr_converter:
     requirements:
         id: .+
 
-hello_phpcr:
+hello_phpcr_image:
+    pattern:  /liip/phpcr/image
+    defaults: { _controller: liip_hello.phpcr.controller:createImageAction, _format: html }
+    requirements:
+        title: .+
+
+hello_phpcr_title:
     pattern:  /liip/phpcr/{title}
     defaults: { _controller: liip_hello.phpcr.controller:indexAction, _format: html }
     requirements:
