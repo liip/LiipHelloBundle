@@ -84,6 +84,7 @@ class PHPCRController extends ContainerAware
             $view->setStatusCode(Codes::HTTP_CREATED);
         } catch (\Exception $e) {
             throw new ConflictHttpException('Image was already created in a previous request at '. $image->getId())
+        }
 
         return $viewHandler->handle($view);
     }
