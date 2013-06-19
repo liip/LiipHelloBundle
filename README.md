@@ -1,9 +1,9 @@
 Installation
 ============
 
-  1. Add this bundle to your project as Git submodules:
+  1. Add this bundle to your composer.json:
 
-          $ git submodule add git://github.com/liip/LiipHelloBundle.git vendor/bundles/Liip/HelloBundle
+          $ php composer.phar require liip/theme-bundle:dev-master
 
   2. Add the Liip namespace to your autoloader:
 
