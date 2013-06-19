@@ -25,6 +25,7 @@
         "liip/imagine-bundle": "0.10.*",
         "liip/container-wrapper-bundle": "1.0.*",
         "liip/doctrine-cache-bundle": "1.0.*",
+        "liip/url-auto-converter-bundle": "1.0.*",
         "nelmio/api-doc-bundle": "2.2.*",
         "jms/serializer-bundle": "0.12.*",
         "friendsofsymfony/rest-bundle": "0.13.*",
