@@ -12,7 +12,16 @@
         </select>
     </form>
 
-    <h1>Hello {{ name | converturls }}!</h1>
+    <h1>Hello {{ name }}!</h1>
+
+    {%  set sometext = "sometext to find a url like www.liip.ch and email like foo@bar.com inside" %}
+
+    <h2>Converting:</h2>
+
+    {{ sometext }}
+
+    <h2>To the following using LiipUrlAutoConverterBundle:</h2>
+    {{ sometext | converturls }}
 
     {{ facebook_initialize({'xfbml': true}) }}
 
