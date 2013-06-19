@@ -3,7 +3,7 @@ Installation
 
   1. Add this bundle to your composer.json:
 
-          $ php composer.phar require liip/theme-bundle:dev-master
+          $ php composer.phar require liip/hello-bundle:dev-master
 
   2. Add the Liip namespace to your autoloader:
 
