@@ -147,4 +147,13 @@ fos_rest:
         ;
         return $this->viewHandler->handle($view);
     }
+
+    public function jsonpAction()
+    {
+        $data = array('foo' => 'bar');
+        $view = new View($data);
+        $view->setFormat('jsonp');
+
+        return $this->viewHandler->handle($view);
+    }
 }
