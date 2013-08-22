@@ -30,8 +30,8 @@ class Article
     protected $node;
 
     /**
-     * @Assert\MinLength(3)
-     * @Assert\MaxLength(30)
+     * @Assert\Length(min = 3)
+     * @Assert\Length(max = 30)
      * @Serializer\Groups({"data"})
      * @Serializer\Since("2.0")
      */
