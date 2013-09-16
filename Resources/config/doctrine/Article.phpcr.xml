@@ -6,9 +6,9 @@
            <generator strategy="repository" />
        </id>
 
-       <field fieldName="title" type="string" />
+       <field name="title" type="string" />
 
-       <field fieldName="body" type="string" />
+       <field name="body" type="string" />
 
        <node name="node" />
 
