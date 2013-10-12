@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerAware,
     Symfony\Bundle\FrameworkBundle\Templating\TemplateReference,
     Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
-use FOS\Rest\Util\Codes;
+use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
