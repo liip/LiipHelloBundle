@@ -22,7 +22,7 @@
         "doctrine/phpcr-odm": "1.0.*",
         "liip/hyphenator-bundle": "dev-master",
         "liip/theme-bundle": "dev-master",
-        "liip/imagine-bundle": "0.10.*",
+        "liip/imagine-bundle": "0.16.*",
         "liip/container-wrapper-bundle": "1.0.*",
         "liip/doctrine-cache-bundle": "1.0.*",
         "liip/url-auto-converter-bundle": "1.0.*",
