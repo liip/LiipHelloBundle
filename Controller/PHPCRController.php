@@ -4,7 +4,6 @@ namespace Liip\HelloBundle\Controller;
 
 use Doctrine\ODM\PHPCR\Document\File;
 use Doctrine\ODM\PHPCR\Document\Generic;
-use Doctrine\ODM\PHPCR\Document\Image;
 
 use Liip\HelloBundle\Document\Article;
 
@@ -54,37 +53,6 @@ class PHPCRController extends ContainerAware
         $documentManager->flush();
 
         $view->setData(array('name' => $title.' '.$article->getBody()));
-
-        return $viewHandler->handle($view);
-    }
-
-    public function createImageAction()
-    {
-        $viewHandler = $this->container->get('my_view');
-
-        $view = new View();
-
-        try {
-            $documentManager = $this->container->get('doctrine_phpcr')->getManager();
-
-            NodeHelper::createPath($this->container->get('doctrine_phpcr.session'), '/bundles/liiphello/images');
-            $file = new File();
-            $file->setFileContentFromFilesystem(__DIR__.'/../Resources/public/images/image_test.jpg');
-            $image = new Image();
-            $image->setFile($file);
-            $image->setId('/bundles/liiphello/images/image_test');
-            $documentManager->persist($image);
-        } catch (\Exception $e) {
-            $view->setData(array('Did you run "app/console doctrine:phpcr:init:dbal" yet? (Exception: '.$e->getMessage()));
-            return $viewHandler->handle($view);
-        }
-
-        try {
-            $documentManager->flush();
-            $view->setStatusCode(Codes::HTTP_CREATED);
-        } catch (\Exception $e) {
-            throw new ConflictHttpException('Image was already created in a previous request at '. $image->getId());
-        }
 
         return $viewHandler->handle($view);
     }
