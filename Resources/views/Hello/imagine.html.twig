@@ -9,17 +9,12 @@
 
     <div>
         LiipImagineBundle:<br>
-        {{ '/bundles/liiphello/images/image_test.png' | imagine_filter('my_thumb') }}
-    </div>
-
-    <div>
-        LiipImagineBundle with absolute url<br>
-        {{ '/bundles/liiphello/images/image_test.png' | imagine_filter('my_thumb', true) }}
+        {{ '/bundles/liiphello/images/image_test.jpg' | imagine_filter('my_thumb') }}
     </div>
 
     <div>
         LiipImagineBundle in action:<br>
-        <img src="{{ '/bundles/liiphello/images/image_test.png' | imagine_filter('my_thumb') }}" />
+        <img src="{{ '/bundles/liiphello/images/image_test.jpg' | imagine_filter('my_thumb') }}" />
     </div>
 
 
