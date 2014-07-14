@@ -5,15 +5,7 @@ Installation
 
           $ php composer.phar require liip/hello-bundle:dev-master
 
-  2. Add the Liip namespace to your autoloader:
-
-          // app/autoload.php
-          $loader->registerNamespaces(array(
-                'Liip' => __DIR__.'/../vendor/bundles',
-                // your other namespaces
-          ));
-
-  3. Add this bundle to your application's kernel:
+  2. Add this bundle to your application's kernel:
 
           // application/ApplicationKernel.php
           public function registerBundles()
