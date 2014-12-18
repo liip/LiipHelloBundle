@@ -7,7 +7,7 @@ use FOS\RestBundle\View\View,
     Symfony\Component\HttpFoundation\Request,
     Symfony\Component\HttpFoundation\Response;
 
-class RssViewHandler
+class RSSViewHandler
 {
     /**
      * @param ViewHandler $viewHandler
