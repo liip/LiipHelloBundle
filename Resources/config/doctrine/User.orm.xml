@@ -14,8 +14,6 @@
 
        <field name="lastname" column="lastname" type="string" length="255" nullable="true" />
 
-       <field name="facebookID" column="facebookID" type="string" length="50" nullable="true" unique="true" />
-
    </entity>
 
 </doctrine-mapping>

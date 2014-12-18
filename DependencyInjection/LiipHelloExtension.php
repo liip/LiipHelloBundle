@@ -11,15 +11,6 @@ use Symfony\Component\Config\FileLocator;
 class LiipHelloExtension extends Extension implements PrependExtensionInterface
 {
     /**
-     * Yaml config files to load
-     * @var array
-     */
-    protected $resources = array(
-        'config' => 'config.yml',
-        'facebook' => 'facebook.yml',
-    );
-
-    /**
      * Loads the services based on your application configuration.
      *
      * @param array $configs
@@ -28,14 +19,7 @@ class LiipHelloExtension extends Extension implements PrependExtensionInterface
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = $this->getFileLoader($container);
-        $loader->load($this->resources['config']);
-
-        foreach ($configs as $config) {
-            if (!empty($config['facebook'])) {
-                $loader->load($this->resources['facebook']);
-                break;
-            }
-        }
+        $loader->load('config.yml');
     }
 
     public function prepend(ContainerBuilder $container)

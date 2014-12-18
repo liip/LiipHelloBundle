@@ -102,15 +102,6 @@ fos_rest:
         return $this->viewHandler->handle($view);
     }
 
-    public function facebookAction()
-    {
-        // example of hardcoding the full template name
-        $view = new View();
-        $view->setTemplate('LiipHelloBundle:Hello:facebook.html.twig');
-
-        return $this->viewHandler->handle($view);
-    }
-
     public function hyphenatorAction()
     {
         $view = new View();

@@ -29,7 +29,6 @@ Just a very simple example bundle using services for controllers and the followi
 
 - FOSRestBundle / JMSSerializerBundle
 - FOSUserBundle
-- FOSFacebookBundle
 - DoctrinePHPCRBundle
 - LiipContainerWrapperBundle
 - LiipImagineBundle
