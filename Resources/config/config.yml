@@ -4,7 +4,6 @@ services:
         arguments:
             view: @fos_rest.view_handler
             validator: @validator
-            cache: @liip_doctrine_cache.ns.foo
 
     liip_hello.extra.controller:
         class: Liip\HelloBundle\Controller\ExtraController
@@ -25,12 +24,6 @@ services:
             index_0:
                 doctrine_phpcr: true
                 my_view: fos_rest.view_handler
-
-    liip_hello.vie.controller:
-        class: Liip\HelloBundle\Controller\VieController
-        arguments:
-            view: @fos_rest.view_handler
-            repository: @liip_hello.article.repository
 
     liip_hello.article.repository:
         class: Doctrine\ODM\PHPCR\DocumentRepository

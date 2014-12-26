@@ -6,8 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference,
     Symfony\Component\Routing\Exception\ResourceNotFoundException,
     Symfony\Component\Validator\ValidatorInterface;
 
-use Doctrine\Common\Cache\Cache;
-
 use FOS\RestBundle\View\View,
     FOS\RestBundle\View\ViewHandler,
     FOS\RestBundle\View\RouteRedirectView;
@@ -28,16 +26,10 @@ class HelloController
      */
     protected $validator;
 
-    /**
-     * @var Cache
-     */
-    protected $cache;
-
-    public function __construct(ViewHandler $viewHandler, ValidatorInterface $validator, Cache $cache)
+    public function __construct(ViewHandler $viewHandler, ValidatorInterface $validator)
     {
         $this->viewHandler = $viewHandler;
         $this->validator = $validator;
-        $this->cache = $cache;
     }
 
     public function indexAction($name = null)
