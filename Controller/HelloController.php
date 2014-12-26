@@ -124,21 +124,6 @@ fos_rest:
         return $this->viewHandler->handle($view);
     }
 
-    public function apcAction()
-    {
-        if (!function_exists('apc_fetch')) {
-            throw new \Exception('ext/apc needs to be enabled');
-        }
-
-        $int = (int)$this->cache->fetch('int');
-        $this->cache->save('int', ++$int);
-
-        $view = View::create(array('name' => 'Cached '.$int))
-            ->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
-        ;
-        return $this->viewHandler->handle($view);
-    }
-
     public function jsonpAction()
     {
         $data = array('foo' => 'bar');
