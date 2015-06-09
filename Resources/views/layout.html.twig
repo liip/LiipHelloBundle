@@ -17,6 +17,8 @@
 
     <h1>Hello Application</h1>
 
+    {{ render(controller('liip_search_default_controller:showSearchBoxAction')) }}
+
     {% for type, flashMessages in app.session.flashbag.all() %}
         {% for flashMessage in flashMessages %}
             <div class="flash-{{ type }}">

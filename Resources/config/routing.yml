@@ -1,37 +1,37 @@
 hello:
-    pattern:  /liip/hello/{name}.{_format}
+    path: /liip/hello/{name}.{_format}
     defaults: { _controller: liip_hello.world.controller:indexAction, _format: html }
 
 hello_fallback:
-    pattern:  /liip/hello.{_format}
+    path: /liip/hello.{_format}
     defaults: { _controller: liip_hello.world.controller:indexAction, _format: html }
 
 hello_serializer:
-    pattern:  /liip/serializer.{_format}
+    path: /liip/serializer.{_format}
     defaults: { _controller: liip_hello.world.controller:serializerAction, _format: json }
 
 hello_exception:
-    pattern:  /liip/exception.{_format}
+    path: /liip/exception.{_format}
     defaults: { _controller: liip_hello.world.controller:exceptionAction, _format: html }
 
 hello_validation_failure:
-    pattern:  /liip/validation_failure.json
+    path: /liip/validation_failure.json
     defaults: { _controller: liip_hello.world.controller:validationFailureAction, _format: json }
 
 hello_phpcr_converter:
-    pattern:  /liip/phpcr/convert/{id}
+    path: /liip/phpcr/convert/{id}
     defaults: { _controller: liip_hello.phpcr.controller:converterAction, _format: html }
     requirements:
         id: .+
 
 hello_phpcr_image:
-    pattern:  /liip/phpcr/image
+    path: /liip/phpcr/image
     defaults: { _controller: liip_hello.phpcr.controller:createImageAction, _format: html }
     requirements:
         title: .+
 
 hello_phpcr_title:
-    pattern:  /liip/phpcr/{title}
+    path: /liip/phpcr/{title}
     defaults: { _controller: liip_hello.phpcr.controller:indexAction, _format: html }
     requirements:
         title: .+
@@ -50,17 +50,17 @@ article:
     type:     rest
 
 hello_hyphenator:
-    pattern:  /liip/hyphenator
+    path: /liip/hyphenator
     defaults: { _controller: liip_hello.world.controller:hyphenatorAction, _format: html }
 
 hello_custom_handler:
-    pattern:  /liip/customHandler.{_format}
+    path: /liip/customHandler.{_format}
     defaults: { _controller: liip_hello.world.controller:customHandlerAction, _format: rss }
 
 hello_imagine:
-    pattern:  /liip/imagine
+    path: /liip/imagine
     defaults: { _controller: liip_hello.world.controller:imagineAction, _format: html }
 
 hello_jsonp:
-    pattern:  /liip/jsonp
+    path: /liip/jsonp
     defaults: { _controller: liip_hello.world.controller:jsonpAction, _format: jsonp }
