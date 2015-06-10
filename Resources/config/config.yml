@@ -27,8 +27,7 @@ services:
 
     liip_hello.article.repository:
         class: Doctrine\ODM\PHPCR\DocumentRepository
-        factory_service: doctrine_phpcr.odm.document_manager
-        factory_method: getRepository
+        factory: [@doctrine_phpcr.odm.document_manager, "getRepository"]
         arguments:
             document_class_name: Liip\HelloBundle\Document\Article
 
