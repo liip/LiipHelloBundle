@@ -3,9 +3,8 @@
 namespace Liip\HelloBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
-use FOS\RestBundle\View\RedirectView,
-    FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\View\RedirectView;
+use FOS\RestBundle\Controller\Annotations\View;
 
 /**
  * @Route("/liip", service="liip_hello.extra.controller")

@@ -2,28 +2,26 @@
 
 namespace Liip\HelloBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\HttpFoundation\Response,
-    Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use FOS\RestBundle\View\RouteRedirectView,
-    FOS\RestBundle\View\View,
-    FOS\RestBundle\Controller\Annotations\QueryParam,
-    FOS\RestBundle\Request\ParamFetcherInterface;
-
-use Liip\HelloBundle\Document\Article,
-    Liip\HelloBundle\Form\ArticleType,
-    Liip\HelloBundle\Response as HelloResponse;
-
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\RestBundle\View\RouteRedirectView;
+use FOS\RestBundle\View\View;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Request\ParamFetcherInterface;
+use Liip\HelloBundle\Document\Article;
+use Liip\HelloBundle\Form\ArticleType;
+use Liip\HelloBundle\Response as HelloResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class RestController extends Controller
 {
     /**
-     * Get the list of articles
+     * Get the list of articles.
      *
      * @param ParamFetcher $paramFetcher
-     * @param string $page integer with the page number (requires param_fetcher_listener: force)
+     * @param string       $page         integer with the page number (requires param_fetcher_listener: force)
+     *
      * @return array data
      *
      * @QueryParam(name="page", requirements="\d+", default="1", description="Page of the overview.")
@@ -37,11 +35,12 @@ class RestController extends Controller
         $data = new HelloResponse($articles, $page);
         $view = new View($data);
         $view->setTemplate('LiipHelloBundle:Rest:getArticles.html.twig');
+
         return $this->get('fos_rest.view_handler')->handle($view);
     }
 
     /**
-     * Display the form
+     * Display the form.
      *
      * @return Form form instance
      *
@@ -52,13 +51,15 @@ class RestController extends Controller
         $data = $this->getForm();
         $view = new View($data);
         $view->setTemplate('LiipHelloBundle:Rest:newArticle.html.twig');
+
         return $this->get('fos_rest.view_handler')->handle($view);
     }
 
     /**
-     * Display the edit form
+     * Display the edit form.
      *
      * @param string $article path
+     *
      * @return Form form instance
      *
      * @ApiDoc()
@@ -69,6 +70,7 @@ class RestController extends Controller
         $data = $this->getForm($article);
         $view = new View($data);
         $view->setTemplate('LiipHelloBundle:Rest:newArticle.html.twig');
+
         return $this->get('fos_rest.view_handler')->handle($view);
     }
 
@@ -84,9 +86,10 @@ class RestController extends Controller
     }
 
     /**
-     * Get the article
+     * Get the article.
      *
      * @param string $article path
+     *
      * @return View view instance
      *
      * @ApiDoc()
@@ -124,9 +127,10 @@ class RestController extends Controller
     }
 
     /**
-     * Create a new resource
+     * Create a new resource.
      *
      * @param Request $request
+     *
      * @return View view instance
      *
      * @ApiDoc()

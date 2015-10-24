@@ -2,20 +2,10 @@
 
 namespace Liip\HelloBundle\Controller;
 
-use Doctrine\ODM\PHPCR\Document\File;
-use Doctrine\ODM\PHPCR\Document\Generic;
-
 use Liip\HelloBundle\Document\Article;
-
-use PHPCR\Util\NodeHelper;
-
-use Symfony\Component\DependencyInjection\ContainerAware,
-    Symfony\Bundle\FrameworkBundle\Templating\TemplateReference,
-    Symfony\Component\HttpKernel\Exception\ConflictHttpException;
-
-use FOS\RestBundle\Util\Codes;
+use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 use FOS\RestBundle\View\View;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
@@ -38,11 +28,12 @@ class PHPCRController extends ContainerAware
             $article = $repo->find($repo->appendRootNodePath($title));
         } catch (\Exception $e) {
             $view->setData(array('name' => 'Did you run "app/console doctrine:phpcr:init:dbal" yet? (Exception: '.$e->getMessage()));
+
             return $viewHandler->handle($view);
         }
 
         if ($article) {
-            $article->setBody((string)($article->getBody() + 1));
+            $article->setBody((string) ($article->getBody() + 1));
         } else {
             $article = new Article();
             $article->setTitle($title);
@@ -58,7 +49,7 @@ class PHPCRController extends ContainerAware
     }
 
     /**
-     * alternatively use class="LiipHelloBundle:Article", but this has a bit more overhead
+     * alternatively use class="LiipHelloBundle:Article", but this has a bit more overhead.
      *
      * @ParamConverter("article", class="Liip\HelloBundle\Document\Article")
      */
@@ -72,6 +63,7 @@ class PHPCRController extends ContainerAware
         $view->setData(array('name' => $name));
 
         $viewHandler = $this->container->get('my_view');
+
         return $viewHandler->handle($view);
     }
 }

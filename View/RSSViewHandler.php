@@ -2,18 +2,18 @@
 
 namespace Liip\HelloBundle\View;
 
-use FOS\RestBundle\View\View,
-    FOS\RestBundle\View\ViewHandler,
-    Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\View\View;
+use FOS\RestBundle\View\ViewHandler;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class RSSViewHandler
 {
     /**
      * @param ViewHandler $viewHandler
-     * @param View $view
-     * @param Request $request
-     * @param string $format
+     * @param View        $view
+     * @param Request     $request
+     * @param string      $format
      *
      * @return Response
      */

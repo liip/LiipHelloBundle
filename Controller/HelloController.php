@@ -2,16 +2,13 @@
 
 namespace Liip\HelloBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference,
-    Symfony\Component\Routing\Exception\ResourceNotFoundException,
-    Symfony\Component\Validator\ValidatorInterface;
-
-use FOS\RestBundle\View\View,
-    FOS\RestBundle\View\ViewHandler,
-    FOS\RestBundle\View\RouteRedirectView;
-
+use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Symfony\Component\Validator\ValidatorInterface;
+use FOS\RestBundle\View\View;
+use FOS\RestBundle\View\ViewHandler;
+use FOS\RestBundle\View\RouteRedirectView;
 use JMS\Serializer\SerializationContext;
-
 use Liip\HelloBundle\Document\Article;
 
 class HelloController
@@ -40,7 +37,6 @@ class HelloController
             $view = View::create(array('name' => $name))
 //                ->setEngine('php');
                 ->setTemplate(new TemplateReference('LiipHelloBundle', 'Hello', 'index'));
-            ;
         }
 
         return $this->viewHandler->handle($view);
@@ -51,7 +47,7 @@ class HelloController
         $article = new Article();
         $article->setPath('/foo');
         $article->setTitle('Example use of the default handlers');
-        $article->setBody("Read up on JMSSerializerBundle to see how what other handlers exist ");
+        $article->setBody('Read up on JMSSerializerBundle to see how what other handlers exist ');
 
         $view = new View();
         $view->setData($article);
@@ -105,6 +101,7 @@ fos_rest:
     public function customHandlerAction()
     {
         $view = new View();
+
         return $this->viewHandler->handle($view);
     }
 

@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Generated via:
- *  php app/console simplethings:convert-jms-metadata "Liip\HelloBundle\Document\Article" > vendor/bundles/Liip/HelloBundle/Form/ArticleType.php
+ *  php app/console simplethings:convert-jms-metadata "Liip\HelloBundle\Document\Article" > vendor/bundles/Liip/HelloBundle/Form/ArticleType.php.
  */
 class ArticleType extends AbstractType
 {
@@ -25,7 +25,7 @@ class ArticleType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Liip\HelloBundle\Document\Article'
+            'data_class' => 'Liip\HelloBundle\Document\Article',
         ));
     }
 
@@ -34,4 +34,3 @@ class ArticleType extends AbstractType
         return 'article';
     }
 }
-
