@@ -3,18 +3,15 @@
 namespace Liip\HelloBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-
-use FOS\RestBundle\Controller\Annotations\Prefix,
-    FOS\RestBundle\Controller\Annotations\NamePrefix,
-    FOS\RestBundle\Controller\Annotations\RouteResource,
-    FOS\RestBundle\Controller\Annotations\View,
-    FOS\RestBundle\Controller\Annotations\QueryParam,
-    FOS\RestBundle\Controller\FOSRestController;
-
-use Liip\HelloBundle\Document\Article,
-    Liip\HelloBundle\Form\ArticleType,
-    Liip\HelloBundle\Response;
-
+use FOS\RestBundle\Controller\Annotations\Prefix;
+use FOS\RestBundle\Controller\Annotations\NamePrefix;
+use FOS\RestBundle\Controller\Annotations\RouteResource;
+use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Controller\FOSRestController;
+use Liip\HelloBundle\Document\Article;
+use Liip\HelloBundle\Form\ArticleType;
+use Liip\HelloBundle\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
@@ -28,9 +25,10 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 class ArticleController extends FosRestController
 {
     /**
-     * Get the list of articles
+     * Get the list of articles.
      *
      * @param string $page integer with the page number (requires param_fetcher_listener: force)
+     *
      * @return array data
      *
      * @View()
@@ -45,7 +43,7 @@ class ArticleController extends FosRestController
     }
 
     /**
-     * Display the form
+     * Display the form.
      *
      * @return Form form instance
      *
@@ -58,9 +56,10 @@ class ArticleController extends FosRestController
     }
 
     /**
-     * Display the edit form
+     * Display the edit form.
      *
      * @param string $article path
+     *
      * @return Form form instance
      *
      * @View(template="LiipHelloBundle:Article:new.html.twig")
@@ -69,6 +68,7 @@ class ArticleController extends FosRestController
     public function editAction($article)
     {
         $article = $this->createArticle($article);
+
         return $this->getForm($article);
     }
 
@@ -84,9 +84,10 @@ class ArticleController extends FosRestController
     }
 
     /**
-     * Get the article
+     * Get the article.
      *
      * @param string $article path
+     *
      * @return View view instance
      *
      * @View()
@@ -106,9 +107,10 @@ class ArticleController extends FosRestController
     }
 
     /**
-     * Create a new resource
+     * Create a new resource.
      *
      * @param Request $request
+     *
      * @return View view instance
      *
      * @View()

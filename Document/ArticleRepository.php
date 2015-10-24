@@ -2,8 +2,8 @@
 
 namespace Liip\HelloBundle\Document;
 
-use Doctrine\ODM\PHPCR\Id\RepositoryIdInterface,
-    Doctrine\ODM\PHPCR\DocumentRepository;
+use Doctrine\ODM\PHPCR\Id\RepositoryIdInterface;
+use Doctrine\ODM\PHPCR\DocumentRepository;
 
 class ArticleRepository extends DocumentRepository implements RepositoryIdInterface
 {

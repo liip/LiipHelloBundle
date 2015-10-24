@@ -2,8 +2,8 @@
 
 namespace Liip\HelloBundle\Features\Context;
 
-use Behat\BehatBundle\Context\MinkContext,
-    Behat\Mink\Exception\ElementNotFoundException;
+use Behat\BehatBundle\Context\MinkContext;
+use Behat\Mink\Exception\ElementNotFoundException;
 
 /**
  * Feature context.
@@ -15,7 +15,7 @@ class FeatureContext extends MinkContext
      */
     public function iClickOn($argument1)
     {
-       $this->clickById($argument1);
+        $this->clickById($argument1);
     }
 
     public function clickById($locator)

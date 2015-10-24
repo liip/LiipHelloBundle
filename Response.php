@@ -3,9 +3,8 @@
 namespace Liip\HelloBundle;
 
 use JMS\Serializer\Annotation as Serializer;
-
-use Doctrine\Common\Collections\ArrayCollection,
-    Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class Response
 {
