@@ -26,8 +26,8 @@
         "liip/search-bundle": "~1.0",
         "liip/container-wrapper-bundle": "~1.0",
         "liip/url-auto-converter-bundle": "~1.0",
-        "nelmio/api-doc-bundle": "~2.3@dev",
-        "jms/serializer-bundle": "~0.13",
+        "nelmio/api-doc-bundle": "~2.3",
+        "jms/serializer-bundle": "~1.0",
         "friendsofsymfony/rest-bundle": "~1.7",
         "friendsofsymfony/user-bundle": "~2.0@dev"
     },
