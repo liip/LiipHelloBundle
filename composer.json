@@ -23,7 +23,7 @@
         "liip/hyphenator-bundle": "~2.0",
         "liip/theme-bundle": "~1.0",
         "liip/imagine-bundle": "~1.0",
-        "liip/search-bundle": "~1.0",
+        "liip/search-bundle": "~2.0",
         "liip/container-wrapper-bundle": "~1.0",
         "liip/url-auto-converter-bundle": "~1.0",
         "nelmio/api-doc-bundle": "~2.3",
