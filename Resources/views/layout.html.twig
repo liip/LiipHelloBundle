@@ -17,7 +17,10 @@
 
     <h1>Hello Application</h1>
 
-    {{ render(controller('liip_search_default_controller:showSearchBoxAction')) }}
+    {% if query is not defined %}
+        {% set query = 'enter search query' %}
+    {% endif %}
+    {{ liip_search_box(query, 'query-field-id', 'css-class') }}
 
     {% for type, flashMessages in app.session.flashbag.all() %}
         {% for flashMessage in flashMessages %}
