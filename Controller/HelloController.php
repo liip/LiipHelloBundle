@@ -4,10 +4,9 @@ namespace Liip\HelloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
-use Symfony\Component\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\ViewHandler;
-use FOS\RestBundle\View\RouteRedirectView;
 use JMS\Serializer\SerializationContext;
 use Liip\HelloBundle\Document\Article;
 
@@ -32,7 +31,7 @@ class HelloController
     public function indexAction($name = null)
     {
         if (!$name) {
-            $view = RouteRedirectView::create('_welcome');
+            $view = View::createRouteRedirect('_welcome');
         } else {
             $view = View::create(array('name' => $name))
 //                ->setEngine('php');

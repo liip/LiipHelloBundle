@@ -2,10 +2,12 @@
 
 {% block content %}
 
-    <form action="{{ path('liip_hello_r3st_post_articles') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_start(form) }}
+
         {{ form_widget(form) }}
 
         <input type="submit" />
-    </form>
+
+    {{ form_end(form) }}
 
 {% endblock content %}

@@ -4,8 +4,8 @@ namespace Liip\HelloBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Form;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use FOS\RestBundle\View\RouteRedirectView;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcherInterface;
@@ -48,7 +48,7 @@ class RestController extends Controller
      */
     public function newArticleAction()
     {
-        $data = $this->getForm();
+        $data = $this->getForm(null, 'post_articles');
         $view = new View($data);
         $view->setTemplate('LiipHelloBundle:Rest:newArticle.html.twig');
 
@@ -121,9 +121,26 @@ class RestController extends Controller
         return $this->get('fos_rest.view_handler')->handle($view);
     }
 
-    protected function getForm($article = null)
+    /**
+     * Get a Form instance
+     *
+     * @param Article|null $article
+     * @param string|null $routeName
+
+     * @return Form
+     */
+    protected function getForm($article = null, $routeName = null)
     {
-        return $this->createForm(new ArticleType(), $article);
+        $options = array();
+        if (null !== $routeName) {
+            $options['action'] = $this->generateUrl($routeName);
+        }
+
+        if (null === $article) {
+            $article = new Article();
+        }
+
+        return $this->createForm(new ArticleType(), $article, $options);
     }
 
     /**
@@ -139,15 +156,15 @@ class RestController extends Controller
     {
         $form = $this->getForm();
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
-            // Note: use LiipCacheControlBundle to automatically move this flash message to a cookie
-            $this->get('session')->setFlash('article', 'Article is stored at path: '.$form->getData()->getPath());
+            // Note: use FOSHttpCacheBundle to automatically move this flash message to a cookie
+            $this->get('session')->getFlashBag()->set('article', 'Article is stored at path: '.$form->getData()->getPath());
 
             // Note: normally one would likely create/update something in the database
             // and/or send an email and finally redirect to the newly created or updated resource url
-            $view = RouteRedirectView::create('hello', array('name' => $form->getData()->getTitle()));
+            $view = View::createRouteRedirect('hello', array('name' => $form->getData()->getTitle()));
         } else {
             $view = View::create($form);
             $view->setTemplate('LiipHelloBundle:Rest:postArticles.html.twig');

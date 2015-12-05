@@ -3,7 +3,7 @@
 namespace Liip\HelloBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use FOS\RestBundle\View\RedirectView;
+use FOS\RestBundle\View\View as ViewClass;
 use FOS\RestBundle\Controller\Annotations\View;
 
 /**
@@ -19,7 +19,7 @@ class ExtraController
     public function indexAction($name = null)
     {
         if (!$name) {
-            return RedirectView::create('http://liip.ch');
+            return ViewClass::createRedirect('http://liip.ch');
         }
 
         return array('name' => $name);

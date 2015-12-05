@@ -3,6 +3,7 @@
 namespace Liip\HelloBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Form;
 use FOS\RestBundle\Controller\Annotations\Prefix;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
@@ -22,7 +23,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
  * possible to set the resource to something else unrelated to the Controller name
  * @RouteResource("Article")
  */
-class ArticleController extends FosRestController
+class ArticleController extends FOSRestController
 {
     /**
      * Get the list of articles.
@@ -52,7 +53,7 @@ class ArticleController extends FosRestController
      */
     public function newAction()
     {
-        return $this->getForm();
+        return $this->getForm(null, 'liip_hello_r3st_post_articles');
     }
 
     /**
@@ -101,9 +102,26 @@ class ArticleController extends FosRestController
         return $this->view(array('article' => $article));
     }
 
-    protected function getForm($article = null)
+    /**
+     * Get a Form instance
+     *
+     * @param Article|null $article
+     * @param string|null $routeName
+
+     * @return Form
+     */
+    protected function getForm($article = null, $routeName = null)
     {
-        return $this->createForm(new ArticleType(), $article);
+        $options = array();
+        if (null !== $routeName) {
+            $options['action'] = $this->generateUrl($routeName);
+        }
+
+        if (null === $article) {
+            $article = new Article();
+        }
+
+        return $this->createForm(new ArticleType(), $article, $options);
     }
 
     /**
@@ -120,11 +138,11 @@ class ArticleController extends FosRestController
     {
         $form = $this->getForm();
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
-            // Note: use LiipCacheControlBundle to automatically move this flash message to a cookie
-            $this->get('session')->setFlash('article', 'Article is stored at path: '.$form->getData()->getPath());
+            // Note: use FOSHttpCacheBundle to automatically move this flash message to a cookie
+            $this->get('session')->getFlashBag()->set('article', 'Article is stored at path: '.$form->getData()->getPath());
 
             // Note: normally one would likely create/update something in the database
             // and/or send an email and finally redirect to the newly created or updated resource url
