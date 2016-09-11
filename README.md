@@ -20,7 +20,8 @@ Installation
   Alternatively download and install the following [Symfony2 Standard Edition fork](https://github.com/liip-forks/symfony-standard/tree/techtalk):
 
         $ git clone https://github.com/liip-forks/symfony-standard.git
-        $ git checkout -b techtalk origin/techtalk
+        $ cd symfony-standard
+        $ git checkout techtalk
 
 What is this?
 -------------
