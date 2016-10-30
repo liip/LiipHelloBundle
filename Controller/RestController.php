@@ -126,7 +126,7 @@ class RestController extends Controller
      *
      * @param Article|null $article
      * @param string|null  $routeName
-     
+     *
      * @return Form
      */
     protected function getForm($article = null, $routeName = null)
